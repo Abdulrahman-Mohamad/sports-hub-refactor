@@ -1,17 +1,18 @@
 {
-  "common":{
-
-  },
-  "navbar":{
-    "logo":"/images/logo/logoEn.png",
-    "links":{
-      "home":"Home",
-      "packages":"Packages",
-      "leaderboards":"Leaderboards",
-      "games":"Games",
-      "history":"History",
-      "logout":"Logout",
-      "profile":"Profile"
+  "common": {},
+  "navbar": {
+    "logo": "/images/logo/logoEn.png",
+    "flage": "/images/navbar/en.png",
+    "links": {
+      "home": "Home",
+      "packages": "Packages",
+      "leaderboards": "Leaderboards",
+      "games": "Games",
+      "history": "History",
+      "logout": "Logout",
+      "profile": "Profile",
+      "login": "Login",
+      "register": "Register"
     }
   }
 }

@@ -1,5 +1,6 @@
 "use client";
 
+import LanguageSwitcher from "@/components/ui/LanguageSwitcher";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
@@ -71,7 +72,9 @@ export default function Navbar() {
         {/* right */}
         <div className="flex justify-end items-center">
           {/* language switcher */}
-          <div></div>
+          <div>
+            <LanguageSwitcher />
+          </div>
 
           {/* user */}
           <div></div>

@@ -6,7 +6,6 @@ import AuthProvider from "@/providers/AuthProvider";
 import { ToastContainer } from "react-toastify";
 import { getMessages } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
-import LanguageSwitcher2 from "@/components/ui/LanguageSwitcher2";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -31,7 +30,6 @@ export default async function RootLayout({
             <AuthProvider>
               <NextIntlClientProvider messages={messages}>
                 {children}
-                <LanguageSwitcher2 />
               </NextIntlClientProvider>
             </AuthProvider>
             <ToastContainer position="top-right" autoClose={3000} />
