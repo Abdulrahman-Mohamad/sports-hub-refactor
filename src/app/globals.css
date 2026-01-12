@@ -1,6 +1,12 @@
 @import "tailwindcss";
 
 @theme {
-  --color-purble:#E400FB;
-}
+  /* Breakpoints */
+  --breakpoint-sm: 480px;
 
+  /* colors */
+  --color-primary: #E400FB;
+  
+  /* gradient */
+  --background-image-gradient-primary: linear-gradient(to bottom, #E400FB, #5200FD);
+}

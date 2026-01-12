@@ -2,7 +2,7 @@
   "common":{
 
   },
-  "Navbar":{
+  "navbar":{
     "logo":"/images/logo/logoAr.png",
     "links":{
       "home":"الرئيسية",

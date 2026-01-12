@@ -6,7 +6,7 @@ export default function layout({ children }: { children: React.ReactNode }) {
     <>
       <div className="min-h-screen flex flex-col justify-between">
         <Navbar />
-        <main className="flex-1">{children}</main>
+        <main className="flex-1 bg-[#0E0011]">{children}</main>
         <Footer />
       </div>
     </>

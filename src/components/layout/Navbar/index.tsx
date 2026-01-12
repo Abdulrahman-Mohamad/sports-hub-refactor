@@ -8,26 +8,27 @@ export default function Navbar() {
   const t = useTranslations("navbar");
   return (
     <>
-      <nav className="fixed top-10 right-16 left-16 z-50 flex items-center justify-between bg-white rounded-lg py-3 px-4">
+      <nav className="fixed top-10 right-16 left-16 z-50 flex items-center justify-between bg-white rounded-lg py-3 px-4 max-h-12">
         {/* Left */}
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-6 xl:gap-10">
           {/* logo */}
-          <div className="flex items-center">
+          <Link href={"/"} className="flex items-center">
             <Image
-              className="w-52 translate-y-0.5"
+              className="w-44 translate-y-0.5 rtl:w-36"
               src={t("logo")}
               alt="SPORTS HUB"
               width={1100}
               height={22}
               quality={100}
             />
-          </div>
+          </Link>
+
           {/* Links */}
-          <ul className="flex items-center gap-4 container">
+          <ul className="flex items-center gap-4 xl:gap-8">
             <li>
               <Link
                 href={"/"}
-                className="text- hover:text-purble transition-colors duration-300"
+                className="hover:text-primary transition-colors duration-300"
               >
                 {t("links.home")}
               </Link>
@@ -35,7 +36,7 @@ export default function Navbar() {
             <li>
               <Link
                 href={"/packages"}
-                className="text- hover:text-purble transition-colors duration-300"
+                className="hover:text-primary transition-colors duration-300"
               >
                 {t("links.packages")}
               </Link>
@@ -43,7 +44,7 @@ export default function Navbar() {
             <li>
               <Link
                 href={"/leaderboards"}
-                className="text- hover:text-purble transition-colors duration-300"
+                className="hover:text-primary transition-colors duration-300"
               >
                 {t("links.leaderboards")}
               </Link>
@@ -51,7 +52,7 @@ export default function Navbar() {
             <li>
               <Link
                 href={"/games"}
-                className="text- hover:text-purble transition-colors duration-300"
+                className="hover:text-primary transition-colors duration-300"
               >
                 {t("links.games")}
               </Link>
@@ -59,7 +60,7 @@ export default function Navbar() {
             <li>
               <Link
                 href={"/history"}
-                className="text- hover:text-purble transition-colors duration-300"
+                className="hover:text-primary transition-colors duration-300"
               >
                 {t("links.history")}
               </Link>
@@ -68,7 +69,16 @@ export default function Navbar() {
         </div>
 
         {/* right */}
-        <div></div>
+        <div className="flex justify-end items-center">
+          {/* language switcher */}
+          <div></div>
+
+          {/* user */}
+          <div></div>
+
+          {/* Notifications */}
+          <div></div>
+        </div>
       </nav>
     </>
   );
