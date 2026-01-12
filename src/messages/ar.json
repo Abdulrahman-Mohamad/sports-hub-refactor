@@ -1,5 +1,9 @@
 {
-  "common": {},
+  "common": {
+    "success": "تم بنجاح",
+    "error_occurred": "حدث خطأ ما",
+    "loading": "جاري التحميل..."
+  },
   "navbar": {
     "logo": "/images/logo/logoAr.png",
     "flage": "/images/navbar/ar.png",
@@ -13,6 +17,30 @@
       "profile": "الملف الشخصي",
       "login": "تسجيل الدخول",
       "register": "إنشاء حساب"
+    }
+  },
+  "pages": {
+    "auth": {
+      "login": {
+        "title": "تسجيل الدخول",
+        "subtitle": "لقد قدمنا ​​جوائز تزيد عن مليون جنيه إسترليني.",
+        "subtitle_line2": "هل أنت مستعد للفوز؟",
+        "phone": "الهاتف",
+        "email": "البريد الإلكتروني",
+        "enter_password": "أدخل كلمة المرور",
+        "forgot_password": "نسيت كلمة المرور؟",
+        "login": "دخول",
+        "no_account": "ليس لديك حساب؟",
+        "sign_up": "إنشاء حساب"
+      }
+    }
+  },
+  "components": {
+    "forms": {
+      "placeholders": {
+        "enter_phone": "أدخل رقم الهاتف",
+        "enter_email": "أدخل البريد الإلكتروني"
+      }
     }
   }
 }

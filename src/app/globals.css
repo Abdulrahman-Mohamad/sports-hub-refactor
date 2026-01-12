@@ -6,7 +6,12 @@
 
   /* colors */
   --color-primary: #E400FB;
-  
+
   /* gradient */
   --background-image-gradient-primary: linear-gradient(to bottom, #E400FB, #5200FD);
+}
+
+
+.text-gradient-primary {
+  @apply bg-clip-text text-transparent bg-gradient-to-b from-[#E400FB] to-[#5200FD];
 }

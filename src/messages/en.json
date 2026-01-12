@@ -1,5 +1,9 @@
 {
-  "common": {},
+  "common": {
+    "success": "Success",
+    "error_occurred": "An error occurred",
+    "loading": "Loading..."
+  },
   "navbar": {
     "logo": "/images/logo/logoEn.png",
     "flage": "/images/navbar/en.png",
@@ -13,6 +17,30 @@
       "profile": "Profile",
       "login": "Login",
       "register": "Register"
+    }
+  },
+  "pages": {
+    "auth": {
+      "login": {
+        "title": "Welcome Back",
+        "subtitle": "We've given over 1 million pounds in prizes",
+        "subtitle_line2": "Are you ready to win?",
+        "phone": "Phone",
+        "email": "Email",
+        "enter_password": "Enter Password",
+        "forgot_password": "Forgot Password?",
+        "login": "Login",
+        "no_account": "Don't have an account?",
+        "sign_up": "Sign Up"
+      }
+    }
+  },
+  "components": {
+    "forms": {
+      "placeholders": {
+        "enter_phone": "Enter Phone Number",
+        "enter_email": "Enter Email Address"
+      }
     }
   }
 }

@@ -9,7 +9,7 @@ export default function Navbar() {
   const t = useTranslations("navbar");
   return (
     <>
-      <nav className="fixed top-10 right-16 left-16 z-50 flex items-center justify-between bg-white rounded-lg py-3 px-4 max-h-12">
+      <nav className="fixed top-10 right-30 left-30 z-50 items-center justify-between bg-white rounded-lg py-3 px-4 max-h-12 hidden lg:flex">
         {/* Left */}
         <div className="flex items-center gap-6 xl:gap-10">
           {/* logo */}
