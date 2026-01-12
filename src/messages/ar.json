@@ -1,0 +1,17 @@
+{
+  "common":{
+
+  },
+  "Navbar":{
+    "logo":"/images/logo/logoAr.png",
+    "links":{
+      "home":"الرئيسية",
+      "packages":"الباقات",
+      "leaderboards":"الترتيب",
+      "games":"الألعاب",
+      "history":"السجل",
+      "logout":"تسجيل الخروج",
+      "profile":"الملف الشخصي"
+    }
+  }
+}
