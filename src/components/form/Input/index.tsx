@@ -12,8 +12,6 @@ export default function Input({
   className = "",
   settings = {},
   isAuth = true,
-  value,
-  defaultValue,
 }: InputProps) {
   return (
     <div className={className}>
@@ -36,11 +34,10 @@ export default function Input({
           id={id}
           type={type}
           {...settings}
-          {...register(id)}
-          value={value}
-          defaultValue={defaultValue}
+          {...register(id)}          aria-invalid={!!errors?.[id]}
+          aria-describedby={errors?.[id] ? `${id}-error` : undefined}
           className={`
-            ${isAuth ? "":"text-neutral1 bg-primary"}
+            ${isAuth ? "" : "text-neutral1 bg-primary"}
             w-full ${
               !!icon ? "ps-12" : "ps-4"
             }  pe-4 py-3 bg-white border-2 border-gray-200 rounded-lg  
@@ -50,7 +47,11 @@ export default function Input({
         />
       </div>
       {errors?.[id] && (
-        <div className="mt-1 capitalize text-sm">
+        <div
+          id={`${id}-error`}
+          role="alert"
+          className="mt-1 capitalize text-sm"
+        >
           <p className="text-statusError font-semibold">{errors[id].message}</p>
         </div>
       )}

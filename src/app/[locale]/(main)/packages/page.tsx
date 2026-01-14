@@ -1,5 +1,5 @@
-export default function PacjagesPage() {
+export default function PackagesPage() {
   return (
-    <div>PacjagesPage</div>
+    <div>PackagesPage</div>
   )
 }

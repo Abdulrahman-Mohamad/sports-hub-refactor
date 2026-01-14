@@ -15,9 +15,8 @@ interface User {
 interface UserState {
   user: User | null;
   accessToken: string | null;
-  refreshToken: string | null;
   initialized: boolean;
-  setUser: (payload: { user: User; token: string }) => void;
+  setUser: (payload: { user: User; accessToken: string }) => void;
   logOut: () => void;
   setInitialized: () => void;
 }
@@ -25,7 +24,6 @@ interface UserState {
 const defaultUserState: UserState = {
   user: null,
   accessToken: null,
-  refreshToken: null,
   initialized: false,
   setUser: () => {},
   logOut: () => {},
@@ -35,8 +33,9 @@ const defaultUserState: UserState = {
 const UserContext = createContext<UserState>(defaultUserState);
 
 export function UserProvider({ children }: { children: ReactNode }) {
-  const [accessToken, setAccessToken] = useState<string | null>(null);
-  const [refreshToken, setRefreshToken] = useState<string | null>(null);
+  const [accessToken, setAccessToken] = useState<string | null>(() => {
+    return Cookies.get("access_token") || null;
+  });
   const [user, setUserState] = useState<User | null>(() => {
     const cookieUser = Cookies.get("user");
 
@@ -53,26 +52,42 @@ export function UserProvider({ children }: { children: ReactNode }) {
 
   const [initialized, setInitialized] = useState<boolean>(() => !!user);
 
-  const setUser = ({ user, token }: { user: User; token: string }) => {
+  const setUser = ({
+    user,
+    accessToken,
+  }: {
+    user: User;
+    accessToken: string;
+  }) => {
     setUserState(user);
-    setAccessToken(token);
+    setAccessToken(accessToken);
     setInitialized(true);
-    Cookies.set("user", JSON.stringify(user));
+    Cookies.set("user", JSON.stringify(user), {
+      expires: 365,
+      secure: true,
+      sameSite: "Lax",
+    });
+    Cookies.set("access_token", accessToken, {
+      expires: 365,
+      secure: true,
+      sameSite: "Lax",
+    });
   };
 
   const logOut = () => {
     setUserState(null);
     setAccessToken(null);
-    setRefreshToken(null);
     setInitialized(false);
     Cookies.remove("user");
-    window.location.reload();
+    Cookies.remove("access_token");
+    if (typeof window !== "undefined") {
+      window.location.reload();
+    }
   };
 
   const value: UserState = {
     user,
     accessToken,
-    refreshToken,
     initialized,
     setUser,
     logOut,

@@ -6,7 +6,7 @@
   },
   "navbar": {
     "logo": "/images/logo/logoEn.png",
-    "flage": "/images/navbar/en.png",
+    "flag": "/images/navbar/en.png",
     "links": {
       "home": "Home",
       "packages": "Packages",

@@ -23,13 +23,12 @@ export default function LanguageSwitcher({
         <Dropdown
           icon={
             <Image
-              src={t("flage")}
-              alt="Language Flage"
+              src={t("flag")}
+              alt="Language Flag"
               width={30}
               height={20}
               className="w-8"
-            />
-          }
+            />          }
           defaultOpen={false}
           className="w-full"
           btnClassName="w-full"

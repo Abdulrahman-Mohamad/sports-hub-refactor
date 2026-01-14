@@ -40,7 +40,7 @@ export default function LoginPage() {
     const userData = res?.data?.user;
     const token = res?.data?.token;
     if (userData && token) {
-      setUser({ user: userData, token });
+      setUser({ user: userData, accessToken: token });
       toast.success(res?.message || t("common.success"));
       router.push(`/`);
     } else {

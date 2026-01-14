@@ -6,7 +6,7 @@
   },
   "navbar": {
     "logo": "/images/logo/logoAr.png",
-    "flage": "/images/navbar/ar.png",
+    "flag": "/images/navbar/ar.png",
     "links": {
       "home": "الرئيسية",
       "packages": "الباقات",

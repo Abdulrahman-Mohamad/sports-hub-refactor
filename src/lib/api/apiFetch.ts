@@ -22,21 +22,11 @@ async function getAuthAndLocale() {
     const { cookies } = await import("next/headers");
     const cookieStore = await cookies();
 
-    const userCookie = cookieStore.get("user")?.value;
-    if (userCookie) {
-      const user = JSON.parse(userCookie);
-      token = user?.token ?? null;
-    }
-
+    token = cookieStore.get("access_token")?.value || null;
     locale = cookieStore.get("NEXT_LOCALE")?.value || "en";
   } else {
     // Client Component
-    const userCookie = Cookies.get("user");
-    if (userCookie) {
-      const user = JSON.parse(userCookie);
-      token = user?.token ?? null;
-    }
-
+    token = Cookies.get("access_token") || null;
     locale = Cookies.get("NEXT_LOCALE") || "en";
   }
 
@@ -76,5 +66,22 @@ export async function apiFetch(endpoint: string, options: FetchOptions = {}) {
     throw new Error(JSON.stringify({ status: res.status, error }));
   }
 
-  return res.json();
+  // Handle empty or non-JSON responses safely
+  const contentType = res.headers.get("content-type");
+  const contentLength = res.headers.get("content-length");
+
+  if (
+    res.status === 204 ||
+    contentLength === "0" ||
+    !contentType?.includes("application/json")
+  ) {
+    return null;
+  }
+
+  try {
+    return await res.json();
+  } catch (error) {
+    console.error("Failed to parse JSON response:", error);
+    return null;
+  }
 }

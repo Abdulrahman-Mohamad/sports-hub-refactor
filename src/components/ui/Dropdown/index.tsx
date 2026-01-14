@@ -102,9 +102,7 @@ const Dropdown: React.FC<DropdownProps> = ({
                     opacity: 0,
                   }
             }
-            className={`${isOpen ? "shadow-xl " : ""} absolute ${
-              alignmentClasses[align]
-            } top-[calc(100%+10px)] bg-white min-w-[180px] rounded-lg flex flex-col overflow-hidden z-10 ${menuClassName}`}
+            className={`shadow-xl absolute ${alignmentClasses[align]} top-[calc(100%+10px)] bg-white min-w-[180px] rounded-lg flex flex-col overflow-hidden z-10 ${menuClassName}`}
           >
             {children}
           </motion.div>
