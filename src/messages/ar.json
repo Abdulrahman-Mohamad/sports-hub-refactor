@@ -2,12 +2,27 @@
   "metadata": {
     "title": "سبورتس هاب | إعادة اصلاح",
     "description": "منصة ألعاب مع جوائز مذهلة",
-    "icon":"/images/favicon/faviconAr.png"
+    "icon": "/images/favicon/faviconAr.png"
+  },
+  "validation": {
+    "email_required": "البريد الإلكتروني مطلوب",
+    "invalid_email": "البريد الإلكتروني غير صحيح",
+    "phone_required": "دخل رقم تلفونك",
+    "invalid_phone": "رقم الهاتف غير صحيح",
+    "phone_digits_only": "رقم الهاتف يجب أن يحتوي على أرقام فقط",
+    "phone_length_8": "رقم الهاتف يجب أن يكون 8 أرقام بالضبط",
+    "password_min": "كلمة المرور يجب أن تكون 4 أحرف على الأقل",
+    "password_required": "كلمة المرور مطلوبة",
+    "identity_required": "هذا الحقل مطلوب",
+    "name_required": "اسم المستخدم مطلوب",
+    "message_required":"الرسالة مطلوبة"
   },
   "common": {
     "success": "تم بنجاح",
     "error_occurred": "حدث خطأ ما",
-    "loading": "جاري التحميل..."
+    "loading": "جاري التحميل...",
+    "no_data": "لا توجد بيانات لعرضها حالياً",
+    "try_again": "إعادة المحاولة"
   },
   "navbar": {
     "logo": "/images/logo/logoAr.png",
@@ -32,11 +47,13 @@
         "subtitle_line2": "هل أنت مستعد للفوز؟",
         "phone": "الهاتف",
         "email": "البريد الإلكتروني",
-        "enter_password": "أدخل كلمة المرور",
         "forgot_password": "نسيت كلمة المرور؟",
         "login": "دخول",
         "no_account": "ليس لديك حساب؟",
         "sign_up": "إنشاء حساب"
+      },
+      "forgetPassword": {
+        "title": "نسيت كلمة المرور"
       }
     }
   },
@@ -44,7 +61,9 @@
     "forms": {
       "placeholders": {
         "enter_phone": "أدخل رقم الهاتف",
-        "enter_email": "أدخل البريد الإلكتروني"
+        "enter_email": "أدخل البريد الإلكتروني",
+        "enter_password": "أدخل كلمة المرور",
+        "enter_name": "دخل اسم المستخدم"
       }
     }
   }

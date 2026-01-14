@@ -1,8 +1,8 @@
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-
 import React, { useState } from "react";
 import { FaLock } from "react-icons/fa";
 import { InputProps } from "@/utils/types/Form/Input";
+import { motion } from "framer-motion";
 
 export default function PasswordInput({
   name,
@@ -12,11 +12,10 @@ export default function PasswordInput({
   placeholder = "Enter Password",
   icon,
   className,
-  isAuth = true,
 }: InputProps) {
   const [showPassword, setShowPassword] = useState(false);
   return (
-    <div className={`${className}`}>
+    <div className={`${className} relative`}>
       <label
         htmlFor={id}
         className="block text-sm font-medium capitalize text-gray-700 mb-2"
@@ -53,11 +52,15 @@ export default function PasswordInput({
           </span>
         </button>
       </div>
-      <div className="mt-1 capitalize text-sm">
-        {errors?.[id] && (
-          <p className="text-statusError font-semibold">{errors[id].message}</p>
-        )}
-      </div>
+      {errors?.[id] && (
+        <motion.div
+          initial={{ x: -100, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          className="text-sm absolute rtl:right-0"
+        >
+          <p className="text-red-400 font-medium">{errors[id].message}</p>
+        </motion.div>
+      )}
     </div>
   );
 }
