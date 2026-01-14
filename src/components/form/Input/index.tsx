@@ -40,6 +40,7 @@ export default function Input({
           value={value}
           defaultValue={defaultValue}
           className={`
+            ${isAuth ? "":"text-neutral1 bg-primary"}
             w-full ${
               !!icon ? "ps-12" : "ps-4"
             }  pe-4 py-3 bg-white border-2 border-gray-200 rounded-lg  

@@ -13,7 +13,7 @@ import Input from "@/components/form/Input";
 import { FaLock, FaPhone } from "react-icons/fa";
 import GradientIcon from "@/components/ui/GradientIcon";
 import { IoIosMail } from "react-icons/io";
-import PasswordInput from "@/components/form/Input/PasswordInput";
+import PasswordInput from "@/components/form/PasswordInput";
 
 interface LoginForm {
   type: "phone" | "email";
@@ -24,7 +24,7 @@ interface LoginForm {
 export default function LoginPage() {
   const [modal, setModal] = useState<boolean>(false);
   const t = useTranslations();
-  const { setUser } = useUser();
+  const { setUser, user } = useUser();
   const router = useRouter();
 
   const {
@@ -36,13 +36,16 @@ export default function LoginPage() {
     defaultValues: { type: "phone" },
   });
 
-  const onSuccess = (data: any) => {
-    const user = data?.data?.data;
-    const token = data?.data?.token;
-
-    setUser({ user, token });
-    toast.success(data?.message || t("common.success"));
-    router.push(`/`);
+  const onSuccess = (res: any) => {
+    const userData = res?.data?.user;
+    const token = res?.data?.token;
+    if (userData && token) {
+      setUser({ user: userData, token });
+      toast.success(res?.message || t("common.success"));
+      router.push(`/`);
+    } else {
+      console.error("UserData or Token is missing in response:", res);
+    }
   };
 
   const onError = (error: any) => {
@@ -87,14 +90,18 @@ export default function LoginPage() {
       >
         <form className="space-y-10" onSubmit={handleSubmit(onSubmit)}>
           <div className="text-center space-y-4">
-            <h2 className="text-4xl pb-2 font-bold text-gradient-primary
+            <h2
+              className="text-4xl pb-2 font-bold text-gradient-primary
             md:text-5xl
-            ">
+            "
+            >
               {t("pages.auth.login.title")}
             </h2>
-            <p className="text-sm
+            <p
+              className="text-sm
             md:text-base md:font-medium
-            ">
+            "
+            >
               {t("pages.auth.login.subtitle")} <br />
               {t("pages.auth.login.subtitle_line2")}
             </p>

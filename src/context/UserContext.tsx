@@ -4,7 +4,7 @@ import { createContext, useContext, useState, ReactNode } from "react";
 import Cookies from "js-cookie";
 
 interface User {
-  name: string;
+  username: string;
   id: number;
   email: string;
   email_verified_at: string | null;
@@ -39,7 +39,16 @@ export function UserProvider({ children }: { children: ReactNode }) {
   const [refreshToken, setRefreshToken] = useState<string | null>(null);
   const [user, setUserState] = useState<User | null>(() => {
     const cookieUser = Cookies.get("user");
-    return cookieUser ? JSON.parse(cookieUser) : null;
+
+    // التحقق من أن القيمة موجودة وليست نص "undefined"
+    if (!cookieUser || cookieUser === "undefined") return null;
+
+    try {
+      return JSON.parse(cookieUser);
+    } catch (error) {
+      console.error("Failed to parse user cookie:", error);
+      return null;
+    }
   });
 
   const [initialized, setInitialized] = useState<boolean>(() => !!user);
