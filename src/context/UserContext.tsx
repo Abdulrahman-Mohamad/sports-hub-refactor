@@ -1,6 +1,12 @@
 "use client";
 
-import { createContext, useContext, useState, ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+  ReactNode,
+  useEffect,
+} from "react";
 import Cookies from "js-cookie";
 
 interface User {
@@ -33,24 +39,28 @@ const defaultUserState: UserState = {
 const UserContext = createContext<UserState>(defaultUserState);
 
 export function UserProvider({ children }: { children: ReactNode }) {
-  const [accessToken, setAccessToken] = useState<string | null>(() => {
-    return Cookies.get("access_token") || null;
-  });
-  const [user, setUserState] = useState<User | null>(() => {
+  const [accessToken, setAccessToken] = useState<string | null>(null);
+  const [user, setUserState] = useState<User | null>(null);
+  const [initialized, setInitialized] = useState<boolean>(false);
+
+  useEffect(() => {
     const cookieUser = Cookies.get("user");
+    const token = Cookies.get("access_token");
 
-    // التحقق من أن القيمة موجودة وليست نص "undefined"
-    if (!cookieUser || cookieUser === "undefined") return null;
-
-    try {
-      return JSON.parse(cookieUser);
-    } catch (error) {
-      console.error("Failed to parse user cookie:", error);
-      return null;
+    if (cookieUser && cookieUser !== "undefined") {
+      try {
+        setUserState(JSON.parse(cookieUser));
+      } catch (error) {
+        console.error("Failed to parse user cookie:", error);
+      }
     }
-  });
 
-  const [initialized, setInitialized] = useState<boolean>(() => !!user);
+    if (token) {
+      setAccessToken(token);
+    }
+
+    setInitialized(true);
+  }, []);
 
   const setUser = ({
     user,

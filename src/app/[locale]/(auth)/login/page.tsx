@@ -102,8 +102,7 @@ export default function LoginPage() {
             md:text-base md:font-medium
             "
             >
-              {t("pages.auth.login.subtitle")} <br />
-              {t("pages.auth.login.subtitle_line2")}
+              {t("pages.auth.login.subtitle")}
             </p>
           </div>
 

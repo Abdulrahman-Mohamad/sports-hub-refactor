@@ -1,4 +1,9 @@
 {
+  "metadata": {
+    "title": "سبورتس هاب | إعادة اصلاح",
+    "description": "منصة ألعاب مع جوائز مذهلة",
+    "icon":"/images/favicon/faviconAr.png"
+  },
   "common": {
     "success": "تم بنجاح",
     "error_occurred": "حدث خطأ ما",
@@ -22,8 +27,8 @@
   "pages": {
     "auth": {
       "login": {
-        "title": "تسجيل الدخول",
-        "subtitle": "لقد قدمنا ​​جوائز تزيد عن مليون جنيه إسترليني.",
+        "title": "حيّاك الله من يديد",
+        "subtitle": "هل انت جاهز جاهز للربح؟",
         "subtitle_line2": "هل أنت مستعد للفوز؟",
         "phone": "الهاتف",
         "email": "البريد الإلكتروني",

@@ -1,4 +1,9 @@
 {
+  "metadata": {
+    "title": "SPORTS HUB | Refactor",
+    "description": "Gaming platform with amazing prizes",
+    "icon":"/images/favicon/faviconEn.png"
+  },
   "common": {
     "success": "Success",
     "error_occurred": "An error occurred",
