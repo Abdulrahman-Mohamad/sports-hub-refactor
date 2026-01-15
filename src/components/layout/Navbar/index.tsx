@@ -7,17 +7,41 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Notifications from "../Notifications";
+import { useEffect, useState } from "react";
 
 export default function Navbar() {
   const t = useTranslations("navbar");
   const { user } = useUser();
-  const pathname = usePathname();
 
+  const pathname = usePathname();
   const isActive = (path: string) => pathname === path;
+
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <>
-      <nav className="hidden lg:flex fixed top-10 right-30 left-30 z-50 items-center justify-between bg-white rounded-lg py-3 px-4 max-h-12 ">
+      <nav
+        className={`hidden lg:flex z-50 items-center justify-between bg-white transition-all duration-300 max-h-12 
+          ${
+            isScrolled
+              ? "fixed top-0 left-0 right-0 rounded-none py-4 px-10 shadow-md" // شكل الـ Navbar عند التمرير
+              : "absolute top-10 left-30 right-30 rounded-lg py-3 px-4" // الشكل الأصلي
+          }`}
+      >
         {/* Left */}
         <div className="flex items-center gap-6 xl:gap-10">
           {/* logo */}
