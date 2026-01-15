@@ -63,7 +63,7 @@ export async function apiFetch(endpoint: string, options: FetchOptions = {}) {
     try {
       error = await res.json();
     } catch { }
-    throw new Error(JSON.stringify({ status: res.status, error }));
+throw { status: res.status, ...(error?.error || {}), ...error };
   }
 
   // Handle empty or non-JSON responses safely

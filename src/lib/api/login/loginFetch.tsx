@@ -1,7 +1,6 @@
 import { apiFetch } from "@/lib/api/apiFetch";
 import { QueryParams } from "@/utils/types/Generic/QueryParams";
 
-
 export const loginFetch = async (
   data: any,
   { onSuccess, onError }: QueryParams = {}
@@ -16,6 +15,5 @@ export const loginFetch = async (
     return res;
   } catch (error) {
     if (onError) onError(error);
-    throw error;
   }
 };

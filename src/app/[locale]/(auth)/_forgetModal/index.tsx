@@ -2,15 +2,16 @@ import Input from "@/components/form/Input";
 import PhoneInput from "@/components/form/PhoneInput";
 import GradientIcon from "@/components/ui/GradientIcon";
 import Modal from "@/components/ui/Modal";
-import {
-  ForgetPasswordProps,
-  forgetPasswordSchema,
-} from "@/utils/schemas/Auth/ForgetPassword";
+import { forgotPasswordFetch } from "@/lib/api/forgotPasswordSupport/forgotPasswordFetch";
+import { ForgetPasswordProps, forgetPasswordSchema } from "@/utils/schemas/Auth/ForgetPassword";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
-import { FaLock, FaUser } from "react-icons/fa";
+import { FaPhone, FaUser } from "react-icons/fa";
+import { IoIosMail } from "react-icons/io";
 import { IoCloseSharp } from "react-icons/io5";
+import { toast } from "react-toastify";
 
 export default function ForgetPasswordModal({
   isOpen,
@@ -26,11 +27,24 @@ export default function ForgetPasswordModal({
     formState: { errors },
   } = useForm({ resolver: zodResolver(forgetPasswordSchema(t)) });
 
-  const onSuccess = () => {};
+  const onSuccess = (res:any) => {
+    toast.success(res.message)
+  };
 
-  const onError = () => {};
+  const onError = (res:any) => {
+    toast.error(res?.message)
+  };
 
-  const onSubmit = (data: ForgetPasswordProps) => {};
+  const onSubmit = async (data: ForgetPasswordProps) => {
+    const payload = {
+      name:data.name,
+      phone:`973${data.phone}`,
+      email:data.email,
+      content:data.content
+    }
+    await forgotPasswordFetch(payload,{onSuccess,onError})
+    
+  };
   return (
     <>
       <Modal isOpen={isOpen} onClose={onClose} className="max-w-3xl w-full ">
@@ -44,7 +58,7 @@ export default function ForgetPasswordModal({
               {t("pages.auth.forgetPassword.title")}
             </h4>
           </div>
-          <form className="p-4">
+          <form onSubmit={handleSubmit(onSubmit)} className="p-4">
             <Input
               id="name"
               register={register}
@@ -68,13 +82,66 @@ export default function ForgetPasswordModal({
               errors={errors}
               icon={
                 <GradientIcon
-                  icon={FaLock}
+                  icon={FaPhone}
                   fromColor="#E400FB"
                   toColor="#5200FD"
                   size={24}
+                  direction="right"
+                  className="rotate-90"
                 />
               }
             />
+            <Input
+              id="email"
+              type="email"
+              placeholder={t("components.forms.placeholders.enter_email")}
+              icon={
+                <GradientIcon
+                  icon={IoIosMail}
+                  fromColor="#E400FB"
+                  toColor="#5200FD"
+                  size={28}
+                />
+              }
+              errors={errors}
+              register={register}
+            />
+            <div className="w-full">
+              <textarea
+                rows={4}
+                {...register("content")}
+                className="rounded-lg w-full p-4 bg-white mt-2 border-2 border-gray-200   
+            focus:outline-none focus:ring-2 focus:ring-blue-400
+            focus:border-transparent transition-all duration-300 disabled:bg-gray-400"
+                placeholder={t("components.forms.placeholders.message")}
+              />
+              {errors.content && (
+                <div className="mt-1 capitalize text-sm">
+                  <p className="text-statusError font-semibold">
+                    {errors.content.message}
+                  </p>
+                </div>
+              )}
+            </div>
+
+            <div className="flex items-center text-nowrap gap-2 font-medium mt-4">
+              <motion.button
+              whileHover={{scale:1.05}}
+              whileTap={{scale:0.95}}
+                onClick={onClose}
+                className="bg-white border border-primary w-1/2 py-2 rounded-lg cursor-pointer"
+              >
+                {t("pages.auth.forgetPassword.close")}
+              </motion.button>
+              <motion.button
+              whileHover={{scale:1.05}}
+              whileTap={{scale:0.95}}
+                type="submit"
+                className="bg-gradient-primary-r w-1/2 py-2 rounded-lg text-white cursor-pointer"
+              >
+                {t("pages.auth.forgetPassword.submit")}
+              </motion.button>
+            </div>
           </form>
         </div>
       </Modal>

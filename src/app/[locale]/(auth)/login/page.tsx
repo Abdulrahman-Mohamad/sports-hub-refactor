@@ -56,14 +56,7 @@ export default function LoginPage() {
   };
 
   const onError = (error: any) => {
-    try {
-      const errorData = JSON.parse(error.message);
-      const apiMessage = errorData.error?.message;
-      toast.error(apiMessage || t("common.error_occurred"));
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    } catch (e) {
-      toast.error(t("common.error_occurred"));
-    }
+    toast.error(error?.message || t("common.error_occurred"));
   };
 
   const onSubmit = async (data: LoginForm) => {
@@ -73,12 +66,7 @@ export default function LoginPage() {
       password: data.password,
     };
 
-    try {
-      await loginFetch(payload, { onSuccess, onError });
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    } catch (error) {
-      // Error is handled in onError callback
-    }
+    await loginFetch(payload, { onSuccess, onError });
   };
 
   const type = watch("type");
@@ -212,7 +200,9 @@ export default function LoginPage() {
                   register={register}
                   errors={errors}
                   type="password"
-                  placeholder={t("components.forms.placeholders.enter_password")}
+                  placeholder={t(
+                    "components.forms.placeholders.enter_password"
+                  )}
                 />
                 <button
                   type="button"

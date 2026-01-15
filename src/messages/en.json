@@ -14,8 +14,8 @@
     "password_min": "Password must be at least 4 characters",
     "password_required": "Password is required",
     "identity_required": "This field is required",
-    "name_required":"User name is required",
-    "message_required":"Message is required"
+    "name_required": "User name is required",
+    "message_required": "Message is required"
   },
   "common": {
     "success": "Success",
@@ -53,7 +53,9 @@
         "sign_up": "Sign Up"
       },
       "forgetPassword": {
-        "title":"Forgot Password"
+        "title": "Forgot Password",
+        "submit": "Submit",
+        "close": "Close"
       }
     }
   },
@@ -63,7 +65,8 @@
         "enter_phone": "Enter Phone Number",
         "enter_email": "Enter Email Address",
         "enter_password": "Enter Password",
-        "enter_name": "Enter your name"
+        "enter_name": "Enter your name",
+        "message": "Enter your message"
       }
     }
   }
