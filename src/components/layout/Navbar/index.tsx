@@ -38,8 +38,8 @@ export default function Navbar() {
         className={`hidden lg:flex z-50 items-center justify-between bg-white transition-all duration-300 max-h-12 
           ${
             isScrolled
-              ? "fixed top-0 left-0 right-0 rounded-none py-4 px-10 shadow-md" // شكل الـ Navbar عند التمرير
-              : "absolute top-10 left-30 right-30 rounded-lg py-3 px-4" // الشكل الأصلي
+              ? "fixed top-0 left-0 right-0 rounded-none py-4 px-10 shadow-md" 
+              : "absolute top-10 left-30 right-30 rounded-lg py-3 px-4" 
           }`}
       >
         {/* Left */}

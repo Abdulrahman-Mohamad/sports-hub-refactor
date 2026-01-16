@@ -8,30 +8,17 @@ import {
   useEffect,
 } from "react";
 import Cookies from "js-cookie";
-
-interface User {
-  username: string;
-  id: number;
-  email: string;
-  email_verified_at: string | null;
-  remember_token: string | null;
-  media: string | null;
-}
-
-interface UserState {
-  user: User | null;
-  accessToken: string | null;
-  initialized: boolean;
-  setUser: (payload: { user: User; accessToken: string }) => void;
-  logOut: () => void;
-  setInitialized: () => void;
-}
+import { User, UserState } from "@/utils/types/User/user";
+import { ProfileData, ProfileResponse } from "@/utils/types/User/profile";
+import { profileFetch } from "@/lib/api/profile/profileFetch";
 
 const defaultUserState: UserState = {
   user: null,
+  profile: null,
   accessToken: null,
   initialized: false,
   setUser: () => {},
+  fetchProfile: async () => {},
   logOut: () => {},
   setInitialized: () => {},
 };
@@ -41,10 +28,28 @@ const UserContext = createContext<UserState>(defaultUserState);
 export function UserProvider({ children }: { children: ReactNode }) {
   const [accessToken, setAccessToken] = useState<string | null>(null);
   const [user, setUserState] = useState<User | null>(null);
+  const [profile, setProfile] = useState<ProfileData | null>(null);
   const [initialized, setInitialized] = useState<boolean>(false);
+
+  const fetchProfile = async () => {
+    await profileFetch({
+      onSuccess: (res: ProfileResponse) => {
+        if (res.status) {
+          setProfile(res.data);
+          Cookies.set("userProfile", JSON.stringify(res.data), {
+            expires: 365,
+            secure: true,
+            sameSite: "Lax",
+          });
+        }
+      },
+      onError: (err) => console.error("Profile fetch error:", err),
+    });
+  };
 
   useEffect(() => {
     const cookieUser = Cookies.get("user");
+    const cookiesProfile = Cookies.get("userProfile");
     const token = Cookies.get("access_token");
 
     if (cookieUser && cookieUser !== "undefined") {
@@ -55,8 +60,17 @@ export function UserProvider({ children }: { children: ReactNode }) {
       }
     }
 
+    if (cookiesProfile && cookiesProfile !== "undefined") {
+      try {
+        setProfile(JSON.parse(cookiesProfile));
+      } catch (error) {
+        console.error("Failed to parse profile cookie:", error);
+      }
+    }
+
     if (token) {
       setAccessToken(token);
+      fetchProfile();
     }
 
     setInitialized(true);
@@ -82,24 +96,29 @@ export function UserProvider({ children }: { children: ReactNode }) {
       secure: true,
       sameSite: "Lax",
     });
+    fetchProfile();
   };
 
   const logOut = () => {
     setUserState(null);
+    setProfile(null);
     setAccessToken(null);
     setInitialized(false);
     Cookies.remove("user");
     Cookies.remove("access_token");
+    Cookies.remove("userProfile");
     if (typeof window !== "undefined") {
-      window.location.reload();
+      window.location.reload(); // solve after impelementation of auth
     }
   };
 
   const value: UserState = {
     user,
+    profile,
     accessToken,
     initialized,
     setUser,
+    fetchProfile,
     logOut,
     setInitialized: () => setInitialized(true),
   };

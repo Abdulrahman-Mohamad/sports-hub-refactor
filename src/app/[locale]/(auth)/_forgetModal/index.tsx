@@ -2,7 +2,7 @@ import Input from "@/components/form/Input";
 import PhoneInput from "@/components/form/PhoneInput";
 import GradientIcon from "@/components/ui/GradientIcon";
 import Modal from "@/components/ui/Modal";
-import { forgotPasswordFetch } from "@/lib/api/forgotPasswordSupport/forgotPasswordFetch";
+import { forgotPasswordFetch } from "@/lib/api/login/forgotPasswordFetch";
 import { ForgetPasswordProps, forgetPasswordSchema } from "@/utils/schemas/Auth/ForgetPassword";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { motion } from "framer-motion";
