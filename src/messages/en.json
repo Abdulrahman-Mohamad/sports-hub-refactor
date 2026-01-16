@@ -60,6 +60,17 @@
       "register":{
         "title":""
       }
+    },
+    "main":{
+      "home":{
+        "hero":{
+          "title1":"Feel the Football Rush",
+          "title2":"Make your prediction before kick-off",
+          "subtitle1":"Watch the match, play your move, and collect points!",
+          "subtitle2":"Subscribe now for a chance to win prizes worth 500 BHD.",
+          "Subscribe":"Subscribe"
+        }
+      }
     }
   },
   "components": {

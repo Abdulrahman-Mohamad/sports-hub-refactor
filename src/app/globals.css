@@ -56,8 +56,10 @@ h6 {
   border-radius: 10px;
 }
 
-
-
 .text-gradient-primary {
   @apply bg-clip-text text-transparent bg-gradient-to-b from-[#E400FB] to-[#5200FD];
+}
+
+.hero-text-shadow{
+  text-shadow: -4.136px 0 #e901fb75, 0 3.136px #000000d9;
 }
