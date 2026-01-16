@@ -30,8 +30,6 @@ export default function LanguageSwitcher({
               className="w-8"
             />          }
           defaultOpen={false}
-          className="w-full"
-          btnClassName="w-full"
           menuClassName="!min-w-[140px]"
           align="center"
           animationType="vertical"

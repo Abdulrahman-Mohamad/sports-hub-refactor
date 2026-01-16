@@ -69,7 +69,7 @@ const Dropdown: React.FC<DropdownProps> = ({
       <button
         onClick={() => setIsOpen(!isOpen)}
         className={`
-          w-full flex items-center justify-between gap-4 p-3 cursor-pointer outline-none ${btnClassName}`}
+          w-full flex items-center justify-between gap-2 p-3 cursor-pointer outline-none ${btnClassName}`}
         aria-haspopup="true"
         aria-expanded={isOpen}
       >

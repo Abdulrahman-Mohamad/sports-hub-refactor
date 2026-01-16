@@ -8,10 +8,14 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Notifications from "../Notifications";
 import { useEffect, useState } from "react";
+import Dropdown from "@/components/ui/Dropdown";
+import { FaUser } from "react-icons/fa";
 
 export default function Navbar() {
   const t = useTranslations("navbar");
-  const { user } = useUser();
+  const { user, profile, logOut } = useUser();
+
+  console.log(profile?.user.username);
 
   const pathname = usePathname();
   const isActive = (path: string) => pathname === path;
@@ -38,8 +42,8 @@ export default function Navbar() {
         className={`hidden lg:flex z-50 items-center justify-between bg-white transition-all duration-300 max-h-12 
           ${
             isScrolled
-              ? "fixed top-0 left-0 right-0 rounded-none py-4 px-10 shadow-md" 
-              : "absolute top-10 left-30 right-30 rounded-lg py-3 px-4" 
+              ? "fixed top-0 left-0 right-0 rounded-none py-4 px-10 shadow-md"
+              : "absolute top-10 left-30 right-30 rounded-lg py-3 px-4"
           }`}
       >
         {/* Left */}
@@ -112,22 +116,67 @@ export default function Navbar() {
         </div>
 
         {/* right */}
-        <div className="flex justify-between min-w-45  items-center">
+        <div className="flex justify-between min-w-48 xl:min-w-60 items-center">
           {/* language switcher */}
           <div>
             <LanguageSwitcher />
           </div>
 
           {user ? (
-            <div className="w-full flex items-center justify-between">
-              {/* user */}
-              <div>{user.username}</div>
-
-              {/* Notifications */}
+            <>
+              <Dropdown
+                icon={
+                  <span className="rounded-full w-8 h-8 flex justify-center items-center">
+                    <Image
+                      src={
+                        profile?.user.media || "/images/common/default-user.png"
+                      }
+                      alt={`${profile?.user.username} Image` || "User Image"}
+                      width={40}
+                      height={40}
+                      className="rounded-full w-8 h-8"
+                    />
+                  </span>
+                }
+                label={
+                  <div className="text-start hidden md:block font-medium truncate">
+                    <span>{profile?.user.username}</span>
+                  </div>
+                }
+              >
+                <Link
+                  className="flex items-center gap-4 text-start px-8 hover:cursor-pointer hover:bg-gray-200 py-4 w-full"
+                  href={`/profile`}
+                >
+                  <span>
+                    <FaUser size={18} />
+                  </span>
+                  <span className="text-sm text-nowrap font-semibold">
+                    {t("links.profile")}
+                  </span>
+                </Link>
+                <button
+                  className="flex items-center text-primaryA1 text-start gap-4 px-8  hover:cursor-pointer hover:bg-gray-200 py-4 w-full"
+                  onClick={() => logOut()}
+                >
+                  <span>
+                    {/* <IoMdLogOut size={22} /> */}
+                    <Image
+                      src="/images/auth/logout.svg"
+                      alt="logout"
+                      width={16}
+                      height={16}
+                    />
+                  </span>
+                  <span className="text-sm text-nowrap font-semibold">
+                    {t("links.logout")}
+                  </span>
+                </button>
+              </Dropdown>
               <div>
                 <Notifications />
               </div>
-            </div>
+            </>
           ) : (
             <div>
               <Link

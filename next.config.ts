@@ -3,8 +3,19 @@ import createNextIntlPlugin from "next-intl/plugin";
 
 const withNextIntl = createNextIntlPlugin();
 const nextConfig: NextConfig = {
-  /* config options here */
-  // reactCompiler: true,
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**',
+      },
+      {
+        protocol: 'http',
+        hostname: '**',
+      },
+    ],
+  },
+  reactStrictMode: false
 };
 
 export default withNextIntl(nextConfig);

@@ -33,8 +33,8 @@
       "leaderboards": "Leaderboards",
       "games": "Games",
       "history": "History",
-      "logout": "Logout",
-      "profile": "Profile",
+      "logout": "Sign out",
+      "profile": "Visit Profile",
       "login": "Login",
       "register": "Register"
     }
