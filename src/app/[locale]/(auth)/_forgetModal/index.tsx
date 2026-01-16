@@ -55,7 +55,7 @@ export default function ForgetPasswordModal({
           </button>
           <div className="bg-gradient-primary-r py-6 px-4">
             <h4 className="text-white">
-              {t("pages.auth.forgetPassword.title")}
+              {t("pages.auth.login.forgetPassword.title")}
             </h4>
           </div>
           <form onSubmit={handleSubmit(onSubmit)} className="p-4">
@@ -131,7 +131,7 @@ export default function ForgetPasswordModal({
                 onClick={onClose}
                 className="bg-white border border-primary w-1/2 py-2 rounded-lg cursor-pointer"
               >
-                {t("pages.auth.forgetPassword.close")}
+                {t("pages.auth.login.forgetPassword.close")}
               </motion.button>
               <motion.button
               whileHover={{scale:1.05}}
@@ -139,7 +139,7 @@ export default function ForgetPasswordModal({
                 type="submit"
                 className="bg-gradient-primary-r w-1/2 py-2 rounded-lg text-white cursor-pointer"
               >
-                {t("pages.auth.forgetPassword.submit")}
+                {t("pages.auth.login.forgetPassword.submit")}
               </motion.button>
             </div>
           </form>

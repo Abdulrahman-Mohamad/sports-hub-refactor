@@ -50,12 +50,12 @@
         "forgot_password": "نسيت كلمة المرور؟",
         "login": "دخول",
         "no_account": "ليس لديك حساب؟",
-        "sign_up": "إنشاء حساب"
-      },
-      "forgetPassword": {
+        "sign_up": "إنشاء حساب",
+        "forgetPassword": {
         "title": "نسيت كلمة المرور",
         "submit":"إرسال",
         "close":"إغلاق"
+      }
       }
     }
   },
