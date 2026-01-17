@@ -45,12 +45,8 @@ export const dinArabic = localFont({
   variable: "--font-ar",
 });
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { locale: string };
-}): Promise<Metadata> {
-  const { locale } = params;
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale();
   const t = await getTranslations({ locale, namespace: "metadata" });
 
   return {

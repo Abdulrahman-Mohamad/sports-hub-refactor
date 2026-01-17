@@ -1,26 +1,38 @@
 "use client";
-
 import LanguageSwitcher from "@/components/ui/LanguageSwitcher";
 import { useUser } from "@/context/UserContext";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Notifications from "../Notifications";
 import { useEffect, useState } from "react";
 import Dropdown from "@/components/ui/Dropdown";
-import { FaUser } from "react-icons/fa";
+import { FaBars, FaUser } from "react-icons/fa";
+import PointsSection from "@/components/ui/PointsSection";
+import Sidebar from "../Sidebar";
+import UserSidebar from "../UserSidebar";
+import { AnimatePresence } from "framer-motion";
 
 export default function Navbar() {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+
   const t = useTranslations("navbar");
   const { user, profile, logOut } = useUser();
+  const [isScrolled, setIsScrolled] = useState(false);
 
-  console.log(profile?.user.username);
-
+  const router = useRouter();
   const pathname = usePathname();
   const isActive = (path: string) => pathname === path;
 
-  const [isScrolled, setIsScrolled] = useState(false);
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
+  const toggleUserMenu = () => {
+    setIsUserMenuOpen(!isUserMenuOpen);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -38,6 +50,19 @@ export default function Navbar() {
 
   return (
     <>
+      {/* points Section in desktop */}
+      <div
+        className={` w-fit z-50 transition-all duration-300 hidden lg:block
+      ${
+        isScrolled
+          ? "fixed top-14 start-0"
+          : "absolute top-24 left-30  right-30"
+      }`}
+      >
+        <PointsSection />
+      </div>
+
+      {/* desktop */}
       <nav
         className={`hidden lg:flex z-50 items-center justify-between bg-white transition-all duration-300 max-h-12 
           ${
@@ -191,6 +216,54 @@ export default function Navbar() {
           )}
         </div>
       </nav>
+
+      {/* mobile */}
+      <div
+        className="lg:hidden fixed z-10 top-4 start-6 *:
+      sm:top-6 sm:start-8
+      "
+      >
+        <div className="flex items-center gap-3 md:gap-5">
+          {/* bar button */}
+          <div
+            onClick={toggleSidebar}
+            className="bg-white/70 w-8 h-8 flex-center p-2 rounded-full sm:w-10 sm:h-10"
+          >
+            <FaBars size={16} color="#13355C"/>
+          </div>
+          {/* use button */}
+          <div
+            onClick={user ? toggleUserMenu : () => router.push("/login")}
+            className={`w-8 h-8 flex-center bg-white/70 rounded-full sm:w-10 sm:h-10 border border-white ${user ? "" : "p-1.5"}`}
+          >
+            {profile?.user.media ? (
+              <Image
+                src={profile?.user.media || "/images/common/default-user.png"}
+                alt={`${profile?.user.username} Image` || "User Image"}
+                width={50}
+                height={50}
+                className="rounded-full w-full h-full object-cover"
+              />
+            ) : (
+              <FaUser size={22} color="#13355C"/>
+            )}
+          </div>
+          {/* points */}
+          {user && (
+            <div>
+              <PointsSection />
+            </div>
+          )}
+        </div>
+        <AnimatePresence>
+          {isSidebarOpen && (
+            <Sidebar key="main-sidebar" toggleSidebar={toggleSidebar} />
+          )}
+          {isUserMenuOpen && (
+            <UserSidebar key="user-sidebar" toggleUserMenu={toggleUserMenu} />
+          )}
+        </AnimatePresence>
+      </div>
     </>
   );
 }

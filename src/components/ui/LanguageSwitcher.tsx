@@ -6,8 +6,12 @@ import Image from "next/image";
 
 export default function LanguageSwitcher({
   className = "",
+  align = "center",
+  animationType = "vertical"
 }: {
   className?: string;
+  align?: "center" | "end" | "start";
+  animationType?: "vertical" | "horizontal";
 }) {
   const t = useTranslations("navbar");
   const router = useRouter();
@@ -31,8 +35,8 @@ export default function LanguageSwitcher({
             />          }
           defaultOpen={false}
           menuClassName="!min-w-[140px]"
-          align="center"
-          animationType="vertical"
+          align={align}
+          animationType={animationType}
         >
           <div className="flex flex-col">
             <button

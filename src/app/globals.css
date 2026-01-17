@@ -37,6 +37,9 @@ h6 {
   @apply text-base font-semibold;
 }
 
+.flex-center {
+  @apply flex items-center justify-center;
+}
 
 /* Custom Scrollbar */
 /* Width of scrollbar */
@@ -60,6 +63,6 @@ h6 {
   @apply bg-clip-text text-transparent bg-gradient-to-b from-[#E400FB] to-[#5200FD];
 }
 
-.hero-text-shadow{
+.hero-text-shadow {
   text-shadow: -4.136px 0 #e901fb75, 0 3.136px #000000d9;
 }
