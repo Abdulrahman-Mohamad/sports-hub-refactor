@@ -5,7 +5,6 @@ export const homeFetch = async () => {
   try {
     const res = await apiFetch("/home", {
       method: "GET",
-      auth: false,
     });
     
     return res;
