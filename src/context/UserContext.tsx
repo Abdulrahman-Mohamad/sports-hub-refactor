@@ -6,6 +6,8 @@ import {
   useState,
   ReactNode,
   useEffect,
+  useCallback,
+  useMemo,
 } from "react";
 import Cookies from "js-cookie";
 import { User, UserState } from "@/utils/types/User/user";
@@ -31,7 +33,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
   const [profile, setProfile] = useState<ProfileData | null>(null);
   const [initialized, setInitialized] = useState<boolean>(false);
 
-  const fetchProfile = async () => {
+  const fetchProfile = useCallback(async () => {
     await profileFetch({
       onSuccess: (res: ProfileResponse) => {
         if (res.status) {
@@ -45,7 +47,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
       },
       onError: (err) => console.error("Profile fetch error:", err),
     });
-  };
+  }, []);
 
   useEffect(() => {
     const cookieUser = Cookies.get("user");
@@ -74,32 +76,29 @@ export function UserProvider({ children }: { children: ReactNode }) {
     }
 
     setInitialized(true);
-  }, []);
+  }, [fetchProfile]);
 
-  const setUser = ({
-    user,
-    accessToken,
-  }: {
-    user: User;
-    accessToken: string;
-  }) => {
-    setUserState(user);
-    setAccessToken(accessToken);
-    setInitialized(true);
-    Cookies.set("user", JSON.stringify(user), {
-      expires: 365,
-      secure: true,
-      sameSite: "Lax",
-    });
-    Cookies.set("access_token", accessToken, {
-      expires: 365,
-      secure: true,
-      sameSite: "Lax",
-    });
-    fetchProfile();
-  };
+  const setUser = useCallback(
+    ({ user, accessToken }: { user: User; accessToken: string }) => {
+      setUserState(user);
+      setAccessToken(accessToken);
+      setInitialized(true);
+      Cookies.set("user", JSON.stringify(user), {
+        expires: 365,
+        secure: true,
+        sameSite: "Lax",
+      });
+      Cookies.set("access_token", accessToken, {
+        expires: 365,
+        secure: true,
+        sameSite: "Lax",
+      });
+      fetchProfile();
+    },
+    [fetchProfile],
+  );
 
-  const logOut = () => {
+  const logOut = useCallback(() => {
     setUserState(null);
     setProfile(null);
     setAccessToken(null);
@@ -110,18 +109,21 @@ export function UserProvider({ children }: { children: ReactNode }) {
     if (typeof window !== "undefined") {
       window.location.reload(); // solve after impelementation of auth
     }
-  };
+  }, []);
 
-  const value: UserState = {
-    user,
-    profile,
-    accessToken,
-    initialized,
-    setUser,
-    fetchProfile,
-    logOut,
-    setInitialized: () => setInitialized(true),
-  };
+  const value: UserState = useMemo(
+    () => ({
+      user,
+      profile,
+      accessToken,
+      initialized,
+      setUser,
+      fetchProfile,
+      logOut,
+      setInitialized: () => setInitialized(true),
+    }),
+    [user, profile, accessToken, initialized, fetchProfile, setUser, logOut],
+  );
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 }
