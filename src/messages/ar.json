@@ -15,7 +15,7 @@
     "password_required": "كلمة المرور مطلوبة",
     "identity_required": "هذا الحقل مطلوب",
     "name_required": "اسم المستخدم مطلوب",
-    "message_required":"الرسالة مطلوبة"
+    "message_required": "الرسالة مطلوبة"
   },
   "common": {
     "success": "تم بنجاح",
@@ -52,21 +52,25 @@
         "no_account": "ليس لديك حساب؟",
         "sign_up": "إنشاء حساب",
         "forgetPassword": {
-        "title": "نسيت كلمة المرور",
-        "submit":"إرسال",
-        "close":"إغلاق"
-      }
+          "title": "نسيت كلمة المرور",
+          "submit": "إرسال",
+          "close": "إغلاق"
+        }
       }
     },
-    "main":{
-      "home":{
-        "hero":{
-          "title1":"خمن النتيجة قبل ما تبدأ المباراة",
-          "title2":"",
-          "subtitle1":"تابع، العب، ونافس",
-          "subtitle2":"لتفوز بجوايز بقيمة ٥٠٠ دينار بحريني.",
-          "Subscribe":"اشترك الان"
-        }
+    "main": {
+      "home": {
+        "hero": {
+          "title1": "خمن النتيجة قبل ما تبدأ المباراة",
+          "title2": "",
+          "subtitle1": "تابع، العب، ونافس",
+          "subtitle2": "لتفوز بجوايز بقيمة ٥٠٠ دينار بحريني.",
+          "Subscribe": "اشترك الان"
+        },
+      "news": {
+        "published_at": "نشر في:",
+        "author": "المؤلف:"
+      }
       }
     }
   },

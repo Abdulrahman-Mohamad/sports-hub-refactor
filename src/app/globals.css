@@ -59,6 +59,25 @@ h6 {
   border-radius: 10px;
 }
 
+.swiper-pagination {
+  bottom: 0px !important;
+}
+
+.swiper-pagination-lock {
+  display: block !important;
+}
+
+.swiper-pagination-bullets-dynamic {
+  width: 120px !important;
+  margin-inline: auto !important;
+}
+
+.swiper-pagination-bullet {
+  --swiper-pagination-bullet-size: 15px;
+  --swiper-pagination-bullet-inactive-color: #fff;
+  --swiper-pagination-bullet-inactive-opacity: 0.5;
+}
+
 .text-gradient-primary {
   @apply bg-clip-text text-transparent bg-gradient-to-b from-[#E400FB] to-[#5200FD];
 }

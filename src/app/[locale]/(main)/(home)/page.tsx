@@ -1,12 +1,14 @@
 import { homeFetch } from "@/lib/api/home/HomeFetch";
 import HomeHeroSection from "./_sections/HeroSection";
+import HomeNewsSection from "./_sections/News";
 
 export default async function HomeContentPage() {
-  const data = await homeFetch();
-// console.log(data);
+  const {data} = await homeFetch();
+console.log(data);
   return (
     <div className="min-h-[3000px] ">
       <HomeHeroSection />
+      {data?.news && <HomeNewsSection data={data.news} />}
     </div>
   );
 }

@@ -69,6 +69,10 @@
           "subtitle1":"Watch the match, play your move, and collect points!",
           "subtitle2":"Subscribe now for a chance to win prizes worth 500 BHD.",
           "Subscribe":"Subscribe"
+        },
+        "news":{
+          "published_at":"Published At:",
+          "author":"Author:"
         }
       }
     }
