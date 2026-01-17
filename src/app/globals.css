@@ -63,6 +63,10 @@ h6 {
   @apply bg-clip-text text-transparent bg-gradient-to-b from-[#E400FB] to-[#5200FD];
 }
 
-.hero-text-shadow {
-  text-shadow: -4.136px 0 #e901fb75, 0 3.136px #000000d9;
+.hero-shadow-bold {
+  text-shadow: rgb(233 1 251 / 46%) -4.136px 0px 0px, rgb(0 0 0 / 85%) 0px 3.136px 0px;
+}
+
+.hero-shadow-light {
+  text-shadow: rgb(233 1 251 / 46%) -2.136px 0px 0px, rgb(0 0 0 / 85%) 0px 2.136px 0px;
 }

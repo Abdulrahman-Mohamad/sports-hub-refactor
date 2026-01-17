@@ -6,10 +6,6 @@ export const homeFetch = async () => {
     const res = await apiFetch("/home", {
       method: "GET",
       auth: false,
-      next: {
-        tags: ["home-data"],
-        revalidate: 3600,
-      },
     });
     
     return res;
