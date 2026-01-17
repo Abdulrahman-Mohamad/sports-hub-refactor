@@ -51,7 +51,7 @@ export default function Navbar() {
   return (
     <>
       {/* points Section in desktop */}
-      <div
+      {user && pathname === "/" && <div
         className={` w-fit z-50 transition-all duration-300 hidden lg:block
       ${
         isScrolled
@@ -60,7 +60,7 @@ export default function Navbar() {
       }`}
       >
         <PointsSection />
-      </div>
+      </div>}
 
       {/* desktop */}
       <nav
@@ -249,7 +249,7 @@ export default function Navbar() {
             )}
           </div>
           {/* points */}
-          {user && (
+          {user && pathname === "/" && (
             <div>
               <PointsSection />
             </div>
