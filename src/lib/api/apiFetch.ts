@@ -2,7 +2,7 @@ import Cookies from "js-cookie";
 
 const baseURL = process.env.NEXT_PUBLIC_API_URL!;
 
-type FetchOptions = RequestInit & {
+type FetchOptions = Omit<RequestInit, "body"> & {
   auth?: boolean;
   body?: unknown;
   cache?: RequestCache;
@@ -63,11 +63,17 @@ export async function apiFetch(endpoint: string, options: FetchOptions = {}) {
     try {
       error = await res.json();
     } catch { }
-throw { status: res.status, ...(error?.error || {}), ...error };
+    const errorObj = { status: res.status, ...(error?.error || {}), ...error };
+
+    if (typeof window !== "undefined") {
+      window.dispatchEvent(new CustomEvent("api-error", { detail: errorObj }));
+    }
+
+    throw errorObj;
   }
 
   // Handle empty or non-JSON responses safely
-  const contentType = res.headers.get("content-type");
+  const contentType = res.headers.get("content-type");                                                           
   const contentLength = res.headers.get("content-length");
 
   if (

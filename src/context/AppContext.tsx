@@ -11,7 +11,7 @@ interface AppState {
   closePoster: () => void;
 }
 
-const defaultAppState = {
+const defaultAppState :AppState = {
   otpModal: false,
   posterModal: false,
   openOTP: () => {},

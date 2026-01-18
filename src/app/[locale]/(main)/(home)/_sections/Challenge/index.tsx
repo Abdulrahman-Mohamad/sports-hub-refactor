@@ -40,7 +40,7 @@ export default function HomeChallengSection() {
 
         {/* Vs Image */}
         <Image
-          src="/images/home/vs.png"
+          src="/images/home/challenge-vs.png"
           alt="VS"
           width={1000}
           height={1000}

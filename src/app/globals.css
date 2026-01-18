@@ -41,6 +41,10 @@ h6 {
   @apply flex items-center justify-center;
 }
 
+.btn {
+  @apply px-2 sm:px-6 py-2 hover:cursor-pointer flex justify-center rounded-md font-semibold capitalize disabled:cursor-default transition-colors duration-150;
+}
+
 /* Custom Scrollbar */
 /* Width of scrollbar */
 ::-webkit-scrollbar {

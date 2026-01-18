@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
-import axios from "axios";
+import { useApp } from "@/context/AppContext";
 
 export default function AuthProvider({
   children,
@@ -11,28 +11,30 @@ export default function AuthProvider({
   children: React.ReactNode;
 }) {
   const router = useRouter();
+  const { openOTP } = useApp();
 
   useEffect(() => {
-    const interceptor = axios.interceptors.response.use(
-      (res) => res,
-      (error) => {
-        if (error.response?.status === 401) {
-          Cookies.remove("user");
-          router.push("/register");
-        }
+    const handleApiError = (event: Event) => {
+      const error = (event as CustomEvent).detail;
 
-        if (error.response?.status === 411) {
-          router.push("/packages");
-        }
-
-        return Promise.reject(error);
+      if (error.status === 401) {
+        Cookies.remove("user");
+        Cookies.remove("access_token");
+        Cookies.remove("userProfile");
+        router.push("/login");
       }
-    );
+
+      if (error.status === 411) {
+        openOTP();
+      }
+    };
+
+    window.addEventListener("api-error", handleApiError);
 
     return () => {
-      axios.interceptors.response.eject(interceptor);
+      window.removeEventListener("api-error", handleApiError);
     };
-  }, [router]);
+  }, [router, openOTP]);
 
   return <>{children}</>;
 }

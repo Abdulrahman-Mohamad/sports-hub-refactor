@@ -101,6 +101,23 @@
         "enter_name": "Enter your name",
         "message": "Enter your message"
       }
+    },
+    "ui": {
+      "single_game": {
+        "trivia": "Trivia",
+        "prediction": "Prediction",
+        "shot_on_net": "Shot-On-Net",
+        "rules": "Rules",
+        "play_now": "Play Now",
+        "Insufficient": {},
+        "join": {
+          "join_game_for": "Join Game For {coins} Coins",
+          "coins_deducted_message": "To join this round, {coins} coins will be deducted from your balance. Do you want to continue?",
+          "no_thanks": "No Thanks",
+          "yes": "Yes",
+          "error_occurred": "An error occurred"
+        }
+      }
     }
   }
 }

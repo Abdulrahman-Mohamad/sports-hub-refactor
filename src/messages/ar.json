@@ -77,14 +77,14 @@
           "play_now": "العب الحين",
           "explore": "اشتراك"
         },
-        "all_leaderboard":{
-          "title":"مين الأول بالترتيب؟",
-          "points":"نقطة"
+        "all_leaderboard": {
+          "title": "مين الأول بالترتيب؟",
+          "points": "نقطة"
         },
-        "challenge":{
-          "gif":"/gif/home/challeng-ar.gif",
-          "description":"جرّب لعبة التوقعات ولِم نقاطك",
-          "play_now":"العب الحين"
+        "challenge": {
+          "gif": "/gif/home/challeng-ar.gif",
+          "description": "جرّب لعبة التوقعات ولِم نقاطك",
+          "play_now": "العب الحين"
         }
       }
     }
@@ -97,6 +97,22 @@
         "enter_password": "أدخل كلمة المرور",
         "enter_name": "دخل اسم المستخدم",
         "message": "أدخل الرسالة"
+      }
+    },
+    "ui": {
+      "single_game": {
+        "trivia": "الأسئلة العامة",
+        "prediction": "التوقعات",
+        "shot_on_net": "هدف في الشبكة",
+        "rules": "القواعد",
+        "play_now": "العب الحين",
+        "Insufficient": {},
+        "join": {
+          "join_game_for": "ادخل اللعبة بـ {coins} عملة",
+          "coins_deducted_message": "علشان تدخل هالجولة، بنخصم {coins} عملة من رصيدك… تبي تكمل؟",
+          "no_thanks": "No Thanks",
+          "yes": "Yes"
+        }
       }
     }
   }
