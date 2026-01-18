@@ -13,6 +13,8 @@ import Cookies from "js-cookie";
 import { User, UserState } from "@/utils/types/User/user";
 import { ProfileData, ProfileResponse } from "@/utils/types/User/profile";
 import { profileFetch } from "@/lib/api/profile/profileFetch";
+import { useRouter } from "next/navigation";
+
 
 const defaultUserState: UserState = {
   user: null,
@@ -32,6 +34,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
   const [user, setUserState] = useState<User | null>(null);
   const [profile, setProfile] = useState<ProfileData | null>(null);
   const [initialized, setInitialized] = useState<boolean>(false);
+const router = useRouter();
 
   const fetchProfile = useCallback(async () => {
     await profileFetch({
@@ -106,10 +109,8 @@ export function UserProvider({ children }: { children: ReactNode }) {
     Cookies.remove("user");
     Cookies.remove("access_token");
     Cookies.remove("userProfile");
-    if (typeof window !== "undefined") {
-      window.location.reload(); // solve after impelementation of auth
-    }
-  }, []);
+    router.refresh(); 
+  }, [router]);
 
   const value: UserState = useMemo(
     () => ({

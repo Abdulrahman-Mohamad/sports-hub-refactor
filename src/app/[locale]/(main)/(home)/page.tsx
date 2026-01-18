@@ -5,7 +5,6 @@ import HomeUserStatsSection from "./_sections/UserState";
 
 export default async function HomeContentPage() {
   const {data} = await homeFetch();
-console.log(data);
   return (
     <div className="min-h-[3000px] ">
       <HomeHeroSection />

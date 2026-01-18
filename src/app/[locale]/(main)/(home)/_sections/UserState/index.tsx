@@ -24,7 +24,7 @@ export default function HomeUserStatsSection({
         <div className="w-full h-full absolute top-1/2 -translate-y-1/2 left-0 -translate-x-1/2 bg-radial from-[#D600FB]/70 via-transparent via-[80%] to-transparent z-0 pointer-events-none" />
         <div className="w-full h-full absolute top-1/2 -translate-y-1/2 right-0 translate-x-1/2 bg-radial from-[#5C73FE]/70 via-transparent via-[80%] to-transparent z-0 pointer-events-none" />
         {/* Coins */}
-        <div className=" bg-linear-to-r from-[#FAA000] to-[#FAA100] p-0.5 rounded-xl z-10 relative">
+        <div className=" bg-linear-to-r from-[#FAA000] to-[#FAA100] p-0.5 rounded-xl z-[1] relative">
           <div className="bg-[#151515] w-full flex items-center justify-between gap-3 rounded-xl px-6 py-2.5
           sm:gap-4 sm:py-4
           lg:gap-8
@@ -49,7 +49,7 @@ export default function HomeUserStatsSection({
           </div>
         </div>
         {/* Joker */}
-        <div className=" bg-linear-to-r from-[#63AFFA] via-[#58B44F] to-[#FC4A32] p-0.5 rounded-xl z-10 relative
+        <div className=" bg-linear-to-r from-[#63AFFA] via-[#58B44F] to-[#FC4A32] p-0.5 rounded-xl z-[1] relative
         ">
           <div className="bg-[#151515] w-full flex items-center justify-between gap-3 rounded-xl px-6 py-2.5
           sm:gap-4 sm:py-4
@@ -77,7 +77,7 @@ export default function HomeUserStatsSection({
           </div>
         </div>
         {/* Rank */}
-        <div className=" bg-linear-to-r from-[#FAA000] to-[#FAA100] p-0.5 rounded-xl z-10 relative">
+        <div className=" bg-linear-to-r from-[#FAA000] to-[#FAA100] p-0.5 rounded-xl z-[1] relative">
           <div className="bg-[#151515] w-full flex items-center justify-between gap-3 rounded-xl px-6 py-2.5
           sm:gap-4 sm:py-4
           lg:gap-8
