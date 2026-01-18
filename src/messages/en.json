@@ -57,32 +57,37 @@
           "close": "Close"
         }
       },
-      "register":{
-        "title":""
+      "register": {
+        "title": ""
       }
     },
-    "main":{
-      "home":{
-        "hero":{
-          "title1":"Feel the Football Rush",
-          "title2":"Make your prediction before kick-off",
-          "subtitle1":"Watch the match, play your move, and collect points!",
-          "subtitle2":"Subscribe now for a chance to win prizes worth 500 BHD.",
-          "Subscribe":"Subscribe"
+    "main": {
+      "home": {
+        "hero": {
+          "title1": "Feel the Football Rush",
+          "title2": "Make your prediction before kick-off",
+          "subtitle1": "Watch the match, play your move, and collect points!",
+          "subtitle2": "Subscribe now for a chance to win prizes worth 500 BHD.",
+          "Subscribe": "Subscribe"
         },
-        "news":{
-          "published_at":"Published At:",
-          "author":"Author:"
+        "news": {
+          "published_at": "Published At:",
+          "author": "Author:"
         },
-        "tow_buttons":{
-          "games":"Games",
-          "packages":"Packages",
-          "play_now":"Play Now",
-          "explore":"Explore"
+        "tow_buttons": {
+          "games": "Games",
+          "packages": "Packages",
+          "play_now": "Play Now",
+          "explore": "Explore"
         },
-        "all_leaderboard":{
-          "title":"Top Players",
-          "points":"pts"
+        "all_leaderboard": {
+          "title": "Top Players",
+          "points": "pts"
+        },
+        "challenge": {
+          "gif": "/gif/home/challeng-en.gif",
+          "description": "try our predictions game And collect points",
+          "play_now": "Play Now"
         }
       }
     }

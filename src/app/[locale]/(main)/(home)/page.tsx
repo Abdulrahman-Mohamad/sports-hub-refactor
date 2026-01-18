@@ -4,6 +4,7 @@ import HomeNewsSection from "./_sections/News";
 import HomeUserStatsSection from "./_sections/UserState";
 import HomeAllLeaderboardSection from "./_sections/TriviaLeaderboards";
 import TowButtonsSection from "./_sections/TowButtons";
+import HomeChallengSection from "./_sections/Challenge";
 
 export default async function HomeContentPage() {
   const {data} = await homeFetch();
@@ -14,6 +15,9 @@ export default async function HomeContentPage() {
       {data?.user && <HomeUserStatsSection data={data.user} />}
       <TowButtonsSection/>
       {data?.all_leaderboard && <HomeAllLeaderboardSection data={data.all_leaderboard} />}
+      <HomeChallengSection/>
+
+      <div className="min-h-[1000px]"/>
     </div>
   );
 }

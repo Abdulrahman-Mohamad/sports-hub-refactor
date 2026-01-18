@@ -80,6 +80,11 @@
         "all_leaderboard":{
           "title":"مين الأول بالترتيب؟",
           "points":"نقطة"
+        },
+        "challenge":{
+          "gif":"/gif/home/challeng-ar.gif",
+          "description":"جرّب لعبة التوقعات ولِم نقاطك",
+          "play_now":"العب الحين"
         }
       }
     }
