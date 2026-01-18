@@ -16,7 +16,7 @@ export default async function HomeContentPage() {
       <TowButtonsSection/>
       {data?.all_leaderboard && <HomeAllLeaderboardSection data={data.all_leaderboard} />}
       <HomeChallengSection/>
-
+      
       <div className="min-h-[1000px]"/>
     </div>
   );

@@ -71,7 +71,7 @@ export default function HomeChallengSection() {
           <motion.button
           whileHover={{scale:1.1}}
           whileTap={{scale:0.9}}
-            className="bg-gradient-primary px-4 py-1 rounded-full text-sm
+            className="bg-gradient-primary px-4 py-1 rounded-full text-sm cursor-pointer
         md:px-12 md:py-2.5 md:text-base md:mt-6
         lg:px-16 lg:py-3 lg:text-lg lg:mb-4
         xl:px-20 xl:py-4 xl:text-xl
