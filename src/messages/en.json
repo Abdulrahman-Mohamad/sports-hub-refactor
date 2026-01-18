@@ -79,6 +79,10 @@
           "packages":"Packages",
           "play_now":"Play Now",
           "explore":"Explore"
+        },
+        "all_leaderboard":{
+          "title":"Top Players",
+          "points":"pts"
         }
       }
     }

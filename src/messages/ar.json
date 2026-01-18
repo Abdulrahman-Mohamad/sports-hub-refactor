@@ -76,6 +76,10 @@
           "packages": "الباقات",
           "play_now": "العب الحين",
           "explore": "اشتراك"
+        },
+        "all_leaderboard":{
+          "title":"مين الأول بالترتيب؟",
+          "points":"نقطة"
         }
       }
     }
