@@ -67,10 +67,16 @@
           "subtitle2": "لتفوز بجوايز بقيمة ٥٠٠ دينار بحريني.",
           "Subscribe": "اشترك الان"
         },
-      "news": {
-        "published_at": "نشر في:",
-        "author": "المؤلف:"
-      }
+        "news": {
+          "published_at": "نشر في:",
+          "author": "المؤلف:"
+        },
+        "tow_buttons": {
+          "games": "الألعاب",
+          "packages": "الباقات",
+          "play_now": "العب الحين",
+          "explore": "اشتراك"
+        }
       }
     }
   },

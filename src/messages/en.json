@@ -73,6 +73,12 @@
         "news":{
           "published_at":"Published At:",
           "author":"Author:"
+        },
+        "tow_buttons":{
+          "games":"Games",
+          "packages":"Packages",
+          "play_now":"Play Now",
+          "explore":"Explore"
         }
       }
     }
