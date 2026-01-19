@@ -98,6 +98,15 @@
           "gif": "/gif/home/challeng-en.gif",
           "description": "try our predictions game And collect points",
           "play_now": "Play Now"
+        },
+        "champions": {
+          "trivia":"Trivia Champions",
+          "prediction":"Predictions Champions",
+          "shoot":"Shoot-On-Net Champions",
+          "points":"pts",
+          "losses":"Losses",
+          "ratio":"Ratio",
+          "win":"Win"
         }
       }
     }

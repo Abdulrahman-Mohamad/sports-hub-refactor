@@ -95,6 +95,15 @@
           "gif": "/gif/home/challeng-ar.gif",
           "description": "جرّب لعبة التوقعات ولِم نقاطك",
           "play_now": "العب الحين"
+        },
+        "champions": {
+          "trivia":"أوائل الأسئلة العامة",
+          "prediction":"أوائل التوقعات",
+          "shoot":"أوائل هدف في الشبكة",
+          "points":"نقطة",
+          "losses":"خسارة",
+          "ratio":"نسبة",
+          "win":"فوز"
         }
       }
     }

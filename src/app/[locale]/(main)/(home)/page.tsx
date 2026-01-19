@@ -6,6 +6,7 @@ import HomeAllLeaderboardSection from "./_sections/TriviaLeaderboards";
 import TowButtonsSection from "./_sections/TowButtons";
 import HomeChallengSection from "./_sections/Challenge";
 import GamesSections from "@/components/sections/Games";
+import HomeChampionsSection from "./_sections/Champions";
 
 export default async function HomeContentPage() {
   const { data } = await homeFetch();
@@ -23,6 +24,12 @@ export default async function HomeContentPage() {
         triviaData={data?.trivia_config}
         predictionData={data?.prediction_config}
         shootData={data?.shot_on_net_config}
+      />
+
+      <HomeChampionsSection
+        trivia={data?.trivia_champions}
+        prediction={data?.prediction_champions}
+        shoot={data?.shot_on_net_champions}
       />
       <div className="min-h-[1000px]" />
     </div>
