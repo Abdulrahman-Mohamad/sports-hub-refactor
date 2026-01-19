@@ -257,7 +257,7 @@ function PlayerCard({ data, index }: { data: ChampionsProps; index: number }) {
 function AnimateTitleByArrows({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <div className="w-full flex items-center justify-between gap-4">
+      <div className="w-full flex items-center justify-between gap-4 rtl:flex-row-reverse">
         {/* left Arrow */}
         <div className="relative w-full h-16 flex-grow">
           <Image src={"/gif/common/arrow-wide.gif"} alt="Animate Title" fill className="opacity-50" />
