@@ -2,7 +2,7 @@ import { QueryParams } from "@/utils/types/Generic/QueryParams";
 import { apiFetch } from "../apiFetch";
 
 export const verifyOTPFetch = async (
-  data: { pin_code: string; transaction_id: string | null },
+  data: { otp: string },
   { onSuccess, onError }: QueryParams,
 ) => {
   try {

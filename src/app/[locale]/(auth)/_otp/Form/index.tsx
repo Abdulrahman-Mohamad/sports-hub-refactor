@@ -2,63 +2,72 @@
 import Input from "@/components/form/Input";
 import { OTPProps, OTPSchema } from "@/utils/schemas/Auth/OTP";
 import { zodResolver } from "@hookform/resolvers/zod";
-import React, { useEffect, useRef, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback, useRef } from "react";
 import { useForm } from "react-hook-form";
-import { MdOutlinePassword } from "react-icons/md";
 import { toast } from "react-toastify";
 import { useTranslations } from "next-intl";
 import { useApp } from "@/context/AppContext";
 import { resendOTPFetch } from "@/lib/api/auth/resendOTPFetch";
 import { verifyOTPFetch } from "@/lib/api/auth/verifyOTPFetch";
+import { motion } from "framer-motion";
 
 export default function FormStep({
   setStep,
 }: {
   setStep: (step: string) => any;
 }) {
-  const t = useTranslations();
-  const [tranId, setTranId] = useState<string | null>(null);
-  const { closeOTP } = useApp();
+  const t = useTranslations("pages.auth.otp");
+  const {} = useApp();
 
-  // cooldown state (seconds)
-  const [cooldown, setCooldown] = useState<number>(0);
-  const intervalRef = useRef<number | null>(null);
+  // cooldown state (seconds) - Start with 45 to show timer immediately
+  const [cooldown, setCooldown] = useState<number>(45);
+
+  // Helper to format seconds to 00:00
+  const formatTime = (seconds: number) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
+  };
 
   const onResendSuccess = useCallback(
     (res: any) => {
-      setCooldown(60);
-      toast.success(res?.message || t("pages.auth.otp.success_message"));
-      if (res?.data?.is_verified) {
-        closeOTP();
-      } else {
-        setTranId(res?.data?.transaction_id);
-      }
+      console.log("OTP Resend Success:", res);
+      setCooldown(45); // Restart timer
+      toast.success(res?.message || t("success_message"));
     },
-    [closeOTP, t],
+    [t],
   );
 
   const onResendError = useCallback(
     (error: any) => {
-      console.error("Resend OTP Error:", error);
+      console.error("OTP Resend Error:", error);
       toast.error(error?.message || t("common.error_occurred"));
     },
     [t],
   );
 
-  const handleResend = useCallback(async () => {
-    if (cooldown > 0) return;
+  // Core resend logic
+  const triggerResend = useCallback(async () => {
     await resendOTPFetch({
       onSuccess: onResendSuccess,
       onError: onResendError,
     });
-  }, [cooldown, onResendSuccess, onResendError]);
+  }, [onResendSuccess, onResendError]);
+
+  // Manual click handler
+  const handleManualResend = useCallback(() => {
+    setCooldown(45);
+    if (cooldown > 0) return;
+    triggerResend();
+  }, [cooldown, triggerResend]);
 
   const {
     register,
-    formState: { errors },
+    formState: { errors, isValid },
     handleSubmit,
   } = useForm<OTPProps>({
     resolver: zodResolver(OTPSchema(t)),
+    mode: "onChange",
   });
 
   const onVerifySuccess = useCallback(() => {
@@ -74,84 +83,91 @@ export default function FormStep({
   );
 
   const onSubmit = async (data: OTPProps) => {
-    await verifyOTPFetch(
-      { ...data, transaction_id: tranId },
-      { onSuccess: onVerifySuccess, onError: onVerifyError },
-    );
+    await verifyOTPFetch(data, {
+      onSuccess: onVerifySuccess,
+      onError: onVerifyError,
+    });
   };
 
+  // Timer Logic - Persistent interval for maximum reliability
   useEffect(() => {
-    if (cooldown === 0) {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-        intervalRef.current = null;
-      }
-      return;
-    }
-    if (!intervalRef.current) {
-      intervalRef.current = window.setInterval(() => {
-        setCooldown((prev) => {
-          if (prev <= 1) return 0;
-          return prev - 1;
-        });
-      }, 1000);
-    }
+    const timer = setInterval(() => {
+      setCooldown((prev) => (prev > 0 ? prev - 1 : 0));
+    }, 1000);
+    return () => clearInterval(timer);
+  }, []);
 
-    return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-        intervalRef.current = null;
-      }
-    };
-  }, [cooldown]);
-
+  // Initial trigger on mount - Only once
+  const isInitialSent = useRef(false);
   useEffect(() => {
-    handleResend();
-  }, [handleResend]);
+    if (!isInitialSent.current) {
+      isInitialSent.current = true;
+      triggerResend();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="bg-white rounded-xl shadow-lg flex flex-col min-w-[80%] md:min-w-[60%] space-y-4"
+      className="bg-white rounded-3xl flex flex-col w-[90%] max-w-2xl p-6 md:p-12 space-y-6 shadow-2xl"
     >
-      {/* Top Red Section */}
-      <div className="bg-primary rounded-t-xl w-full px-2 py-4">
-        <h2 className="text-white font-semibold text-center">
-          {t("pages.auth.otp.title")}
+      {/* Top Section */}
+      <div className="w-full text-center space-y-4">
+        <h2 className="text-gradient-primary text-3xl md:text-5xl font-bold">
+          {t("title")}
         </h2>
-      </div>
-      {/* Body White Section */}
-      <div className="px-8 py-10 space-y-10">
-        <Input
-          id="pin_code"
-          placeholder={t("components.forms.placeholders.enter_4_digit_code")}
-          register={register}
-          errors={errors}
-          icon={<MdOutlinePassword size={20} className="text-primary" />}
-        />
-        <p className="mt-3 text-sm text-gray-600">
-          {t("pages.auth.otp.didnt_receive")}
+        <p className="text-gray-600 text-sm md:text-xl font-medium">
+          {t("description", { digit: 4 })}
         </p>
-        {/* Buttons */}
-        <div className="flex items-center justify-center gap-3 mt-4">
-          <button
-            type="submit"
-            className="btn bg-primary text-white"
-            disabled={!tranId}
-          >
-            {t("pages.auth.otp.verify")}
-          </button>
+      </div>
 
-          <button
-            type="button"
-            onClick={handleResend}
-            disabled={cooldown > 0}
-            className={`btn border border-primary text-primary`}
+      {/* Body Section */}
+      <div className="flex flex-col space-y-8">
+        <div className="w-full max-w-md mx-auto">
+          <Input
+            id="otp"
+            placeholder={t("placeholders", { digit: 4 })}
+            register={register}
+            errors={errors}
+            className="!text-center !text-xl !py-4 !rounded-xl border-gray-200"
+          />
+        </div>
+
+        {/* Resend Logic Text */}
+        <div className="text-center text-xs md:text-sm text-gray-500 font-medium">
+          {t("didnt_receive")}{" "}
+          {cooldown > 0 ? (
+            <span className="text-gray-400">
+              {t("resend_in", { time: formatTime(cooldown) })}
+            </span>
+          ) : (
+            <button
+              type="button"
+              onClick={handleManualResend}
+              className="text-primary font-bold hover:underline cursor-pointer"
+            >
+              {t("resend_code")}
+            </button>
+          )}
+        </div>
+
+        {/* Submit Button */}
+        <div className="w-full max-w-xs mx-auto pt-4">
+          <motion.button
+          whileHover={{scale: isValid ? 1.1 : 1}}
+          whileTap={{scale: isValid ? 0.9 : 1}}
+            type="submit"
+            disabled={!isValid}
+            className={`w-full py-4 rounded-xl text-white text-xl font-bold ${
+              !isValid
+                ? "bg-gray-400 cursor-not-allowed"
+                : "bg-gradient-primary-r cursor-pointer"
+            }`}
+            
           >
-            {cooldown > 0
-              ? t("pages.auth.otp.resend_countdown", { seconds: cooldown })
-              : t("pages.auth.otp.resend")}
-          </button>
+            {t("verify")}
+          </motion.button>
         </div>
       </div>
     </form>

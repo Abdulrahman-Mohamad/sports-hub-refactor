@@ -59,6 +59,16 @@
       },
       "register": {
         "title": ""
+      },
+      "otp": {
+        "title": "OTP Code",
+        "description": "We've sent a {digit}-digit code to your phone. Please enter it below to complete your registration.",
+        "placeholders": "Enter {digit}-Digit Code",
+        "didnt_receive": "Didn't receive the code?",
+        "resend_in": "Resend in {time}",
+        "resend_code": "Resend Code",
+        "verify": "Next",
+        "otp_validation": "Pin code must be exactly 4 digits"
       }
     },
     "main": {
