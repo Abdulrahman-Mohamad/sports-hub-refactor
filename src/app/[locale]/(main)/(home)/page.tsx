@@ -13,7 +13,7 @@ import MainPackagesSection from "@/components/sections/MainPackages";
 export default async function HomeContentPage() {
   const { data } = await homeFetch();
   return (
-    <div className="min-h-[3000px] ">
+    <div className=" ">
       <HomeHeroSection />
       {data?.news && <HomeNewsSection data={data.news} />}
       {data?.user && <HomeUserStatsSection data={data.user} />}
@@ -40,7 +40,6 @@ export default async function HomeContentPage() {
       />}
 
       {data?.packages && <MainPackagesSection data={data.packages}/>}
-      <div className="min-h-[1000px]" />
     </div>
   );
 }

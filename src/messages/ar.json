@@ -129,15 +129,15 @@
         },
         "you_cant_predict": "لا يمكنك التوقع الان"
       },
-      "packages":{
-        "packages":"الباقات",
-        "currency":"د.ب",
-        "insted_of":"بدلاً من",
-        "zee_coin":"عملة زي",
-        "joker":"جوكر",
-        "description":"الأفضل للاعبين الجدد الراغبين في تجربة خدماتنا",
-        "not_refundable":"**غير قابل للاسترجاع**",
-        "Subscribe":"اشترك الآن"
+      "packages": {
+        "packages": "الباقات",
+        "currency": "د.ب",
+        "insted_of": "بدلاً من",
+        "zee_coin": "عملة زي",
+        "joker": "جوكر",
+        "description": "الأفضل للاعبين الجدد الراغبين في تجربة خدماتنا",
+        "not_refundable": "**غير قابل للاسترجاع**",
+        "Subscribe": "اشترك الآن"
       }
     }
   },
@@ -165,6 +165,17 @@
           "no_thanks": "No Thanks",
           "yes": "Yes"
         }
+      }
+    },
+    "layout": {
+      "footer": {
+        "home": "الرئيسية",
+        "packages": "الباقات",
+        "leaderboards": "المتصدرين",
+        "games": "الألعاب",
+        "history": "السجل",
+        "terms": "الشروط والأحكام",
+        "play_connect_conquer": "العب، تواصل، قوز "
       }
     }
   }

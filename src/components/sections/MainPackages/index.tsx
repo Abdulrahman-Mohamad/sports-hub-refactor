@@ -15,7 +15,7 @@ export default function MainPackagesSection({
       <h2 className="w-full text-center text-white font-bold md:!text-4xl lg:!text-5xl">{t('packages')}</h2>
 
       {/* Packages */}
-      <div className="flex flex-col lg:flex-row items-center justify-center gap-4 md:gap-10 xl:gap-16 2xl:gap-24 my-50" dir="ltr">
+      <div className="flex flex-col lg:flex-row items-center justify-center gap-4 md:gap-10 xl:gap-16 2xl:gap-24 mt-50" dir="ltr">
         {data.map((item) => (
           <PackageCard key={item.id} data={item} />
         ))}

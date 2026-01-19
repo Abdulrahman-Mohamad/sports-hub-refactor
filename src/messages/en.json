@@ -132,15 +132,15 @@
         },
         "you_cant_predict": "You Can't Predict Now"
       },
-      "packages":{
-        "packages":"Packages",
-        "currency":"BHD",
-        "insted_of":"Instead of",
-        "zee_coin":"zee coins",
-        "joker":"Joker",
-        "description":"Best for new players willing to try our services",
-        "not_refundable":"**NONREFUNDABLE**",
-        "Subscribe":"Subscribe Now"
+      "packages": {
+        "packages": "Packages",
+        "currency": "BHD",
+        "insted_of": "Instead of",
+        "zee_coin": "zee coins",
+        "joker": "Joker",
+        "description": "Best for new players willing to try our services",
+        "not_refundable": "**NONREFUNDABLE**",
+        "Subscribe": "Subscribe Now"
       }
     }
   },
@@ -169,6 +169,17 @@
           "yes": "Yes",
           "error_occurred": "An error occurred"
         }
+      }
+    },
+    "layout": {
+      "footer": {
+        "home": "Home",
+        "packages": "Packages",
+        "leaderboards": "Leaderboards",
+        "games": "Games",
+        "history": "History",
+        "terms": "Terms and Conditions",
+        "play_connect_conquer": "Play. Connect. Conquer."
       }
     }
   }
