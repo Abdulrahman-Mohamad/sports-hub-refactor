@@ -100,14 +100,37 @@
           "play_now": "Play Now"
         },
         "champions": {
-          "trivia":"Trivia Champions",
-          "prediction":"Predictions Champions",
-          "shoot":"Shoot-On-Net Champions",
-          "points":"pts",
-          "losses":"Losses",
-          "ratio":"Ratio",
-          "win":"Win"
+          "trivia": "Trivia Champions",
+          "prediction": "Predictions Champions",
+          "shoot": "Shoot-On-Net Champions",
+          "points": "pts",
+          "losses": "Losses",
+          "ratio": "Ratio",
+          "win": "Win"
         }
+      },
+      "predictions": {
+        "hero": {
+          "title": "Predictions",
+          "description": "Predict match results, climb the leaderboard, and win exciting prizes! Show off your football instincts and compete for a share of the ILS 5000 total prizes."
+        },
+        "upcoming_matches": "Upcoming Matches",
+        "live_matches": "Live Matches",
+        "finished_matches": "Finished Matches",
+        "no_matches": "No matches available",
+        "match_highlights": "Match Highlights",
+        "match_over": "Match Over",
+        "predict": "Predict",
+        "view_highlights": "View Highlights",
+        "winner": "Winner",
+        "all": "All Matches",
+        "highlights": {
+          "title": "Match Highlights",
+          "update": "Update",
+          "back": "Back",
+          "your_prediction": "Your Prediction"
+        },
+        "you_cant_predict": "You Can't Predict Now"
       }
     }
   },
