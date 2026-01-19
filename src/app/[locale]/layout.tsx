@@ -4,6 +4,7 @@ import { getTranslations } from "next-intl/server";
 import { getLocale, getMessages } from "next-intl/server";
 import { Inter } from "next/font/google";
 import localFont from "next/font/local";
+import OTPModal from "./(auth)/_otp";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -73,6 +74,7 @@ export default async function layout({
       >
         <NextIntlClientProvider messages={messages}>
           {children}
+          <OTPModal />
         </NextIntlClientProvider>
       </div>
     </>

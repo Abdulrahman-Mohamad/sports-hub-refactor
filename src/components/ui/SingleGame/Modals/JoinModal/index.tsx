@@ -25,28 +25,28 @@ export default function JoinGameModal({
 }) {
   const t = useTranslations("components.ui.single_game.join");
   const locale = useLocale();
-  const {accessToken} = useUser()
+  const { accessToken } = useUser();
   const router = useRouter();
   const pathname = usePathname();
 
   const onSuccess = (data: any) => {
     const response = data;
     console.log(response);
-    
+
     if (response?.status) {
       if (type === "shot_on_net")
-      window.location.href = `${game_url}?lang=${locale}&token=${accessToken}`;
+        window.location.href = `${game_url}?lang=${locale}&token=${accessToken}`;
       if (type === "trivia") {
         if (pathname !== `/trivia`) return router.push("/trivia");
-        router.refresh(); 
+        router.refresh();
       }
       if (type === "prediction") {
         router.push(`/prediction-game?id=${predictionId}`);
       }
     }
   };
-    const onError = (e: any) => {
-    if (e.status === 411) {
+  const onError = (e: any) => {
+    if (Number(e.code) === 411) {
       onClose();
       return;
     }

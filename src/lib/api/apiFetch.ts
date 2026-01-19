@@ -63,7 +63,7 @@ export async function apiFetch(endpoint: string, options: FetchOptions = {}) {
     try {
       error = await res.json();
     } catch { }
-    const errorObj = { status: res.status, ...(error?.error || {}), ...error };
+    const errorObj = { ...(error?.error || {}), ...error, status: res.status };
 
     if (typeof window !== "undefined") {
       window.dispatchEvent(new CustomEvent("api-error", { detail: errorObj }));
@@ -73,7 +73,7 @@ export async function apiFetch(endpoint: string, options: FetchOptions = {}) {
   }
 
   // Handle empty or non-JSON responses safely
-  const contentType = res.headers.get("content-type");                                                           
+  const contentType = res.headers.get("content-type");
   const contentLength = res.headers.get("content-length");
 
   if (
