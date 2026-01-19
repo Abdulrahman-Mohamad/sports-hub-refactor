@@ -10,6 +10,8 @@
   /* gradient */
   --background-image-gradient-primary: linear-gradient(to bottom, #E400FB, #5200FD);
   --background-image-gradient-primary-r: linear-gradient(to right, #E400FB, #5200FD);
+  --background-image-gradient-gold: linear-gradient(111deg, #E0AB5D 17.76%, #FEFBB9 47.78%, #D79E51 78.98%);
+  --background-image-gradient-silver: var(--SDGTV,linear-gradient(229deg, #848484 15.98%, #ddd 47.95%, #848484 104.22%));
 }
 
 
@@ -84,6 +86,27 @@ h6 {
 
 .text-gradient-primary {
   @apply bg-clip-text text-transparent bg-gradient-to-b from-[#E400FB] to-[#5200FD];
+}
+
+.text-gradient-gold {
+  background: linear-gradient(111deg, #E0AB5D 17.76%, #FEFBB9 47.78%, #D79E51 78.98%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  text-shadow: 0px 0px 2.284px #000;
+
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.10);
+}
+
+.text-gradient-silver {
+  background: var(--SDGTV,linear-gradient(229deg, #848484 15.98%, #ddd 47.95%, #848484 104.22%));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  font-weight: 900;
+  text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.10);
 }
 
 .text-shadow-white {

@@ -8,6 +8,7 @@ import HomeChallengSection from "./_sections/Challenge";
 import GamesSections from "@/components/sections/Games";
 import HomeChampionsSection from "./_sections/Champions";
 import PredictSection from "@/components/sections/Predict";
+import MainPackagesSection from "@/components/sections/MainPackages";
 
 export default async function HomeContentPage() {
   const { data } = await homeFetch();
@@ -37,6 +38,8 @@ export default async function HomeContentPage() {
       data={data?.predictions} 
       config = {data?.prediction_config}
       />}
+
+      {data?.packages && <MainPackagesSection data={data.packages}/>}
       <div className="min-h-[1000px]" />
     </div>
   );

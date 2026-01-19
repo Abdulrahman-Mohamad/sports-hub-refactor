@@ -131,6 +131,16 @@
           "your_prediction": "Your Prediction"
         },
         "you_cant_predict": "You Can't Predict Now"
+      },
+      "packages":{
+        "packages":"Packages",
+        "currency":"BHD",
+        "insted_of":"Instead of",
+        "zee_coin":"zee coins",
+        "joker":"Joker",
+        "description":"Best for new players willing to try our services",
+        "not_refundable":"**NONREFUNDABLE**",
+        "Subscribe":"Subscribe Now"
       }
     }
   },
