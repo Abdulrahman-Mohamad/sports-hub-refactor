@@ -133,6 +133,10 @@
         "you_cant_predict": "You Can't Predict Now"
       },
       "packages": {
+        "hero":{
+          "title":"Packages",
+          "description":"We offer a variety of packages and add-ons to enhance your experience."
+        },
         "packages": "Packages",
         "currency": "BHD",
         "insted_of": "Instead of",

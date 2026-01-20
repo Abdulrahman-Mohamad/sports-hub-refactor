@@ -219,22 +219,22 @@ export default function Navbar() {
 
       {/* mobile */}
       <div
-        className="lg:hidden fixed z-10 top-4 start-6 *:
-      sm:top-6 sm:start-8
+        className="lg:hidden fixed z-10 top-10 start-8 *:
+      
       "
       >
         <div className="flex items-center gap-3 md:gap-5">
           {/* bar button */}
           <div
             onClick={toggleSidebar}
-            className="bg-white/70 w-8 h-8 flex-center p-2 rounded-full sm:w-10 sm:h-10"
+            className="bg-white/70 w-10 h-10 md:w-12 md:h-12 flex-center p-2 rounded-full"
           >
-            <FaBars size={16} color="#13355C"/>
+            <FaBars className="text-xl md:text-2xl" color="#13355C"/>
           </div>
           {/* use button */}
           <div
             onClick={user ? toggleUserMenu : () => router.push("/login")}
-            className={`w-8 h-8 flex-center bg-white/70 rounded-full sm:w-10 sm:h-10 border border-white ${user ? "" : "p-1.5"}`}
+            className={`w-10 h-10 md:w-12 md:h-12 flex-center bg-white/70 rounded-full border border-white ${user ? "" : "p-1.5"}`}
           >
             {profile?.user.media ? (
               <Image
