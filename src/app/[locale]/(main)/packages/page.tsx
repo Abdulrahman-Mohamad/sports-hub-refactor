@@ -1,14 +1,21 @@
-import { useTranslations } from "next-intl"
-import PackageHeroSection from "./_sections/Hero"
+import MainPackagesSection from "@/components/sections/MainPackages"
+import HeroSection from "@/components/ui/Hero"
+import { getTranslations } from "next-intl/server"
+import { packagesFetch } from "@/lib/api/packages"
 
-export default function PackagesPage() {
-  const t = useTranslations()
+export default async function PackagesPage() {
+  const t = await getTranslations()
+  const { data } = await packagesFetch();
+  console.log(data);
+  
   return (
     <div>
-      <PackageHeroSection
+      <HeroSection
       title={t('pages.main.packages.hero.title')}
       description={t('pages.main.packages.hero.description')}
       />
+
+      { data.packages && <MainPackagesSection data={data.packages} effectis={true}/>}
     </div>
   )
 }

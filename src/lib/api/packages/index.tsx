@@ -1,14 +1,14 @@
 import { apiFetch } from "../apiFetch";
 
-export const homeFetch = async () => {
+export const packagesFetch = async () => {
   try {
-    const res = await apiFetch("/home", {
+    const res = await apiFetch("/packages", {
       method: "GET",
     });
     
     return res;
   } catch (error) {
-    console.error("Home fetch error:", error);
+    console.error("Packages fetch error:", error);
     return null;
   }
 };
