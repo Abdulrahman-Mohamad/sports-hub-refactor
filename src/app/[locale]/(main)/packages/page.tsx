@@ -2,11 +2,11 @@ import MainPackagesSection from "@/components/sections/MainPackages"
 import HeroSection from "@/components/ui/Hero"
 import { getTranslations } from "next-intl/server"
 import { packagesFetch } from "@/lib/api/packages"
+import AdditionalPackagesSection from "./_sections/AdditionalPackages"
 
 export default async function PackagesPage() {
   const t = await getTranslations()
   const { data } = await packagesFetch();
-  console.log(data);
   
   return (
     <div>
@@ -15,7 +15,8 @@ export default async function PackagesPage() {
       description={t('pages.main.packages.hero.description')}
       />
 
-      { data.packages && <MainPackagesSection data={data.packages} effectis={true}/>}
+      { data.packages.length > 0 && <MainPackagesSection data={data.packages} effectis={true}/>}
+      { data.additional_packages.length > 0 && <AdditionalPackagesSection data={data.additional_packages}/>}
     </div>
   )
 }

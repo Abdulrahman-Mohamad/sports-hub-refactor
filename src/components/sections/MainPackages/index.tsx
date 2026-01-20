@@ -19,9 +19,9 @@ export default function MainPackagesSection({
           {effectis && (
             <>
               {/* Glow Circle */}
-              <div className="absolute left-0 w-full aspect-square -translate-y-1/2 -translate-x-1/2 bg-radial from-[#E400FB]/60 via-transparent to-transparent" />
+              <div className="absolute start-0 w-full aspect-square -translate-y-1/2 ltr:-translate-x-1/2 rtl:translate-x-1/2 bg-radial from-[#E400FB]/60 via-transparent to-transparent" />
               {/* GIF Arrows */}
-              <div className="absolute left-8 -translate-y-1/4 md:left-16">
+              <div className="absolute start-8 -translate-y-1/4 md:start-16">
                 <Image
                   className="w-24 opacity-20 lg:w-28"
                   src={"/gif/common/arrow-sharp-v.gif"}
