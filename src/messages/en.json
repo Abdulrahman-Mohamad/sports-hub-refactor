@@ -151,7 +151,11 @@
         "hero":{
           "title":"Leaderboards",
           "description":"Check out the top players and see how you compare amongst the best."
-        }
+        },
+        "all":"All",
+        "trivia":"Trivia",
+        "prediction":"Prediction",
+        "shot_on_net":"Shot-On-Net"
       }
     }
   },
