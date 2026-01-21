@@ -1,3 +1,7 @@
-export default function LeaderboardsPage() {
-  return <div>LeaderboardsPage</div>;
+import LeaderboardHeroSection from "./_sections/Hero";
+
+export default async function LeaderboardsPage() {
+  return (<>
+  <LeaderboardHeroSection/>
+  </>);
 }

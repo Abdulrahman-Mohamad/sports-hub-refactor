@@ -146,6 +146,12 @@
         "description": "Best for new players willing to try our services",
         "not_refundable": "**NONREFUNDABLE**",
         "Subscribe": "Subscribe Now"
+      },
+      "leaderboard":{
+        "hero":{
+          "title":"Leaderboards",
+          "description":"Check out the top players and see how you compare amongst the best."
+        }
       }
     }
   },
