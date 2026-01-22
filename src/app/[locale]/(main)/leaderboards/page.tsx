@@ -24,18 +24,20 @@ export default async function LeaderboardsPage({
     <>
       <LeaderboardHeroSection />
       <LeaderboardTypeSection activeType={type} />
-      <div className="relative w-full aspect-[1052/2000] flex flex-col justify-end">
-        <Image
-          src="/images/leaderboard/leaderboard-top-three.png"
-          alt="leaderboard-top-three"
-          width={1052}
-          height={2000}
-          className="w-full h-full object-contain object-[bottom_center] absolute inset-0 z-0
-          px-16
-          "
-        />
-        <LeaderboardPodiumSection data={topThree} />
-        <LeaderboardTableSection data={others} user={currentUser} />
+      <div className="relative w-full flex flex-col mt-10 md:mt-24">
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/images/leaderboard/leaderboard-top-three.png"
+            alt="leaderboard-top-three"
+            fill
+            className="object-fill object-bottom !px-8 md:!px-18"
+            priority
+          />
+        </div>
+        <div className="relative z-10 w-full">
+          <LeaderboardPodiumSection data={topThree} />
+          <LeaderboardTableSection data={others} user={currentUser} />
+        </div>
       </div>
     </>
   );
