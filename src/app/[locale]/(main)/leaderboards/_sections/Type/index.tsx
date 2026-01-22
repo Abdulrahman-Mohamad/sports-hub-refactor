@@ -32,9 +32,9 @@ export default function LeaderboardTypeSection({
   };
   return (
     <>
-      <div className="px-4">
+      <div className="px-4 mt-10 lg:mt-16">
         <div
-          className="flex-center bg-white w-full mx-auto rounded-lg mt-10 lg:mt-16
+          className="flex-center bg-white w-full mx-auto rounded-lg 
         md:w-xl
         lg:w-2xl
         xl:w-4xl

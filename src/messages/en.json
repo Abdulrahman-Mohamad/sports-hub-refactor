@@ -155,7 +155,8 @@
         "all":"All",
         "trivia":"Trivia",
         "prediction":"Prediction",
-        "shot_on_net":"Shot-On-Net"
+        "shot_on_net":"Shot-On-Net",
+        "points":"pts"
       }
     }
   },
