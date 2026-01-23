@@ -7,6 +7,7 @@ import HistoryTriviaTable from "./_sections/TriviaTable";
 import HistoryPredictionTable from "./_sections/PredictionTable";
 import HistoryShootTable from "./_sections/ShootTable";
 
+
 export default async function HistoryPage({
   searchParams,
 }: {

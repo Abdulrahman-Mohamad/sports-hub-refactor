@@ -168,6 +168,17 @@
         "hero": {
           "title": "History",
           "description": "Track all your moves in the games, from predictions to results and special features."
+        },
+        "tables": {
+          "date": "Date",
+          "match": "Match",
+          "prediction": "Prediction",
+          "result": "Result",
+          "points": "Points",
+          "coins_spent": "Coins Spent",
+          "use_joker": "Use Joker",
+          "outcomes": "Outcomes",
+          "time": "Time"
         }
       }
     }
