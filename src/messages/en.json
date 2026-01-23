@@ -157,6 +157,12 @@
         "prediction":"Prediction",
         "shot_on_net":"Shot-On-Net",
         "points":"pts"
+      },
+      "games":{
+        "hero":{
+          "title":"Games",
+          "description":"Play games and win prizes. Test your skills and have fun!"
+        }
       }
     }
   },
