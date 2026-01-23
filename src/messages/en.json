@@ -180,6 +180,12 @@
           "outcomes": "Outcomes",
           "time": "Time"
         }
+      },
+      "terms":{
+        "hero":{
+          "title": "Terms and Conditions",
+          "description": "Your privacy is important to us. Please review our Privacy Policy to understand how we collect and use your information."
+        }
       }
     }
   },
