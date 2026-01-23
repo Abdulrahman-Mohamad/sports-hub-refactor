@@ -11,7 +11,7 @@ export default function Footer() {
   const {user}= useUser();
 
   return (
-    <footer className="text-white mt-44 md:mt-52 lg:mt-64 z-20 relative">
+    <footer className="text-white mt-44 md:mt-52 lg:mt-64 z-10 relative">
       <div className="w-full h-4 bg-gradient-primary relative">
       <Image 
       src={'/images/footer/ball.png'} 

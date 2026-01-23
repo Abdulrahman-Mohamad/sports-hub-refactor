@@ -219,7 +219,7 @@ export default function Navbar() {
 
       {/* mobile */}
       <div
-        className="lg:hidden fixed z-10 top-10 start-8 *:
+        className="lg:hidden fixed z-20 top-10 start-8 *:
       
       "
       >
