@@ -147,21 +147,27 @@
         "not_refundable": "**NONREFUNDABLE**",
         "Subscribe": "Subscribe Now"
       },
-      "leaderboard":{
-        "hero":{
-          "title":"Leaderboards",
-          "description":"Check out the top players and see how you compare amongst the best."
+      "leaderboard": {
+        "hero": {
+          "title": "Leaderboards",
+          "description": "Check out the top players and see how you compare amongst the best."
         },
-        "all":"All",
-        "trivia":"Trivia",
-        "prediction":"Prediction",
-        "shot_on_net":"Shot-On-Net",
-        "points":"pts"
+        "all": "All",
+        "trivia": "Trivia",
+        "prediction": "Prediction",
+        "shot_on_net": "Shot-On-Net",
+        "points": "pts"
       },
-      "games":{
-        "hero":{
-          "title":"Games",
-          "description":"Play games and win prizes. Test your skills and have fun!"
+      "games": {
+        "hero": {
+          "title": "Games",
+          "description": "Play games and win prizes. Test your skills and have fun!"
+        }
+      },
+      "history": {
+        "hero": {
+          "title": "History",
+          "description": "Track all your moves in the games, from predictions to results and special features."
         }
       }
     }

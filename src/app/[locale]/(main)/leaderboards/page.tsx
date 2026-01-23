@@ -1,10 +1,10 @@
 import { LeaderboardType } from "@/utils/types/Leaderboards";
 import LeaderboardHeroSection from "./_sections/Hero";
 import { leaderboardsFetch } from "@/lib/api/leaderboards/LeaderboardsFetch";
-import LeaderboardTypeSection from "./_sections/Type";
 import LeaderboardPodiumSection from "./_sections/Pedium";
 import LeaderboardTableSection from "./_sections/Table";
 import Image from "next/image";
+import TypeSection from "@/components/sections/Type";
 
 export default async function LeaderboardsPage({
   searchParams,
@@ -23,7 +23,7 @@ export default async function LeaderboardsPage({
   return (
     <>
       <LeaderboardHeroSection />
-      <LeaderboardTypeSection activeType={type} />
+      <TypeSection activeType={type} />
       <div className="relative w-full flex flex-col mt-10 md:mt-24">
         <div className="absolute inset-0 z-0">
           <Image

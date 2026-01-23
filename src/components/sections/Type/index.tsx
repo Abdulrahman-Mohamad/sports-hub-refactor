@@ -2,16 +2,19 @@
 
 import { LeaderboardType } from "@/utils/types/Leaderboards";
 import { useTranslations } from "next-intl";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useTransition } from "react";
 
-export default function LeaderboardTypeSection({
+export default function TypeSection({
   activeType,
+  showAll = true,
 }: {
   activeType: LeaderboardType;
+  showAll?: boolean;
 }) {
   const router = useRouter();
   const pathname = usePathname();
+  const searchParams = useSearchParams();
   const t = useTranslations("pages.main.leaderboard");
   const [isPending, startTransition] = useTransition();
 
@@ -19,17 +22,27 @@ export default function LeaderboardTypeSection({
     { id: "trivia", label: t("trivia") },
     { id: "prediction", label: t("prediction") },
     { id: "shot_on_net", label: t("shot_on_net") },
-    { id: "all", label: t("all") },
   ];
 
+  if (showAll) {
+    tabs.push({ id: "all", label: t("all") });
+  }
+
   const handleTabchange = (type: LeaderboardType) => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("type", type);
+
     startTransition(() => {
-      router.push(`${pathname}?type=${type}`, { scroll: false });
+      router.push(`${pathname}?${params.toString()}`, { scroll: false });
     });
   };
+
   const onMouseEnter = (type: LeaderboardType) => {
-    router.prefetch(`${pathname}?type=${type}`);
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("type", type);
+    router.prefetch(`${pathname}?${params.toString()}`);
   };
+
   return (
     <>
       <div className="px-4 mt-10 lg:mt-16">
