@@ -199,7 +199,8 @@
         },
         "match_highlight": "Match Highlights",
         "view_highlight": "View Highlights",
-        "match_over": "Match over"
+        "match_over": "Match over",
+        "winner":"Victory"
       }
     }
   },

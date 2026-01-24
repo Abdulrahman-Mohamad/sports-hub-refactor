@@ -5,6 +5,7 @@ import LeagueFilter from "./_sections/Filter";
 import PredictSection from "@/components/sections/Predict";
 import { FixturesShowConfigFetch } from "@/lib/api/fixtures/ShowConfigFetch";
 import MatchHighlightsSection from "./_sections/MatchHighlights";
+import MatchOverSection from "./_sections/MatchOver";
 
 export default async function FixturesPage({
   searchParams,
@@ -29,6 +30,7 @@ export default async function FixturesPage({
       <LeagueFilter activeLeague={league_id} leagues={leagues} />
       <PredictSection data={fixturesData.predictions} config={showConfig} />
       <MatchHighlightsSection data={fixturesData.match_highlights}/>
+      <MatchOverSection data={fixturesData.match_over}/>
     </>
   );
 }

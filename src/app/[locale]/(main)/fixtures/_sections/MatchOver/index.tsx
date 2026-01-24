@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import HorizontalSwiper from "@/components/ui/HorizontalSwiper";
 import { Match } from "@/utils/types/Fixtures/Fixture";
 import { motion } from "framer-motion";
@@ -7,20 +7,21 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-export default function MatchHighlightsSection({ data }: { data: Match[] }) {
+export default function MatchOverSection({ data }: { data: Match[] }) {
   const t = useTranslations("pages.main.fixtures");
   return (
     <section className="my-20 md:px-10 lg:px-0 max-w-5xl mx-auto">
       {/* Content Layer - Centered and above the background */}
-        <h3 className="text-white text-shadow text-3xl md:text-5xl text-center mb-14 font-medium">
-          {t("match_highlight")}
-        </h3>
-        <div className="w-full px-4 md:px-0">
-          <HorizontalSwiper data={data} ChildCard={MatchCard} />
-        </div>
+      <h3 className="text-white text-shadow text-3xl md:text-5xl text-center mb-14 font-medium">
+        {t("match_over")}
+      </h3>
+      <div className="w-full px-4 md:px-0">
+        <HorizontalSwiper data={data} ChildCard={MatchCard} />
+      </div>
     </section>
   );
 }
+
 
 const MatchCard = ({ data }: { data: Match }) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -60,11 +61,17 @@ const MatchCard = ({ data }: { data: Match }) => {
       onMouseLeave={handleMouseLeave}
       onClick={handleCardClick}
       className="w-full py-4 px-4 md:px-20 bg-[#231925] rounded-xl grid grid-cols-[1fr_auto_1fr] items-center justify-center cursor-pointer
-      lg:bg-transparent lg:odd:bg-[url('/images/fixtures/down-shape.png')] lg:even:bg-[url('/images/fixtures/up-shape.png')] lg:bg-cover lg:bg-center"
+      lg:bg-transparent lg:even:bg-[url('/images/fixtures/down-shape.png')] lg:odd:bg-[url('/images/fixtures/up-shape.png')] lg:bg-cover lg:bg-center"
     >
       {/* Left "Home" Side Team */}
-      <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] md:items-center justify-end text-sm sm:text-lg text-neutral10 font-medium gap-4 h-full text-center">
-        <div className="flex-shrink-0 flex-grow flex items-center justify-center">
+      <div className="grid grid-cols-1 md:grid-cols-[auto_1fr_1fr] md:items-center justify-end text-sm sm:text-lg text-neutral10 font-medium gap-4 h-full text-center">
+        
+          {data?.teams?.home?.winner 
+          ? <div className="text-green-500 font-medium text-sm">{t("winner")}</div> 
+          : <div className="w-14"></div>
+          }
+        
+        <div className=" flex items-center justify-center md:order-3">
           <Image
             src={data?.teams?.home?.logo}
             alt="Home Team"
@@ -73,8 +80,9 @@ const MatchCard = ({ data }: { data: Match }) => {
             height={1000}
           />
         </div>
-        <div className="flex flex-col gap-2 md:-order-1 text-white">
-          <span>{data?.teams?.home?.name}</span>
+
+        <div className="flex flex-col items-center ms-auto gap-2 flex-grow text-white">
+          <span className="">{data?.teams?.home?.name}</span>
           <span>{data?.goals?.home}</span>
         </div>
       </div>
@@ -106,9 +114,9 @@ const MatchCard = ({ data }: { data: Match }) => {
               initial="hidden"
               animate="show"
               transition={{ delay: 0.3 }}
-              className="text-[#F2A50A]"
+              className="text-[#F2A50A] text-nowrap"
             >
-              {data?.fixture_time}
+              {data?.long_status_trans}
             </motion.span>
           </>
         ) : (
@@ -125,18 +133,26 @@ const MatchCard = ({ data }: { data: Match }) => {
           </motion.button>
         )}
       </div>
+
       {/* Right Side Team */}
-      <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] items-end md:items-center md:flex-row text-sm sm:text-lg text-neutral10 font-medium gap-4 h-full text-center">
-        <div className="flex-shrink-0 flex-grow flex items-center justify-center md:-order-1">
+      <div className="grid grid-cols-1 md:grid-cols-[auto_1fr_auto] items-end md:items-center md:flex-row text-sm sm:text-lg text-neutral10 font-medium gap-4 h-full text-center">
+        <div className="text-green-500 order-0 font-medium text-sm md:order-1">
+          {data?.teams?.away?.winner ? (
+            t("winner")
+          ) : (
+            <div className="w-14"></div>
+          )}
+        </div>
+        <div className="flex items-center justify-center">
           <Image
             src={data?.teams?.away?.logo}
             alt="Away Team"
-            className="w-16 md:w-20 h-16 md:h-20 object-contain"
+            className="w-16 md:w-20 h-16 md:h-20 object-contain md:ms-4"
             width={1000}
             height={1000}
           />
         </div>
-        <div className="flex flex-col gap-2 text-white">
+        <div className="flex flex-col gap-2 md:flex-grow text-white">
           <span>{data?.teams?.away?.name}</span>
           <span>{data?.goals?.away}</span>
         </div>

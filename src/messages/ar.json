@@ -196,7 +196,8 @@
         },
         "match_highlight": "احداث المباراة",
         "view_highlight": "احداث المبارة",
-        "match_over": "المباراة المنتهية"
+        "match_over": "المباراة المنتهية",
+        "winner":"فوز"
       }
     }
   },
