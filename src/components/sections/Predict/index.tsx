@@ -2,7 +2,7 @@
 import HorizontalSwiper from "@/components/ui/HorizontalSwiper";
 import GameModal from "@/components/ui/SingleGame/Modals";
 import { useUser } from "@/context/UserContext";
-import { FixtureProps } from "@/utils/types/Predictions/Fixture";
+import { Prediction } from "@/utils/types/Fixtures/Fixture";
 import { AnimatePresence, motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
@@ -13,8 +13,8 @@ import { toast } from "react-toastify";
 export default function PredictSection({ data, config }: any) {
   const [modal, setModal] = useState(false);
   const [id, setId] = useState<string | number | null>(null);
-  const response = config?.data?.data || {};
-  const t = useTranslations('pages.main.predictions.hero');
+  const response = config || {};
+  const t = useTranslations("pages.main.predictions.hero");
   return (
     <section className="my-20 md:px-10 lg:px-0 max-w-5xl mx-auto">
       <GameModal
@@ -44,7 +44,7 @@ const MatchCard = ({
   setModal,
   setId,
 }: {
-  data: FixtureProps;
+  data: Prediction;
   setModal?: (isOpen: boolean) => any;
   setId?: (id: string | number | null) => any;
 }) => {
@@ -59,7 +59,7 @@ const MatchCard = ({
     //check if he is logged in or not first
     if (!!!isLogged) return router.push("/register");
     // check if the time for prediction is up or not
-    if (!data?.check_mins_for_prediction)
+    if (!data?.last_mins_for_prediction)
       return toast.warn(t("you_cant_predict"));
 
     // check if he predicted before , if true update prediction , if false create new pediction
@@ -117,7 +117,9 @@ const MatchCard = ({
             height={1000}
           />
         </div>
-        <div className="md:me-8 md:truncate text-white">{data?.teams?.home?.name}</div>
+        <div className="md:me-8 md:truncate text-white">
+          {data?.teams?.home?.name}
+        </div>
       </div>
       {/* Center Score & Button */}
       <AnimatePresence>
@@ -179,7 +181,9 @@ const MatchCard = ({
             height={1000}
           />
         </div>
-        <div className="md:ms-8 md:truncate text-white">{data?.teams?.away?.name}</div>
+        <div className="md:ms-8 md:truncate text-white">
+          {data?.teams?.away?.name}
+        </div>
       </div>
     </div>
   );

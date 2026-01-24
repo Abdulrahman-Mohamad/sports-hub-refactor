@@ -1,7 +1,7 @@
 "use client";
 
 import GradientIcon from "@/components/ui/GradientIcon";
-import { League } from "@/utils/types/Predictions/Filter";
+import { League } from "@/utils/types/Fixtures/Filter";
 import { AnimatePresence, motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
@@ -53,7 +53,7 @@ export default function LeagueFilter({
   const currentLeague = leagues.find((l) => String(l.id) === activeLeague);
   const displayName = currentLeague
     ? `${currentLeague.country} - ${currentLeague.name}`
-    : t('all_leagues');
+    : t("all_leagues");
 
   const handleSelect = (id: string) => {
     const params = new URLSearchParams(searchParams.toString());
@@ -117,11 +117,7 @@ export default function LeagueFilter({
                   <div className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 font-bold">
                     A
                   </div>
-                  <span
-                    className={`font-bold px-4`}
-                  >
-                    {t("all_leagues")}
-                  </span>
+                  <span className={`font-bold px-4`}>{t("all_leagues")}</span>
                 </button>
 
                 {/* API Leagues */}

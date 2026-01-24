@@ -181,22 +181,25 @@
           "time": "Time"
         }
       },
-      "terms":{
-        "hero":{
+      "terms": {
+        "hero": {
           "title": "Terms and Conditions",
           "description": "Your privacy is important to us. Please review our Privacy Policy to understand how we collect and use your information."
         }
       },
-      "fixtures":{
-        "hero":{
+      "fixtures": {
+        "hero": {
           "title": "predictions",
           "description": "Play games and win prizes. Test your skills and have fun!"
         },
-        "filter":{
-          "all_leagues":"All Leagues",
-          "placeholder":"Search for Leagues...",
-          "no_found":"No Leagues Found"
-        }
+        "filter": {
+          "all_leagues": "All Leagues",
+          "placeholder": "Search for Leagues...",
+          "no_found": "No Leagues Found"
+        },
+        "match_highlight": "Match Highlights",
+        "view_highlight": "View Highlights",
+        "match_over": "Match over"
       }
     }
   },
