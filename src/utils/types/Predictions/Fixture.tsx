@@ -1,4 +1,6 @@
-export interface FixtureProps{
+import { FixtureOver, HighlightsProps } from "./Highlights";
+
+export interface FixtureProps {
   id: number | string;
   short_status: string;
   long_status: string;
@@ -30,7 +32,13 @@ export interface FixtureProps{
   };
   check_prediction: boolean;
   prediction: {
-    home_score:number;
-    away_score:number;
+    home_score: number;
+    away_score: number;
   } | null; // You can replace 'any' with a specific type if you know its structure
-};
+}
+
+export interface FixturesPageData {
+  predictions: FixtureProps[];
+  highlights: HighlightsProps[];
+  overs: FixtureOver[];
+}
