@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import HorizontalSwiper from "@/components/ui/HorizontalSwiper";
 import { Match } from "@/utils/types/Fixtures/Fixture";
 import { motion } from "framer-motion";
@@ -10,8 +10,9 @@ import { useState } from "react";
 export default function MatchOverSection({ data }: { data: Match[] }) {
   const t = useTranslations("pages.main.fixtures");
   return (
-    <section className="my-20 md:px-10 lg:px-0 max-w-5xl mx-auto">
+    <section className="my-20 md:px-10 lg:px-0 max-w-5xl mx-auto relative">
       {/* Content Layer - Centered and above the background */}
+      <div className="absolute bg-radial from-[#E400FB]/40 via-transparent via-70% to-transparent w-full aspect-[1/1] left-0 top-1/2 -translate-x-1/2 -translate-y-1/2" />
       <h3 className="text-white text-shadow text-3xl md:text-5xl text-center mb-14 font-medium">
         {t("match_over")}
       </h3>
@@ -21,7 +22,6 @@ export default function MatchOverSection({ data }: { data: Match[] }) {
     </section>
   );
 }
-
 
 const MatchCard = ({ data }: { data: Match }) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -65,12 +65,14 @@ const MatchCard = ({ data }: { data: Match }) => {
     >
       {/* Left "Home" Side Team */}
       <div className="grid grid-cols-1 md:grid-cols-[auto_1fr_1fr] md:items-center justify-end text-sm sm:text-lg text-neutral10 font-medium gap-4 h-full text-center">
-        
-          {data?.teams?.home?.winner 
-          ? <div className="text-green-500 font-medium text-sm">{t("winner")}</div> 
-          : <div className="w-14"></div>
-          }
-        
+        {data?.teams?.home?.winner ? (
+          <div className="text-green-500 font-medium text-sm">
+            {t("winner")}
+          </div>
+        ) : (
+          <div className="w-14"></div>
+        )}
+
         <div className=" flex items-center justify-center md:order-3">
           <Image
             src={data?.teams?.home?.logo}

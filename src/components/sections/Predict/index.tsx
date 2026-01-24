@@ -24,10 +24,14 @@ export default function PredictSection({ data, config }: any) {
         zee_coins={response?.zee_coins}
         predictionId={id}
       />
-      <h3 className="text-white text-shadow text-3xl md:text-5xl text-center mb-14 font-medium">
-        {t("title")}
-      </h3>
-      <div className="w-full px-4 md:px-0">
+      <div className="relative">
+        {/* glow Effect */}
+        <div className="absolute bg-radial from-[#E400FB]/40 via-transparent via-70% to-transparent w-full aspect-[1/1] left-0 -translate-x-1/2 -translate-y-1/2" />
+        <h3 className="text-white text-shadow text-3xl md:text-5xl text-center mb-14 font-medium">
+          {t("title")}
+        </h3>
+      </div>
+      <div className="w-full px-4 md:px-0 relative z-[1]">
         <HorizontalSwiper
           data={data}
           ChildCard={MatchCard}

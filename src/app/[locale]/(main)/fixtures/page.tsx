@@ -26,11 +26,13 @@ export default async function FixturesPage({
   
   return (
     <>
-      <FixturesHeroSection />
+      <div className="overflow-x-clip relative">
+        <FixturesHeroSection />
       <LeagueFilter activeLeague={league_id} leagues={leagues} />
-      <PredictSection data={fixturesData.predictions} config={showConfig} />
-      <MatchHighlightsSection data={fixturesData.match_highlights}/>
-      <MatchOverSection data={fixturesData.match_over}/>
+      {fixturesData.predictions.length > 0 && <PredictSection data={fixturesData.predictions} config={showConfig} />}
+      {fixturesData.match_highlights.length > 0 && <MatchHighlightsSection data={fixturesData.match_highlights}/>}
+      {fixturesData.match_over.length > 0 && <MatchOverSection data={fixturesData.match_over}/>}
+      </div>
     </>
   );
 }

@@ -10,8 +10,10 @@ import { useState } from "react";
 export default function MatchHighlightsSection({ data }: { data: Match[] }) {
   const t = useTranslations("pages.main.fixtures");
   return (
-    <section className="my-20 md:px-10 lg:px-0 max-w-5xl mx-auto">
+    <section className="my-20 md:px-10 lg:px-0 max-w-5xl mx-auto relative">
       {/* Content Layer - Centered and above the background */}
+        {/* glow Effect */}
+        <div className="absolute bg-radial from-[#5200FD]/40 via-transparent via-70% to-transparent w-full aspect-[1/1] left-0 top-1/2 translate-x-1/2 -translate-y-1/2" />
         <h3 className="text-white text-shadow text-3xl md:text-5xl text-center mb-14 font-medium">
           {t("match_highlight")}
         </h3>

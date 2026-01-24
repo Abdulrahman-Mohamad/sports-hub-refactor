@@ -69,7 +69,7 @@ export default function LeagueFilter({
 
   return (
     <div
-      className="px-4 mt-10 flex md:ms-4 justify-start relative"
+      className="px-4 mt-10 flex md:ms-4 justify-start relative z-20"
       ref={dropdownRef}
     >
       <div className="w-full max-w-md relative">
@@ -94,7 +94,7 @@ export default function LeagueFilter({
               initial={{ opacity: 0, y: "-100%" }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: "-100%" }}
-              className="absolute top-full left-0 w-full mt-2 bg-white rounded-xl shadow-2xl z-50 overflow-hidden border border-gray-200 animate-in fade-in slide-in-from-top-2"
+              className="absolute top-full left-0 w-full mt-2 bg-white rounded-xl shadow-2xl overflow-hidden border border-gray-200 animate-in fade-in slide-in-from-top-2 "
             >
               {/* Search Input */}
               <div className="p-3 border-b border-gray-100">
