@@ -178,7 +178,10 @@
           "coins_spent": "Coins Spent",
           "use_joker": "Use Joker",
           "outcomes": "Outcomes",
-          "time": "Time"
+          "time": "Time",
+          "no_data_trivia": "You haven't played Trivia on the selected date",
+          "no_data_prediction": "You haven't played Prediction on the selected date",
+          "no_data_shot_on_net": "You haven't played Shot-On-Net on the selected date"
         }
       },
       "terms": {
@@ -200,7 +203,7 @@
         "match_highlight": "Match Highlights",
         "view_highlight": "View Highlights",
         "match_over": "Match over",
-        "winner":"Victory"
+        "winner": "Victory"
       }
     }
   },

@@ -51,7 +51,8 @@ export default function HistoryTriviaTable({ data }: { data: any[] }) {
                             </tr>
                         </thead>
                         <tbody>
-                            {data.map((col,index)=>(
+                          {data.length>0 ? (
+                            data.map((col,index)=>(
                                 <tr key={index} className='border-b border-white text-white last:border-0 font-medium text-center'>
                                     <td className='p-4'>{col.date}</td>
                                     <td className='p-4 '>+{col?.points}</td>
@@ -60,7 +61,14 @@ export default function HistoryTriviaTable({ data }: { data: any[] }) {
                                     <td className='p-4 '>{col?.use_joker_str}</td>
                                     <td className='p-4 '>{col?.time}</td>
                                 </tr>
-                            ))}
+                            ))
+                          ):(
+                            <tr>
+                              <td colSpan={6} className="h-24 text-center">
+                                <span className="text-sm font-medium text-gray-500">{t('no_data_trivia')}</span>
+                              </td>
+                            </tr>
+                          )}
                         </tbody>
                     </table>
                 </div>
