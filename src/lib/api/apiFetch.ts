@@ -47,8 +47,12 @@ export async function apiFetch(endpoint: string, options: FetchOptions = {}) {
   // Handle body automatically for POST/PUT/PATCH
   let body: BodyInit | undefined = undefined;
   if (options.body) {
-    headers.set("Content-Type", "application/json");
-    body = JSON.stringify(options.body);
+    if (options.body instanceof FormData) {
+      body = options.body;
+    } else {
+      headers.set("Content-Type", "application/json");
+      body = JSON.stringify(options.body);
+    }
   }
 
   const res = await fetch(`${baseURL}${endpoint}`, {

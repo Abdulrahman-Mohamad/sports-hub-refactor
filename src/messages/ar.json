@@ -201,6 +201,14 @@
         "view_highlight": "احداث المبارة",
         "match_over": "المباراة المنتهية",
         "winner": "فوز"
+      },
+      "profile":{
+        "actions":{
+          "invite_friend":"دعوة صديق",
+          "subscribe":"الاشتراك",
+          "change_password":"تغيير كلمة السر",
+          "edit_data":"تعديل البيانات"
+        }
       }
     }
   },

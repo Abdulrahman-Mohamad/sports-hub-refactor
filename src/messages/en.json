@@ -204,6 +204,14 @@
         "view_highlight": "View Highlights",
         "match_over": "Match over",
         "winner": "Victory"
+      },
+      "profile":{
+        "actions":{
+          "invite_friend":"Invite Friend",
+          "subscribe":"Subscribe",
+          "change_password":"Change Password",
+          "edit_data":"Edit Data"
+        }
       }
     }
   },
