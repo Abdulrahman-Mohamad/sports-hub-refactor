@@ -51,16 +51,18 @@ export default function Navbar() {
   return (
     <>
       {/* points Section in desktop */}
-      {user && pathname === "/" && <div
-        className={` w-fit z-50 transition-all duration-300 hidden lg:block
+      {user && pathname === "/" && (
+        <div
+          className={` w-fit z-50 transition-all duration-300 hidden lg:block
       ${
         isScrolled
           ? "fixed top-14 start-0"
           : "absolute top-24 left-30  right-30"
       }`}
-      >
-        <PointsSection />
-      </div>}
+        >
+          <PointsSection />
+        </div>
+      )}
 
       {/* desktop */}
       <nav
@@ -127,16 +129,18 @@ export default function Navbar() {
                 {t("links.games")}
               </Link>
             </li>
-            <li>
-              <Link
-                href={"/history"}
-                className={`hover:text-primary transition-colors duration-300
+            {user && (
+              <li>
+                <Link
+                  href={"/history"}
+                  className={`hover:text-primary transition-colors duration-300
                   ${isActive("/history") ? "text-primary" : ""}
                   `}
-              >
-                {t("links.history")}
-              </Link>
-            </li>
+                >
+                  {t("links.history")}
+                </Link>
+              </li>
+            )}
           </ul>
         </div>
 
@@ -227,14 +231,14 @@ export default function Navbar() {
           {/* bar button */}
           <div
             onClick={toggleSidebar}
-            className="bg-white/70 w-10 h-10 md:w-12 md:h-12 flex-center p-2 rounded-full"
+            className="bg-white/70 w-10 h-10 md:w-12 md:h-12 flex-center p-2 rounded-full cursor-pointer"
           >
-            <FaBars className="text-xl md:text-2xl" color="#13355C"/>
+            <FaBars className="text-xl md:text-2xl" color="#13355C" />
           </div>
           {/* use button */}
           <div
             onClick={user ? toggleUserMenu : () => router.push("/login")}
-            className={`w-10 h-10 md:w-12 md:h-12 flex-center bg-white/70 rounded-full border border-white ${user ? "" : "p-1.5"}`}
+            className={`w-10 h-10 md:w-12 md:h-12 flex-center bg-white/70 rounded-full border border-white cursor-pointer ${user ? "" : "p-1.5"}`}
           >
             {profile?.user.media ? (
               <Image
@@ -245,7 +249,7 @@ export default function Navbar() {
                 className="rounded-full w-full h-full object-cover"
               />
             ) : (
-              <FaUser size={22} color="#13355C"/>
+              <FaUser size={22} color="#13355C" />
             )}
           </div>
           {/* points */}

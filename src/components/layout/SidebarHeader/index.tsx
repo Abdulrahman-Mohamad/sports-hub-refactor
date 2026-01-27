@@ -2,6 +2,7 @@ import GradientIcon from "@/components/ui/GradientIcon";
 import Image from "next/image";
 import { RiArrowGoBackFill } from "react-icons/ri";
 import { useTranslations } from "next-intl";
+import Link from "next/link";
 
 export default function SidebarHeader({
   toggleSidebar,
@@ -13,6 +14,7 @@ export default function SidebarHeader({
     <>
       {/* header */}
       <div className="flex items-center justify-between py-5 px-6">
+        <Link href={'/'} onClick={toggleSidebar}>
         <Image
           className="w-44"
           src={t("logo")}
@@ -20,8 +22,9 @@ export default function SidebarHeader({
           width={1100}
           height={22}
         />
+        </Link>
 
-        <span onClick={toggleSidebar} className="pe-4">
+        <span onClick={toggleSidebar} className="pe-4 cursor-pointer">
           <GradientIcon
             fromColor="#E400FB"
             toColor="#5200FD"

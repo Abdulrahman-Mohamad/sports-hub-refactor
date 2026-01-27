@@ -4,6 +4,7 @@ import LanguageSwitcher from "@/components/ui/LanguageSwitcher";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import SidebarHeader from "../SidebarHeader";
+import { useUser } from "@/context/UserContext";
 
 export default function Sidebar({
   toggleSidebar,
@@ -13,6 +14,7 @@ export default function Sidebar({
   const t = useTranslations("navbar");
   const pathname = usePathname();
   const isActive = (path: string) => pathname === path;
+  const {user} = useUser();
   return (
     <>
       <motion.div
@@ -77,17 +79,19 @@ export default function Sidebar({
                 {t("links.games")}
               </Link>
             </li>
-            <li>
-              <Link
-                href={"/history"}
-                onClick={toggleSidebar}
-                className={`hover:text-primary transition-colors duration-300
+            {user && (
+              <li>
+                <Link
+                  href={"/history"}
+                  onClick={toggleSidebar}
+                  className={`hover:text-primary transition-colors duration-300
                   ${isActive("/history") ? "text-primary" : ""}
                   `}
-              >
-                {t("links.history")}
-              </Link>
-            </li>
+                >
+                  {t("links.history")}
+                </Link>
+              </li>
+            )}
           </ul>
         </div>
       </motion.div>
