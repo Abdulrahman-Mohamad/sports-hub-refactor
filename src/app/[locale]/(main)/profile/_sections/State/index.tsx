@@ -7,7 +7,7 @@ export default function ProfileStateSection({ data }: { data: ProfileUser }) {
     <>
       {/* user profile picture */}
       <div
-        className={`absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/4 size-[160px] rounded-full overflow-hidden border-8 border-[#0E0011] sm:left-1/4 md:left-1/6 lg:left-36 lg:size-[200px]
+        className={`absolute top-0 start-1/2 -translate-x-1/2 -translate-y-1/4 rtl:translate-x-1/2 size-[160px] rounded-full overflow-hidden border-8 border-[#0E0011] sm:start-1/4 md:start-1/6 lg:start-36 lg:size-[200px] 
               ${media ? "" : "bg-[#0E0011]"}
             `}
       >

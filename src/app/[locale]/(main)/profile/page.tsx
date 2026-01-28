@@ -38,7 +38,20 @@ export default async function ProfilePage() {
         </section>
 
         {/* breakline with animated controller */}
-        <div></div>
+        <div className="w-[80vw] me-auto h-1.5 bg-[#383342] mt-6 relative rtl:w-[95vw]
+        sm:w-[85vw]
+        lg:mt-10
+        ">
+          <Image 
+          className="size-28 rotate-7 absolute end-8.5 translate-x-full rtl:-translate-x-1/2 rtl:end-6
+          lg:size-46 lg:end-14 rtl:lg:end-10
+          "
+          src={'/gif/profile/controller.gif'} 
+          alt="Animation Controller" 
+          width={200} 
+          height={200} 
+          />
+        </div>
 
         {/* user Information */}
         <section></section>
