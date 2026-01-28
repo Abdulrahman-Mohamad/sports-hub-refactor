@@ -2,9 +2,9 @@ import { z } from "zod";
 
 export const EditDataSchema = (t: any) =>
   z.object({
-    username: z.string().min(1, t("validation.username_required")),
+    username: z.string().min(1, t("name_required")),
     email: z
-      .email({ message: t("validation.email_invalid") })
+      .email({ message: t("invalid_email") })
       .nullable()
       .or(z.literal("")),
     address: z.string().optional(),

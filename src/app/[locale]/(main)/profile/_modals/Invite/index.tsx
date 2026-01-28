@@ -1,7 +1,7 @@
 import Modal from "@/components/ui/Modal";
 // import { motion } from "framer-motion";
 import { useLocale, useTranslations } from "next-intl";
-import { FaCopy, FaTimes } from "react-icons/fa";
+import { FaCopy } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
 import { toast } from "react-toastify";
 
@@ -36,7 +36,7 @@ export default function ProfileInviteModal({
           </button>
         </div>
         <div className="rounded-t-xl w-full px-2 ">
-          <h2 className="font-medium text-center text-gradient-primary">
+          <h2 className="font-medium text-center text-gradient-primary pb-2">
             {t("title")}
           </h2>
         </div>
@@ -44,7 +44,6 @@ export default function ProfileInviteModal({
           <div className="px-6 flex items-stretch ">
             <input
               id="password_confirmation"
-              placeholder={t("pages.profile.invite_friend")}
               className="flex-grow w-full border rounded-lg p-3 disabled:bg-gray-300 !rounded-e-none border-e-0"
               value={`${currentUrl}/${locale}/register?invited_by=${code}`}
               disabled

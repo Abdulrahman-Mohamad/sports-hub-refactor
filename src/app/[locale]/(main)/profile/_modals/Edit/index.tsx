@@ -25,7 +25,8 @@ export default function ProfileEditDataModal({
   onClose: () => void;
   user: ProfileUser;
 }) {
-  const t = useTranslations();
+  const t = useTranslations('pages.main.profile.modals.edit_data');
+  const v = useTranslations('validation');
   const [image, setImage] = useState<null | string>(null);
   const {
     register,
@@ -33,7 +34,7 @@ export default function ProfileEditDataModal({
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm({ resolver: zodResolver(EditDataSchema(t)) });
+  } = useForm({ resolver: zodResolver(EditDataSchema(v)) });
 
   const router = useRouter();
 
@@ -63,9 +64,9 @@ export default function ProfileEditDataModal({
   return (
     <Modal isOpen={isOpen} onClose={onClose} className="!max-w-2xl w-full">
       {/*  */}
-      <div className="bg-darkMain rounded-xl border-worm glow-worm w-full px-2 py-10 translate-y-10">
-        <h2 className="text-white font-bold text-center text-gradient-wormA1">
-          {t("pages.profile.edit_data")}
+      <div className="bg-white rounded-xl border-worm glow-worm w-full px-2 py-10 translate-y-10">
+        <h2 className="text-gradient-primary font-bold text-center text-gradient-wormA1">
+          {t("title")}
         </h2>
 
         <form
@@ -82,15 +83,13 @@ export default function ProfileEditDataModal({
           <Input
             id="username"
             register={register}
-            placeholder={t("components.forms.placeholders.enter_full_name")}
+            placeholder={t("name")}
             errors={errors}
             isAuth={false}
             icon={
               <GradientIcon
                 icon={FaUser}
                 size={20}
-                fromColor="#F7ED43"
-                toColor="#ED2425"
               />
             }
             className="flex-grow w-full"
@@ -98,15 +97,13 @@ export default function ProfileEditDataModal({
           <Input
             id="email"
             register={register}
-            placeholder={t("components.forms.placeholders.enter_email")}
+            placeholder={t("email")}
             errors={errors}
             isAuth={false}
             icon={
               <GradientIcon
                 icon={MdMail}
                 size={20}
-                fromColor="#F7ED43"
-                toColor="#ED2425"
               />
             }
             className="flex-grow w-full"
@@ -114,34 +111,25 @@ export default function ProfileEditDataModal({
           <Input
             id="address"
             register={register}
-            placeholder={t("components.forms.placeholders.address")}
+            placeholder={t("address")}
             errors={errors}
             isAuth={false}
             icon={
               <GradientIcon
                 icon={FaLocationDot}
                 size={20}
-                fromColor="#F7ED43"
-                toColor="#ED2425"
               />
             }
             className="flex-grow w-full"
           />
           <div className="flex items-center justify-center gap-4 mt-6 w-full sm:px-4 md:w-3/4 lg:w-3/4">
-            <button
-              className="btn bg-white hover:bg-white/70 text-redA1 border border-redA1 w-[calc(50%-16px)]"
-              type="button"
-              onClick={onClose}
-            >
-              {t("common.dont_save")}
-            </button>
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               type="submit"
-              className="btn bg-gradient-wormA1 text-white font-bold border !px-10 w-[calc(50%-16px)]"
+              className="btn bg-gradient-primary text-white font-bold w-1/2"
             >
-              {t("common.save")}
+              {t("save")}
             </motion.button>
           </div>
         </form>

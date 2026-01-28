@@ -13,6 +13,7 @@
     "phone_length_8": "Phone number must be exactly 8 digits",
     "password_min": "Password must be at least 4 characters",
     "password_required": "Password is required",
+    "passwords_match":"Passwords must match",
     "identity_required": "This field is required",
     "name_required": "User name is required",
     "message_required": "Message is required"
@@ -215,6 +216,18 @@
         "modals":{
           "invite_friend":{
             "title":"Invite Friend"
+          },
+          "change_password":{
+            "enter_password":"Enter the new password",
+            "confirm_password":"Confirm new password",
+            "save":"Save"
+          },
+          "edit_data":{
+            "title":"Edit Data",
+            "name":"Username",
+            "email":"Email",
+            "address":"Address",
+            "save":"Save"
           }
         }
       }
@@ -226,6 +239,7 @@
         "enter_phone": "Enter Phone Number",
         "enter_email": "Enter Email Address",
         "enter_password": "Enter Password",
+        "confirm_password":"Confirm Password",
         "enter_name": "Enter your name",
         "message": "Enter your message"
       }

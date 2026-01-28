@@ -13,6 +13,7 @@
     "phone_length_8": "رقم الهاتف يجب أن يكون 8 أرقام بالضبط",
     "password_min": "كلمة المرور يجب أن تكون 4 أحرف على الأقل",
     "password_required": "كلمة المرور مطلوبة",
+    "passwords_match": "كلمات المرور يجب أن تتطابق",
     "identity_required": "هذا الحقل مطلوب",
     "name_required": "اسم المستخدم مطلوب",
     "message_required": "الرسالة مطلوبة"
@@ -202,12 +203,29 @@
         "match_over": "المباراة المنتهية",
         "winner": "فوز"
       },
-      "profile":{
-        "actions":{
-          "invite_friend":"دعوة صديق",
-          "subscribe":"الاشتراك",
-          "change_password":"تغيير كلمة السر",
-          "edit_data":"تعديل البيانات"
+      "profile": {
+        "actions": {
+          "invite_friend": "دعوة صديق",
+          "subscribe": "الاشتراك",
+          "change_password": "تغيير كلمة السر",
+          "edit_data": "تعديل البيانات"
+        },
+        "modals": {
+          "invite_friend": {
+            "title": "دعوة صديق"
+          },
+          "change_password": {
+            "enter_password": "دخل كلمة المرور الجديدة",
+            "confirm_password": "تأكيد كلمة المرور الجديدة",
+            "save": "حفظ"
+          },
+          "edit_data": {
+            "title": "تعديل البيانات",
+            "name": "اسم المستخدم",
+            "email": "البريد الالكتروني",
+            "address": "العنوان",
+            "save": "حفظ"
+          }
         }
       }
     }
@@ -218,6 +236,7 @@
         "enter_phone": "أدخل رقم الهاتف",
         "enter_email": "أدخل البريد الإلكتروني",
         "enter_password": "أدخل كلمة المرور",
+        "confirm_password": "تأكيد كلمة المرور",
         "enter_name": "دخل اسم المستخدم",
         "message": "أدخل الرسالة"
       }
