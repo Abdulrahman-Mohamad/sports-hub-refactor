@@ -25,7 +25,6 @@ export default async function ProfilePage() {
 
   // Destructure the profile data
   const { user, activities, transaction } = profileData;
-  const { media, username, zee_coins, joker, points } = user;
 
   return (
     <>

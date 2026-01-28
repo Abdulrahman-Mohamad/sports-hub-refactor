@@ -6,12 +6,14 @@ import { ProfileUser } from "@/utils/types/User/profile";
 import ProfileEditDataModal from "../../_modals/Edit";
 import ProfileChangePasswordModal from "../../_modals/Password";
 import ProfileInviteModal from "../../_modals/Invite";
+import { useApp } from "@/context/AppContext";
 
 export default function ProfileActionsSection({ user }: { user: ProfileUser }) {
   const t = useTranslations("pages.main.profile.actions");
   const [editModal, setEditModal] = useState(false);
   const [passwordModal, setPasswordModal] = useState(false);
   const [inviteModal, setInviteModal] = useState(false);
+  const {openOTP} = useApp()
   return (
     <>
       <ProfileEditDataModal
@@ -32,7 +34,7 @@ export default function ProfileActionsSection({ user }: { user: ProfileUser }) {
         <button onClick={() => setInviteModal(true)} className="btn bg-gradient-primary">
           {t("invite_friend")}
         </button>
-        <button className="btn bg-gradient-primary">{t("subscribe")}</button>
+        <button onClick={() => openOTP()} disabled={user?.is_subscribed} className="btn bg-gradient-primary disabled:bg-gray-600 disabled:pointer-events-none">{t("subscribe")}</button>
         <button onClick={() => setPasswordModal(true)} className="btn bg-[#282828]">{t("change_password")}</button>
         <button onClick={() => setEditModal(true)} className="btn bg-[#282828] flex-center gap-2">
           <span>

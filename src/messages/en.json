@@ -211,6 +211,11 @@
           "subscribe":"Subscribe",
           "change_password":"Change Password",
           "edit_data":"Edit Data"
+        },
+        "modals":{
+          "invite_friend":{
+            "title":"Invite Friend"
+          }
         }
       }
     }

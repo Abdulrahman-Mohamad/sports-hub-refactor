@@ -1,23 +1,22 @@
 import Modal from "@/components/ui/Modal";
-import { motion } from "framer-motion";
+// import { motion } from "framer-motion";
 import { useLocale, useTranslations } from "next-intl";
+import { FaCopy, FaTimes } from "react-icons/fa";
+import { IoMdClose } from "react-icons/io";
 import { toast } from "react-toastify";
 
-
-
 export default function ProfileInviteModal({
-    isOpen,
-    onClose,
-    code,
+  isOpen,
+  onClose,
+  code,
 }: {
-    isOpen: boolean;
-    onClose: () => void;
-    code: string;
+  isOpen: boolean;
+  onClose: () => void;
+  code: string;
 }) {
-  const t = useTranslations();
+  const t = useTranslations('pages.main.profile.modals.invite_friend');
   const currentUrl = typeof window !== "undefined" && window.location.origin;
   const locale = useLocale();
-  /* console.log(currentUrl); */
 
   const handleCopy = async () => {
     const url = `${currentUrl}/${locale}/register?invited_by=${code}`;
@@ -30,37 +29,33 @@ export default function ProfileInviteModal({
   };
   return (
     <Modal isOpen={isOpen} onClose={onClose} className="!max-w-5xl w-full">
-      <div className="bg-darkMain rounded-xl border-worm glow-worm w-full px-2 py-10">
-        <h2 className="text-white font-medium text-center">
-          {t("pages.profile.invite_friend")}
-        </h2>
-        <div className="flex flex-col gap-4 w-full max-w-4xl mx-auto py-4">
-          <div className="px-6 py-4 flex gap-4 items-center ">
+      <div className="rounded-xl bg-white space-y-8 py-14 relative">
+        <div className="absolute top-4 end-4">
+          <button type="button" onClick={onClose}>
+            <IoMdClose size={24} className="cursor-pointer text-gray-500 hover:text-gray-700"/>
+          </button>
+        </div>
+        <div className="rounded-t-xl w-full px-2 ">
+          <h2 className="font-medium text-center text-gradient-primary">
+            {t("title")}
+          </h2>
+        </div>
+        <div className="flex flex-col gap-4 w-full max-w-3xl mx-auto">
+          <div className="px-6 flex items-stretch ">
             <input
               id="password_confirmation"
               placeholder={t("pages.profile.invite_friend")}
-              className="flex-grow w-full border rounded-lg p-3 disabled:bg-neutral1/10 text-center"
+              className="flex-grow w-full border rounded-lg p-3 disabled:bg-gray-300 !rounded-e-none border-e-0"
               value={`${currentUrl}/${locale}/register?invited_by=${code}`}
-              readOnly
+              disabled
             />
-          </div>
-
-          <div className="flex items-center justify-center flex-wrap gap-4 mt-6 w-full sm:px-4 md:w-3/4 mx-auto lg:w-1/2">
             <button
-              className="btn bg-white hover:bg-white/70 text-redA1 border border-redA1 w-[calc(50%-16px)]"
-              onClick={onClose}
-            >
-              {t("common.back")}
-            </button>
-            <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              className="btn bg-gradient-wormA1 text-white font-bold border !px-10 w-[calc(50%-16px)]"
               type="button"
+              className="btn bg-gradient-primary flex-center !rounded-s-none border border-s-0"
               onClick={handleCopy}
             >
-              {t('pages.profile.copy')}
-            </motion.button>
+              <FaCopy color="white" size={24}/>
+            </button>
           </div>
         </div>
       </div>
