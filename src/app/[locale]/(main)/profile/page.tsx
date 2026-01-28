@@ -32,7 +32,7 @@ export default async function ProfilePage() {
         {/* Hero Section */}
         <ProfileHeroSection />
         {/* media - name - points - buttons */}
-        <section className="relative pt-32">
+        <section className="relative pt-32 sm:pt-6 lg:grid lg:grid-cols-12">
           <ProfileStateSection data={user} />
           <ProfileActionsSection user={user}/>
         </section>
