@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 import ProfileHeroSection from "./_sections/Hero";
 import ProfileStateSection from "./_sections/State";
 import ProfileActionsSection from "./_sections/Actions";
+import ProfileInfoSection from "./_sections/Info";
 
 export default async function ProfilePage() {
   // Get the cookie store
@@ -53,8 +54,7 @@ export default async function ProfilePage() {
           />
         </div>
 
-        {/* user Information */}
-        <section></section>
+        <ProfileInfoSection user={user}/>
         {/* win - loses - zee coins */}
         <div></div>
         {/* activity - transitions */}
