@@ -19,7 +19,7 @@ const dinArabic = localFont({
       weight: "100",
     },
     {
-      path: "../../../public/fonts/ArFonts/ArbFONTS-DINNextLTArabic-Light-1.ttf",
+      path: "../../../public/fonts/ArFonts/ArbFONTS-DINNEXTLTARABIC-LIGHT-1.ttf",
       weight: "200",
     },
     {
