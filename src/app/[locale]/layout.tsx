@@ -40,10 +40,6 @@ export async function generateMetadata(): Promise<Metadata> {
     metadataBase: new URL("https://sports-hub-refactor.vercel.app"),
     alternates: {
       canonical: "/",
-      languages: {
-        ar: "/ar",
-        en: "/en",
-      },
     },
     robots: {
       index: true,

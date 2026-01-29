@@ -2,7 +2,8 @@
   "metadata": {
     "title": "SPORTS HUB | Refactor",
     "description": "Gaming platform with amazing prizes",
-    "icon": "/images/favicon/faviconEn.png"
+    "icon": "/images/favicon/faviconEn.png",
+    "packages": "Packages"
   },
   "validation": {
     "email_required": "Email is required",
@@ -231,16 +232,16 @@
           }
         },
         "result": {
-          "statistics":"Statistics",
+          "statistics": "Statistics",
           "win": "Wins",
           "loss": "Losses",
           "zee_coins": "Zee Coins",
-          "lose_img":"/images/profile/lose-en.png"
+          "lose_img": "/images/profile/lose-en.png"
         },
-        "ta":{
-          "recent_activity":"Recent Activity",
-          "recent_transactions":"Recent Transactions",
-          "zee_coins":"Zee Coins"
+        "ta": {
+          "recent_activity": "Recent Activity",
+          "recent_transactions": "Recent Transactions",
+          "zee_coins": "Zee Coins"
         }
       }
     }

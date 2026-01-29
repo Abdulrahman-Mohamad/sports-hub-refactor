@@ -2,7 +2,8 @@
   "metadata": {
     "title": "سبورتس هاب | إعادة اصلاح",
     "description": "منصة ألعاب مع جوائز مذهلة",
-    "icon": "/images/favicon/faviconAr.png"
+    "icon": "/images/favicon/faviconAr.png",
+    "packages": "الباقات"
   },
   "validation": {
     "email_required": "البريد الإلكتروني مطلوب",
@@ -234,10 +235,10 @@
           "zee_coins": "عملة زي",
           "lose_img": "/images/profile/lose-ar.png"
         },
-        "ta":{
-          "recent_activity":"النشاط الأخير",
-          "recent_transactions":"المعاملات الأخيرة",
-          "zee_coins":"عملة زي"
+        "ta": {
+          "recent_activity": "النشاط الأخير",
+          "recent_transactions": "المعاملات الأخيرة",
+          "zee_coins": "عملة زي"
         }
       }
     }
