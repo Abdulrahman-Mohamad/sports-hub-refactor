@@ -1,6 +1,5 @@
 import { homeFetch } from "@/lib/api/home/HomeFetch";
 import HomeHeroSection from "./_sections/HeroSection";
-import HomeNewsSection from "./_sections/News";
 import HomeUserStatsSection from "./_sections/UserState";
 import HomeAllLeaderboardSection from "./_sections/TriviaLeaderboards";
 import TowButtonsSection from "./_sections/TowButtons";
@@ -13,6 +12,7 @@ const PredictSection = dynamic(() => import("@/components/sections/Predict"));
 const MainPackagesSection = dynamic(
   () => import("@/components/sections/MainPackages"),
 );
+const HomeNewsSection = dynamic(() => import("./_sections/News"));
 
 export default async function HomeContentPage() {
   const { data } = await homeFetch();
