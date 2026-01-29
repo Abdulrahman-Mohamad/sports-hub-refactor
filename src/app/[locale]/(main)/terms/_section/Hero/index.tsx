@@ -1,11 +1,27 @@
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 
 export default function TermsHeroSection() {
-    const t = useTranslations();
-    return (
-      <>
-        <div className="pt-5 px-4 sm:px-6 sm:pt-7 lg:px-8 lg:pt-4 z-10 relative">
-          <div className="bg-[url('/images/terms/terms-hero-bg-mobile.png')] bg-cover bg-center bg-no-repeat w-full min-h-[550px] rounded-2xl flex-center flex-col lg:bg-[url('/images/terms/terms-hero-bg.png')] lg:aspect-[1303/861] xl:pb-30 2xl:pb-40">
+  const t = useTranslations();
+  return (
+    <>
+      <div className="pt-5 px-4 sm:px-6 sm:pt-7 lg:px-8 lg:pt-4 z-10 relative">
+        <div className="relative w-full min-h-[550px] rounded-2xl flex-center flex-col lg:aspect-[1303/861] overflow-hidden">
+          <Image
+            src="/images/terms/terms-hero-bg.png"
+            alt={t("pages.main.terms.hero.title")}
+            fill
+            priority
+            className="object-cover hidden lg:block"
+          />
+          <Image
+            src="/images/terms/terms-hero-bg-mobile.png"
+            alt={t("pages.main.terms.hero.title")}
+            fill
+            priority
+            className="object-cover lg:hidden"
+          />
+          <div className="relative z-10 flex flex-col items-center justify-center xl:pb-30 2xl:pb-40">
             <h1 className="text-white !text-[55px] text-center !font-extrabold hero-shadow-bold md:!text-[80px] 2xl:!text-[120px]">
               {t("pages.main.terms.hero.title")}
             </h1>
@@ -14,7 +30,7 @@ export default function TermsHeroSection() {
             </p>
           </div>
         </div>
-      </>
-    );
-  }
-  
+      </div>
+    </>
+  );
+}

@@ -5,7 +5,10 @@
     "icon": "/images/favicon/faviconAr.png",
     "packages": "الباقات",
     "leaderboards": "الترتيب",
-    "games": "الألعاب"
+    "games": "الألعاب",
+    "history": "السجل",
+    "profile": "الصفحة الشخصية",
+    "terms": "الشروط والأحكام"
   },
   "validation": {
     "email_required": "البريد الإلكتروني مطلوب",

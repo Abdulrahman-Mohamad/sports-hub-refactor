@@ -50,7 +50,7 @@ export default async function ProfilePage() {
           lg:size-46 lg:end-14 rtl:lg:end-10
           "
           src={'/gif/profile/controller.gif'} 
-          alt="Animation Controller" 
+          alt="Animated Game Controller" 
           width={200} 
           height={200} 
           />

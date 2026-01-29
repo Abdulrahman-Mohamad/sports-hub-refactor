@@ -3,10 +3,28 @@ import HistoryHeroSection from "./_sections/Hero";
 import { HistoryType } from "@/utils/types/History";
 import HistoryDateInput from "./_sections/DateInput";
 import { historyFetch } from "@/lib/api/History/HistoryFetch";
-import HistoryTriviaTable from "./_sections/TriviaTable";
-import HistoryPredictionTable from "./_sections/PredictionTable";
-import HistoryShootTable from "./_sections/ShootTable";
+import dynamic from "next/dynamic";
+import { Metadata } from "next";
+import { getLocale, getTranslations } from "next-intl/server";
 
+const HistoryTriviaTable = dynamic(() => import("./_sections/TriviaTable"));
+const HistoryPredictionTable = dynamic(
+  () => import("./_sections/PredictionTable"),
+);
+const HistoryShootTable = dynamic(() => import("./_sections/ShootTable"));
+
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale();
+  const t = await getTranslations({ locale, namespace: "metadata" });
+
+  return {
+    title: `${t("title")} | ${t("history")}`,
+    description: t("description"),
+    alternates: {
+      canonical: "/history",
+    },
+  };
+}
 
 export default async function HistoryPage({
   searchParams,
