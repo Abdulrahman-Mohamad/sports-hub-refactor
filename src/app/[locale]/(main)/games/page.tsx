@@ -1,7 +1,26 @@
 import { gamesFetch } from "@/lib/api/games/GamesFetch";
 import GamesHeroSection from "./_sections/Hero";
-import HomeChallengSection from "../(home)/_sections/Challenge";
-import GamesSections from "@/components/sections/Games";
+import dynamic from "next/dynamic";
+import { Metadata } from "next";
+import { getLocale, getTranslations } from "next-intl/server";
+
+const HomeChallengSection = dynamic(
+  () => import("../(home)/_sections/Challenge"),
+);
+const GamesSections = dynamic(() => import("@/components/sections/Games"));
+
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale();
+  const t = await getTranslations({ locale, namespace: "metadata" });
+
+  return {
+    title: `${t("title")} | ${t("games")}`,
+    description: t("description"),
+    alternates: {
+      canonical: "/games",
+    },
+  };
+}
 
 export default async function GamesPage() {
   const { data } = await gamesFetch();

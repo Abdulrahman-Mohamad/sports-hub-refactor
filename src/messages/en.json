@@ -4,7 +4,8 @@
     "description": "Gaming platform with amazing prizes",
     "icon": "/images/favicon/faviconEn.png",
     "packages": "Packages",
-    "leaderboards": "Leaderboards"
+    "leaderboards": "Leaderboards",
+    "games": "Games"
   },
   "validation": {
     "email_required": "Email is required",

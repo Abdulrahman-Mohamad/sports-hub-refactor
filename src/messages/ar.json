@@ -4,7 +4,8 @@
     "description": "منصة ألعاب مع جوائز مذهلة",
     "icon": "/images/favicon/faviconAr.png",
     "packages": "الباقات",
-    "leaderboards": "الترتيب"
+    "leaderboards": "الترتيب",
+    "games": "الألعاب"
   },
   "validation": {
     "email_required": "البريد الإلكتروني مطلوب",
