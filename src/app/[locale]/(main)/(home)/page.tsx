@@ -5,10 +5,14 @@ import HomeUserStatsSection from "./_sections/UserState";
 import HomeAllLeaderboardSection from "./_sections/TriviaLeaderboards";
 import TowButtonsSection from "./_sections/TowButtons";
 import HomeChallengSection from "./_sections/Challenge";
-import GamesSections from "@/components/sections/Games";
-import HomeChampionsSection from "./_sections/Champions";
-import PredictSection from "@/components/sections/Predict";
-import MainPackagesSection from "@/components/sections/MainPackages";
+import dynamic from "next/dynamic";
+
+const GamesSections = dynamic(() => import("@/components/sections/Games"));
+const HomeChampionsSection = dynamic(() => import("./_sections/Champions"));
+const PredictSection = dynamic(() => import("@/components/sections/Predict"));
+const MainPackagesSection = dynamic(
+  () => import("@/components/sections/MainPackages"),
+);
 
 export default async function HomeContentPage() {
   const { data } = await homeFetch();
@@ -34,12 +38,14 @@ export default async function HomeContentPage() {
         shoot={data?.shot_on_net_champions}
       />
 
-      {data?.predictions && <PredictSection 
-      data={data?.predictions} 
-      config = {data?.prediction_config}
-      />}
+      {data?.predictions && (
+        <PredictSection
+          data={data?.predictions}
+          config={data?.prediction_config}
+        />
+      )}
 
-      {data?.packages && <MainPackagesSection data={data.packages}/>}
+      {data?.packages && <MainPackagesSection data={data.packages} />}
     </div>
   );
 }

@@ -15,14 +15,6 @@ const inter = Inter({
 const dinArabic = localFont({
   src: [
     {
-      path: "../../../public/fonts/ArFonts/ArbFONTS-DINNextLTArabic-UltraLight-1.ttf",
-      weight: "100",
-    },
-    {
-      path: "../../../public/fonts/ArFonts/ArbFONTS-DINNEXTLTARABIC-LIGHT-1.ttf",
-      weight: "200",
-    },
-    {
       path: "../../../public/fonts/ArFonts/ArbFONTS-DINNextLTArabic-Regular-2.ttf",
       weight: "400",
     },
@@ -34,14 +26,6 @@ const dinArabic = localFont({
       path: "../../../public/fonts/ArFonts/ArbFONTS-DINNextLTArabic-Bold-2.ttf",
       weight: "700",
     },
-    {
-      path: "../../../public/fonts/ArFonts/ArbFONTS-DINNextLTArabic-Heavy-1.ttf",
-      weight: "800",
-    },
-    {
-      path: "../../../public/fonts/ArFonts/ArbFONTS-DINNextLTArabic-Black-2.ttf",
-      weight: "900",
-    },
   ],
   variable: "--font-ar",
 });
@@ -52,7 +36,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return {
     title: t("title"),
-    description: t("description"),                                                                              
+    description: t("description"),
     metadataBase: new URL("https://sports-hub-refactor.vercel.app"),
     alternates: {
       canonical: "/",

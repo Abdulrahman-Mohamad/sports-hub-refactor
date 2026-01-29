@@ -19,9 +19,9 @@ export default function HomeNewsSection({ data }: { data: News[] }) {
   const [modalData, setModalData] = useState<News | null>(null);
 
   const handleNewsClick = (item: News) => {
-  setModalData(item);
-  setNewsModal(true);
-};
+    setModalData(item);
+    setNewsModal(true);
+  };
 
   return (
     <div className="px-4 lg:px-8 mt-10 lg:-mt-22 xl:-mt-30 2xl:-mt-40">
@@ -71,15 +71,17 @@ export default function HomeNewsSection({ data }: { data: News[] }) {
           {data.map((item, index) => (
             <SwiperSlide key={item.id} className="!w-3/4">
               <div className="flex flex-col gap-4">
-                <div 
-                onClick={() => handleNewsClick(item)}
-                className="relative rounded-lg overflow-hidden border border-white/20 cursor-pointer">
+                <div
+                  onClick={() => handleNewsClick(item)}
+                  className="relative rounded-lg overflow-hidden border border-white/20 cursor-pointer"
+                >
                   <Image
                     src={item.image_url || "/images/common/default-news.png"}
                     alt={item.title}
                     width={500}
                     height={500}
-                    loading="eager"
+                    priority={index === 0}
+                    quality={80}
                     className="object-cover w-full h-50 lg:h-60 xl:h-80 2xl:h-96"
                   />
                   <div className="absolute bottom-0 left-0 right-0 px-2 bg-black/40 backdrop-blur-sm text-white">
@@ -102,16 +104,15 @@ export default function HomeNewsSection({ data }: { data: News[] }) {
         </Swiper>
       </div>
       {modalData && (
-      <NewsModal
-        isOpen={newsModal}
-        onClose={() => setNewsModal(false)}
-        data={modalData}
-      />
-    )}
+        <NewsModal
+          isOpen={newsModal}
+          onClose={() => setNewsModal(false)}
+          data={modalData}
+        />
+      )}
     </div>
   );
 }
-
 
 const NewsModal = ({
   isOpen,
@@ -122,7 +123,7 @@ const NewsModal = ({
   onClose: () => void;
   data: News | null;
 }) => {
-  const t = useTranslations('pages.main.home.news');
+  const t = useTranslations("pages.main.home.news");
   return (
     <Modal
       isOpen={isOpen}

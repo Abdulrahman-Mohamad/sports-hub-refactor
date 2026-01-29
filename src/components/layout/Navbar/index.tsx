@@ -10,8 +10,10 @@ import { useEffect, useState } from "react";
 import Dropdown from "@/components/ui/Dropdown";
 import { FaBars, FaUser } from "react-icons/fa";
 import PointsSection from "@/components/ui/PointsSection";
-import Sidebar from "../Sidebar";
-import UserSidebar from "../UserSidebar";
+import dynamic from "next/dynamic";
+
+const Sidebar = dynamic(() => import("../Sidebar"), { ssr: false });
+const UserSidebar = dynamic(() => import("../UserSidebar"), { ssr: false });
 import { AnimatePresence } from "framer-motion";
 
 export default function Navbar() {
@@ -81,9 +83,10 @@ export default function Navbar() {
               className="w-44 translate-y-0.5 rtl:w-36"
               src={t("logo")}
               alt="SPORTS HUB"
-              width={1100}
-              height={22}
-              quality={100}
+              width={200}
+              height={40}
+              priority
+              quality={90}
             />
           </Link>
 
@@ -163,6 +166,7 @@ export default function Navbar() {
                       alt={`${profile?.user.username} Image` || "User Image"}
                       width={40}
                       height={40}
+                      quality={80}
                       className="rounded-full w-8 h-8"
                     />
                   </span>
@@ -246,6 +250,7 @@ export default function Navbar() {
                 alt={`${profile?.user.username} Image` || "User Image"}
                 width={50}
                 height={50}
+                quality={80}
                 className="rounded-full w-full h-full object-cover"
               />
             ) : (
