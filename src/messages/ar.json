@@ -273,6 +273,10 @@
           "no_thanks": "No Thanks",
           "yes": "Yes"
         }
+      },
+      "loader": {
+        "title": "قيد التحميل .....",
+        "sub_title":"يرجى الانتظار بينما نقوم بتحميل المحتوى"
       }
     },
     "layout": {

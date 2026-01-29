@@ -277,6 +277,10 @@
           "yes": "Yes",
           "error_occurred": "An error occurred"
         }
+      },
+      "loader": {
+        "title": "Loading...",
+        "sub_title":"please wait while we load the content"
       }
     },
     "layout": {
