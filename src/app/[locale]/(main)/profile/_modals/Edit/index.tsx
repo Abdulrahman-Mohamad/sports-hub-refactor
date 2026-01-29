@@ -15,6 +15,7 @@ import { MdMail } from "react-icons/md";
 import { toast } from "react-toastify";
 import { profileUpdateFetch } from "@/lib/api/profile/profileUpdateFetch";
 import { useRouter } from "next/navigation";
+import { useUser } from "@/context/UserContext";
 
 export default function ProfileEditDataModal({
   isOpen,
@@ -25,8 +26,9 @@ export default function ProfileEditDataModal({
   onClose: () => void;
   user: ProfileUser;
 }) {
-  const t = useTranslations('pages.main.profile.modals.edit_data');
-  const v = useTranslations('validation');
+  const t = useTranslations("pages.main.profile.modals.edit_data");
+  const v = useTranslations("validation");
+  const { fetchProfile } = useUser();
   const [image, setImage] = useState<null | string>(null);
   const {
     register,
@@ -40,9 +42,10 @@ export default function ProfileEditDataModal({
 
   const onSubmit = async (data: any) => {
     await profileUpdateFetch(data, {
-      onSuccess: (res: any) => {
-        toast.success(res?.message || t("common.success"));
+      onSuccess: async (res: any) => {
+        await fetchProfile();
         router.refresh();
+        toast.success(res?.message || t("common.success"));
         onClose();
       },
       onError: (error: any) => {
@@ -52,15 +55,17 @@ export default function ProfileEditDataModal({
   };
 
   useEffect(() => {
-    reset({
-      username: user?.username || "",
-      email: user?.email || "",
-      address: user?.address || "",
-      media: null,
-    });
-    setImage(user?.media || null);
+    if (isOpen) {
+      reset({
+        username: user?.username || "",
+        email: user?.email || "",
+        address: user?.address || "",
+        media: null,
+      });
+      setImage(user?.media || null);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user]);
+  }, [isOpen]);
   return (
     <Modal isOpen={isOpen} onClose={onClose} className="!max-w-2xl w-full">
       {/*  */}
@@ -86,12 +91,7 @@ export default function ProfileEditDataModal({
             placeholder={t("name")}
             errors={errors}
             isAuth={false}
-            icon={
-              <GradientIcon
-                icon={FaUser}
-                size={20}
-              />
-            }
+            icon={<GradientIcon icon={FaUser} size={20} />}
             className="flex-grow w-full"
           />
           <Input
@@ -100,12 +100,7 @@ export default function ProfileEditDataModal({
             placeholder={t("email")}
             errors={errors}
             isAuth={false}
-            icon={
-              <GradientIcon
-                icon={MdMail}
-                size={20}
-              />
-            }
+            icon={<GradientIcon icon={MdMail} size={20} />}
             className="flex-grow w-full"
           />
           <Input
@@ -114,12 +109,7 @@ export default function ProfileEditDataModal({
             placeholder={t("address")}
             errors={errors}
             isAuth={false}
-            icon={
-              <GradientIcon
-                icon={FaLocationDot}
-                size={20}
-              />
-            }
+            icon={<GradientIcon icon={FaLocationDot} size={20} />}
             className="flex-grow w-full"
           />
           <div className="flex items-center justify-center gap-4 mt-6 w-full sm:px-4 md:w-3/4 lg:w-3/4">

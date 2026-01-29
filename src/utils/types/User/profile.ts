@@ -17,7 +17,7 @@ export interface ProfileUser {
 }
 
 export interface activities {
-  type: string;
+  type: "Open Trivia Game" | "End Trivia Game" | "Start Prediction" | "Win Prediction" | "Loss Prediction" | "Open Shot On Net Game" | "End Shot On Net Game" | "Purchase Package" | "Verify Pin Purchase" | "Update Profile";
   action: string;
   created_at: string;
 }
@@ -25,11 +25,15 @@ export interface activities {
 export interface transaction {
   zee_coins: number;
   joker: number;
-  type: string;
+  type:"welcome coins" | "recharge coins" | "gift coins" | "reward coins" | "purchase coins";
   price: string;
   type_trans: string;
   date_charge: string;
 }
+
+export type UnionType = "Open Trivia Game" |"End Trivia Game" | "Start Prediction" | "Win Prediction" | "Loss Prediction"  | "Edit Prediction" 
+|"Open Shot On Net Game" | "End Shot On Net Game" | "Purchase Package" | "Verify Pin Purchase" | "Update Profile"
+|"welcome coins" | "recharge coins" | "gift coins" | "reward coins" | "purchase coins";
 
 export interface ProfileData {
   user: ProfileUser;

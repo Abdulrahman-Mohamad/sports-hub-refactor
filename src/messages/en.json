@@ -13,7 +13,7 @@
     "phone_length_8": "Phone number must be exactly 8 digits",
     "password_min": "Password must be at least 4 characters",
     "password_required": "Password is required",
-    "passwords_match":"Passwords must match",
+    "passwords_match": "Passwords must match",
     "identity_required": "This field is required",
     "name_required": "User name is required",
     "message_required": "Message is required"
@@ -206,29 +206,41 @@
         "match_over": "Match over",
         "winner": "Victory"
       },
-      "profile":{
-        "actions":{
-          "invite_friend":"Invite Friend",
-          "subscribe":"Subscribe",
-          "change_password":"Change Password",
-          "edit_data":"Edit Data"
+      "profile": {
+        "actions": {
+          "invite_friend": "Invite Friend",
+          "subscribe": "Subscribe",
+          "change_password": "Change Password",
+          "edit_data": "Edit Data"
         },
-        "modals":{
-          "invite_friend":{
-            "title":"Invite Friend"
+        "modals": {
+          "invite_friend": {
+            "title": "Invite Friend"
           },
-          "change_password":{
-            "enter_password":"Enter the new password",
-            "confirm_password":"Confirm new password",
-            "save":"Save"
+          "change_password": {
+            "enter_password": "Enter the new password",
+            "confirm_password": "Confirm new password",
+            "save": "Save"
           },
-          "edit_data":{
-            "title":"Edit Data",
-            "name":"Username",
-            "email":"Email",
-            "address":"Address",
-            "save":"Save"
+          "edit_data": {
+            "title": "Edit Data",
+            "name": "Username",
+            "email": "Email",
+            "address": "Address",
+            "save": "Save"
           }
+        },
+        "result": {
+          "statistics":"Statistics",
+          "win": "Wins",
+          "loss": "Losses",
+          "zee_coins": "Zee Coins",
+          "lose_img":"/images/profile/lose-en.png"
+        },
+        "ta":{
+          "recent_activity":"Recent Activity",
+          "recent_transactions":"Recent Transactions",
+          "zee_coins":"Zee Coins"
         }
       }
     }
@@ -239,7 +251,7 @@
         "enter_phone": "Enter Phone Number",
         "enter_email": "Enter Email Address",
         "enter_password": "Enter Password",
-        "confirm_password":"Confirm Password",
+        "confirm_password": "Confirm Password",
         "enter_name": "Enter your name",
         "message": "Enter your message"
       }

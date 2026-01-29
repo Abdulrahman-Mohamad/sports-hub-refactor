@@ -226,6 +226,18 @@
             "address": "العنوان",
             "save": "حفظ"
           }
+        },
+        "result": {
+          "statistics": "إحصائيات",
+          "win": "الفوز",
+          "loss": "الخسارة",
+          "zee_coins": "عملة زي",
+          "lose_img": "/images/profile/lose-ar.png"
+        },
+        "ta":{
+          "recent_activity":"النشاط الأخير",
+          "recent_transactions":"المعاملات الأخيرة",
+          "zee_coins":"عملة زي"
         }
       }
     }

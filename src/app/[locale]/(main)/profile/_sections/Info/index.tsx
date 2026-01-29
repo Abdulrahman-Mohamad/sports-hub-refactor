@@ -7,7 +7,7 @@ export default function ProfileInfoSection({ user }: { user: ProfileUser }) {
   return (
     <>
       <section
-        className="grid grid-cols-1  gap-4 text-white py-6 px-4 text-lg font-medium
+        className="grid grid-cols-1  gap-4 text-white py-6 px-4 text-lg font-medium mt-8
       md:grid-cols-2 md:pe-20
       lg:flex lg:justify-around lg:gap-0 lg:items-center
       "

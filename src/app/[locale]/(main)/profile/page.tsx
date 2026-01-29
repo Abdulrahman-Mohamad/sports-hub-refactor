@@ -6,6 +6,8 @@ import ProfileHeroSection from "./_sections/Hero";
 import ProfileStateSection from "./_sections/State";
 import ProfileActionsSection from "./_sections/Actions";
 import ProfileInfoSection from "./_sections/Info";
+import ProfileResultSection from "./_sections/Result";
+import ProfileTASection from "./_sections/TA";
 
 export default async function ProfilePage() {
   // Get the cookie store
@@ -39,12 +41,12 @@ export default async function ProfilePage() {
         </section>
 
         {/* breakline with animated controller */}
-        <div className="w-[80vw] me-auto h-1.5 bg-[#383342] mt-6 relative rtl:w-[95vw]
+        <div className="w-[80vw] me-auto h-1 bg-[#383342] mt-6  relative rtl:w-[95vw]
         sm:w-[85vw]
-        lg:mt-10
+        lg:mt-10 lg:w-[90vw]
         ">
           <Image 
-          className="size-28 rotate-7 absolute end-8.5 translate-x-full rtl:-translate-x-1/2 rtl:end-6
+          className="size-28 rotate-7 -top-1 absolute end-8.5 translate-x-full rtl:-translate-x-1/2 rtl:end-6
           lg:size-46 lg:end-14 rtl:lg:end-10
           "
           src={'/gif/profile/controller.gif'} 
@@ -56,15 +58,9 @@ export default async function ProfilePage() {
 
         <ProfileInfoSection user={user}/>
         {/* win - loses - zee coins */}
-        <div></div>
+        <ProfileResultSection user={user}/>
         {/* activity - transitions */}
-        <div>
-          {/* activity */}
-          <div></div>
-
-          {/* transitions */}
-          <div></div>
-        </div>
+        <ProfileTASection activities={activities} transactions={transaction}/>
       </div>
     </>
   );
