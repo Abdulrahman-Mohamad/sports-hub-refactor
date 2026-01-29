@@ -3,7 +3,8 @@
     "title": "سبورتس هاب | إعادة اصلاح",
     "description": "منصة ألعاب مع جوائز مذهلة",
     "icon": "/images/favicon/faviconAr.png",
-    "packages": "الباقات"
+    "packages": "الباقات",
+    "leaderboards": "الترتيب"
   },
   "validation": {
     "email_required": "البريد الإلكتروني مطلوب",

@@ -1,10 +1,27 @@
 import { LeaderboardType } from "@/utils/types/Leaderboards";
 import LeaderboardHeroSection from "./_sections/Hero";
 import { leaderboardsFetch } from "@/lib/api/leaderboards/LeaderboardsFetch";
-import LeaderboardPodiumSection from "./_sections/Pedium";
-import LeaderboardTableSection from "./_sections/Table";
 import Image from "next/image";
 import TypeSection from "@/components/sections/Type";
+import dynamic from "next/dynamic";
+import { Metadata } from "next";
+import { getLocale, getTranslations } from "next-intl/server";
+
+const LeaderboardPodiumSection = dynamic(() => import("./_sections/Pedium"));
+const LeaderboardTableSection = dynamic(() => import("./_sections/Table"));
+
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale();
+  const t = await getTranslations({ locale, namespace: "metadata" });
+
+  return {
+    title: `${t("title")} | ${t("leaderboards")}`,
+    description: t("description"),
+    alternates: {
+      canonical: "/leaderboards",
+    },
+  };
+}
 
 export default async function LeaderboardsPage({
   searchParams,

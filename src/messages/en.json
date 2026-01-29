@@ -3,7 +3,8 @@
     "title": "SPORTS HUB | Refactor",
     "description": "Gaming platform with amazing prizes",
     "icon": "/images/favicon/faviconEn.png",
-    "packages": "Packages"
+    "packages": "Packages",
+    "leaderboards": "Leaderboards"
   },
   "validation": {
     "email_required": "Email is required",
