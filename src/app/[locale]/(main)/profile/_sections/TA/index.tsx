@@ -68,7 +68,10 @@ export default function ProfileTASection({activities,transactions}:{activities:a
   const t = useTranslations('pages.main.profile.ta');
   return (
     <>
-    <div className=' grid lg:grid-cols-2 gap-8 mt-8 px-4 lg:px-20'>
+    <section className='relative grid lg:grid-cols-2 gap-8 mt-8 px-4 lg:px-20'>
+              {/* Glow Circle */}
+              <div className="absolute start-0 w-full aspect-square -translate-y-1/2 ltr:-translate-x-1/2 rtl:translate-x-1/2 bg-radial from-[#E400FB]/60 via-transparent to-transparent z-[-1] pointer-events-none" />
+
             {/* Activities Table */}
             <div className='bg-white rounded-lg min-w-0 w-full'>
                 <h3 className='p-4 border-[#a887a8] font-semibold'>{t('recent_activity')}</h3>
@@ -111,7 +114,7 @@ export default function ProfileTASection({activities,transactions}:{activities:a
                     </table>
                 </div>
             </div>
-        </div>
+        </section>
     </>
   )
 }

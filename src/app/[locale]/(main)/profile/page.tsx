@@ -31,7 +31,7 @@ export default async function ProfilePage() {
 
   return (
     <>
-      <div className="flex-grow">
+      <div className="flex-grow relative isolate overflow-x-hidden">
         {/* Hero Section */}
         <ProfileHeroSection />
         {/* media - name - points - buttons */}
