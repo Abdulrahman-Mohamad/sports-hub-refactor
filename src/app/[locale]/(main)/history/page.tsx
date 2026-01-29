@@ -6,6 +6,8 @@ import { historyFetch } from "@/lib/api/History/HistoryFetch";
 import dynamic from "next/dynamic";
 import { Metadata } from "next";
 import { getLocale, getTranslations } from "next-intl/server";
+import { Suspense } from "react";
+import Spinner from "@/components/ui/Spinner";
 
 const HistoryTriviaTable = dynamic(() => import("./_sections/TriviaTable"));
 const HistoryPredictionTable = dynamic(
@@ -40,13 +42,14 @@ export default async function HistoryPage({
     <>
       <HistoryHeroSection />
       <TypeSection activeType={type} showAll={false} />
+      <Suspense fallback={<Spinner />}>
       <div className="max-w-6xl mx-auto bg-[#1a111c] flex-grow rounded-xl my-20 px-4 pb-10">
         <HistoryDateInput currentDate={date} />
-
         {type === "trivia" && <HistoryTriviaTable data={data} />}
         {type === "prediction" && <HistoryPredictionTable data={data} />}
         {type === "shot_on_net" && <HistoryShootTable data={data} />}
       </div>
+      </Suspense>
     </>
   );
 }

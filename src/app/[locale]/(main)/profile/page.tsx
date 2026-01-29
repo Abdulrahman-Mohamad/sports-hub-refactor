@@ -8,6 +8,8 @@ import ProfileActionsSection from "./_sections/Actions";
 import ProfileInfoSection from "./_sections/Info";
 import ProfileResultSection from "./_sections/Result";
 import ProfileTASection from "./_sections/TA";
+import { Suspense } from "react";
+import Spinner from "@/components/ui/Spinner";
 
 export default async function ProfilePage() {
   // Get the cookie store
@@ -34,6 +36,7 @@ export default async function ProfilePage() {
       <div className="flex-grow relative isolate overflow-x-hidden">
         {/* Hero Section */}
         <ProfileHeroSection />
+        <Suspense fallback={<Spinner />}>
         {/* media - name - points - buttons */}
         <section className="relative pt-32 sm:pt-6 lg:grid lg:grid-cols-12">
           <ProfileStateSection data={user} />
@@ -61,6 +64,7 @@ export default async function ProfilePage() {
         <ProfileResultSection user={user}/>
         {/* activity - transitions */}
         <ProfileTASection activities={activities} transactions={transaction}/>
+        </Suspense>
       </div>
     </>
   );

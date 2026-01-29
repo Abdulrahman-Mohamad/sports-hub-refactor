@@ -1,12 +1,10 @@
-import React from "react";
-import { ImSpinner3 } from "react-icons/im";
+import { ImSpinner4 } from "react-icons/im";
+import GradientIcon from "../GradientIcon";
 
-export default function Spinner({ className = "" }: { className?: string }) {
+export default function Spinner() {
   return (
-    <div className={`flex justify-center items-center ${className}`}>
-      <div className="animate-spin h-10 w-10 text-primary">
-        <ImSpinner3 />
-      </div>
+    <div className="my-10 flex-center">
+      <GradientIcon icon={ImSpinner4} className=" size-[3rem] animate-spin" />
     </div>
   );
 }

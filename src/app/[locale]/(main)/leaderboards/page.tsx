@@ -6,6 +6,8 @@ import TypeSection from "@/components/sections/Type";
 import dynamic from "next/dynamic";
 import { Metadata } from "next";
 import { getLocale, getTranslations } from "next-intl/server";
+import { Suspense } from "react";
+import Spinner from "@/components/ui/Spinner";
 
 const LeaderboardPodiumSection = dynamic(() => import("./_sections/Pedium"));
 const LeaderboardTableSection = dynamic(() => import("./_sections/Table"));
@@ -40,6 +42,7 @@ export default async function LeaderboardsPage({
   return (
     <>
       <LeaderboardHeroSection />
+      <Suspense fallback={<Spinner />}>
       <TypeSection activeType={type} />
       <div className="relative w-full flex flex-col mt-10 md:mt-24">
         <div className="absolute inset-0 z-0">
@@ -56,6 +59,7 @@ export default async function LeaderboardsPage({
           <LeaderboardTableSection data={others} user={currentUser} />
         </div>
       </div>
+      </Suspense>
     </>
   );
 }

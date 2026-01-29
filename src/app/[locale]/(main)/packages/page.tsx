@@ -3,6 +3,8 @@ import PackagesHeroSection from "./_sections/Hero";
 import dynamic from "next/dynamic";
 import { Metadata } from "next";
 import { getLocale, getTranslations } from "next-intl/server";
+import { Suspense } from "react";
+import Spinner from "@/components/ui/Spinner";
 
 const MainPackagesSection = dynamic(
   () => import("@/components/sections/MainPackages"),
@@ -30,12 +32,14 @@ export default async function PackagesPage() {
   return (
     <div>
       <PackagesHeroSection />
+      <Suspense fallback={<Spinner />}>
       {data.packages.length > 0 && (
         <MainPackagesSection data={data.packages} effectis={true} />
       )}
       {data.additional_packages.length > 0 && (
         <AdditionalPackagesSection data={data.additional_packages} />
       )}
+      </Suspense>
     </div>
   );
 }

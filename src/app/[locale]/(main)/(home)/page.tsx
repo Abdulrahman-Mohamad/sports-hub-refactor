@@ -5,6 +5,8 @@ import HomeAllLeaderboardSection from "./_sections/TriviaLeaderboards";
 import TowButtonsSection from "./_sections/TowButtons";
 import HomeChallengSection from "./_sections/Challenge";
 import dynamic from "next/dynamic";
+import { Suspense } from "react";
+import Spinner from "@/components/ui/Spinner";
 
 const GamesSections = dynamic(() => import("@/components/sections/Games"));
 const HomeChampionsSection = dynamic(() => import("./_sections/Champions"));
@@ -19,6 +21,8 @@ export default async function HomeContentPage() {
   return (
     <div className=" ">
       <HomeHeroSection />
+
+      <Suspense fallback={<Spinner />}>
       {data?.news && <HomeNewsSection data={data.news} />}
       {data?.user && <HomeUserStatsSection data={data.user} />}
       <TowButtonsSection />
@@ -46,6 +50,7 @@ export default async function HomeContentPage() {
       )}
 
       {data?.packages && <MainPackagesSection data={data.packages} />}
+      </Suspense>
     </div>
   );
 }
