@@ -16,7 +16,7 @@ export default async function layout({
   return (
     <>
       <html >
-        <body suppressHydrationWarning={true} className="">
+        <body suppressHydrationWarning={true} className="bg-[#0E0011]">
           
             <UserProvider>
               <AppProvider>
