@@ -52,7 +52,26 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return {
     title: t("title"),
-    description: t("description"),
+    description: t("description"),                                                                              
+    metadataBase: new URL("https://sports-hub-refactor.vercel.app"),
+    alternates: {
+      canonical: "/",
+      languages: {
+        ar: "/ar",
+        en: "/en",
+      },
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
+    },
     icons: {
       icon: t("icon"),
     },
