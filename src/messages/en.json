@@ -154,6 +154,20 @@
         "not_refundable": "**NONREFUNDABLE**",
         "Subscribe": "Subscribe Now"
       },
+      "packages_id": {
+        "zee_coin": "zee coins",
+        "joker": "joker",
+        "statement":"Best for new players willing to try our services",
+        "not_refundable":"**NONREFUNDABLE**",
+        "Subscribe": "Subscribe Now",
+        "currency": "BHD",
+        "choose_payment":"Choose payment method",
+        "promo_code":{
+          "placeholder":"Enter your promo code to get the discount",
+          "activate":"Activate the code",
+          "required":"Promo code can't be empty"
+        }
+      },
       "leaderboard": {
         "hero": {
           "title": "Leaderboards",

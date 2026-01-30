@@ -1,6 +1,6 @@
 export interface PackagesProps {
   id: number;
-  type: "vip" | "gold" | "silver";
+  type: "vip" | "gold" | "silver" | "basic";
   type_trans: string;
   price: string;
   instead_of: string;
