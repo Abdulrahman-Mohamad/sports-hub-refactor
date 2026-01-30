@@ -103,6 +103,7 @@ const Dropdown: React.FC<DropdownProps> = ({
                   }
             }
             className={`shadow-xl absolute ${alignmentClasses[align]} top-[calc(100%+10px)] bg-white min-w-[180px] rounded-lg flex flex-col overflow-hidden z-10 ${menuClassName}`}
+            onClick={() => setIsOpen(false)}
           >
             {children}
           </motion.div>

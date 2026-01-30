@@ -3,8 +3,6 @@ import GamesHeroSection from "./_sections/Hero";
 import dynamic from "next/dynamic";
 import { Metadata } from "next";
 import { getLocale, getTranslations } from "next-intl/server";
-import { Suspense } from "react";
-import Spinner from "@/components/ui/Spinner";
 
 const HomeChallengSection = dynamic(
   () => import("../(home)/_sections/Challenge"),
@@ -30,13 +28,11 @@ export default async function GamesPage() {
     <>
       <GamesHeroSection />
       <HomeChallengSection />
-      <Suspense fallback={<Spinner />}>
       <GamesSections
         triviaData={data?.trivia_config}
         predictionData={data?.prediction_config}
         shootData={data?.shot_on_net_config}
       />
-      </Suspense>
     </>
   );
 }

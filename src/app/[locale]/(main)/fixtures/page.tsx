@@ -30,8 +30,8 @@ export default async function FixturesPage({
     <>
       <div className="overflow-x-clip relative">
         <FixturesHeroSection />
-        <Suspense fallback={<Spinner />}>
       <LeagueFilter activeLeague={league_id} leagues={leagues} />
+        <Suspense fallback={<Spinner />}>
       {fixturesData.predictions.length > 0 && <PredictSection data={fixturesData.predictions} config={showConfig} />}
       {fixturesData.match_highlights.length > 0 && <MatchHighlightsSection data={fixturesData.match_highlights}/>}
       {fixturesData.match_over.length > 0 && <MatchOverSection data={fixturesData.match_over}/>}

@@ -3,9 +3,6 @@ import TermsHeroSection from "./_section/Hero";
 import dynamic from "next/dynamic";
 import { Metadata } from "next";
 import { getLocale, getTranslations } from "next-intl/server";
-import { Suspense } from "react";
-import Spinner from "@/components/ui/Spinner";
-
 const TermsSection = dynamic(() => import("./_section/Terms"));
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -27,9 +24,7 @@ export default async function TermsPage() {
   return (
     <>
       <TermsHeroSection />
-      <Suspense fallback={<Spinner />}>
       <TermsSection data={data}/>
-      </Suspense>
     </>
   );
 }

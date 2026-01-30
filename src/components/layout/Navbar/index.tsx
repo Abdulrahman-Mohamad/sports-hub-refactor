@@ -180,6 +180,7 @@ export default function Navbar() {
                 <Link
                   className="flex items-center gap-4 text-start px-8 hover:cursor-pointer hover:bg-gray-200 py-4 w-full"
                   href={`/profile`}
+                  
                 >
                   <span>
                     <FaUser size={18} />

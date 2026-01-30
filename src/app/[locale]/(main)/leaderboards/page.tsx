@@ -42,7 +42,6 @@ export default async function LeaderboardsPage({
   return (
     <>
       <LeaderboardHeroSection />
-      <Suspense fallback={<Spinner />}>
       <TypeSection activeType={type} />
       <div className="relative w-full flex flex-col mt-10 md:mt-24">
         <div className="absolute inset-0 z-0">
@@ -54,12 +53,13 @@ export default async function LeaderboardsPage({
             priority
           />
         </div>
-        <div className="relative z-10 w-full">
-          <LeaderboardPodiumSection data={topThree} />
-          <LeaderboardTableSection data={others} user={currentUser} />
-        </div>
+        <Suspense fallback={<Spinner />}>
+          <div className="relative z-10 w-full">
+            <LeaderboardPodiumSection data={topThree} />
+            <LeaderboardTableSection data={others} user={currentUser} />
+          </div>
+        </Suspense>
       </div>
-      </Suspense>
     </>
   );
 }
