@@ -41,7 +41,7 @@ export default function LanguageSwitcher({
           <div className="flex flex-col">
             <button
               onClick={() => changeLanguage("en")}
-              className={`w-full flex items-center justify-center gap-3 p-3 transition-all duration-200 hover:bg-gray-50 cursor-pointer`}
+              className={`w-full flex items-center gap-3 py-3 px-5 transition-all duration-200 hover:bg-gray-50 cursor-pointer`}
             >
               <Image
                 src="/images/navbar/en.png"
@@ -53,7 +53,7 @@ export default function LanguageSwitcher({
             </button>
             <button
               onClick={() => changeLanguage("ar")}
-              className={`w-full flex items-center justify-center gap-3 p-3 transition-all duration-200 hover:bg-gray-50 cursor-pointer`}
+              className={`w-full flex items-center gap-3 py-3 px-5 transition-all duration-200 hover:bg-gray-50 cursor-pointer`}
             >
               <Image
                 src="/images/navbar/ar.png"
