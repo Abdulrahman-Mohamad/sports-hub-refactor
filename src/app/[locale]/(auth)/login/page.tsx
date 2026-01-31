@@ -49,6 +49,7 @@ export default function LoginPage() {
     if (userData && token) {
       setUser({ user: userData, accessToken: token });
       toast.success(res?.message || t("common.success"));
+      router.refresh();
       router.push(`/`);
     } else {
       console.error("UserData or Token is missing in response:", res);

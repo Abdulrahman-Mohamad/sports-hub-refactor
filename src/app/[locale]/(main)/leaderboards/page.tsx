@@ -12,6 +12,7 @@ import Spinner from "@/components/ui/Spinner";
 const LeaderboardPodiumSection = dynamic(() => import("./_sections/Pedium"));
 const LeaderboardTableSection = dynamic(() => import("./_sections/Table"));
 
+// metadata
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getLocale();
   const t = await getTranslations({ locale, namespace: "metadata" });
