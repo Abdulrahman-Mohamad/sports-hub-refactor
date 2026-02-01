@@ -1,12 +1,19 @@
 "use client";
 
-import { createContext, useContext, useState, ReactNode, useEffect, useCallback, useMemo } from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+  ReactNode,
+  useEffect,
+  useCallback,
+  useMemo,
+} from "react";
 import Cookies from "js-cookie";
 import { User, UserState } from "@/utils/types/User/user";
 import { ProfileData, ProfileResponse } from "@/utils/types/User/profile";
 import { profileFetch } from "@/lib/api/profile/profileFetch";
 import { useRouter } from "next/navigation";
-
 
 const defaultUserState: UserState = {
   user: null,
@@ -26,18 +33,13 @@ export function UserProvider({ children }: { children: ReactNode }) {
   const [user, setUserState] = useState<User | null>(null);
   const [profile, setProfile] = useState<ProfileData | null>(null);
   const [initialized, setInitialized] = useState<boolean>(false);
-const router = useRouter();
+  const router = useRouter();
 
   const fetchProfile = useCallback(async () => {
     await profileFetch({
       onSuccess: (res: ProfileResponse) => {
         if (res.status) {
           setProfile(res.data);
-          Cookies.set("userProfile", JSON.stringify(res.data), {
-            expires: 365,
-            secure: true,
-            sameSite: "Lax",
-          });
         }
       },
       onError: (err) => console.error("Profile fetch error:", err),
@@ -46,7 +48,6 @@ const router = useRouter();
 
   useEffect(() => {
     const cookieUser = Cookies.get("user");
-    const cookiesProfile = Cookies.get("userProfile");
     const token = Cookies.get("access_token");
 
     if (cookieUser && cookieUser !== "undefined") {
@@ -57,21 +58,12 @@ const router = useRouter();
       }
     }
 
-    if (cookiesProfile && cookiesProfile !== "undefined") {
-      try {
-        setProfile(JSON.parse(cookiesProfile));
-      } catch (error) {
-        console.error("Failed to parse profile cookie:", error);
-      }
-    }
-
     if (token) {
       setAccessToken(token);
-      fetchProfile();
     }
 
     setInitialized(true);
-  }, [fetchProfile]);
+  }, []);
 
   const setUser = useCallback(
     ({ user, accessToken }: { user: User; accessToken: string }) => {
@@ -88,9 +80,8 @@ const router = useRouter();
         secure: true,
         sameSite: "Lax",
       });
-      fetchProfile();
     },
-    [fetchProfile],
+    [],
   );
 
   const logOut = useCallback(() => {
@@ -100,8 +91,7 @@ const router = useRouter();
     setInitialized(false);
     Cookies.remove("user");
     Cookies.remove("access_token");
-    Cookies.remove("userProfile");
-    router.refresh(); 
+    router.refresh();
   }, [router]);
 
   const value: UserState = useMemo(

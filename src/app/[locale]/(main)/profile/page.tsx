@@ -1,5 +1,4 @@
-import { ProfileData } from "@/utils/types/User/profile";
-import { cookies } from "next/headers";
+
 import Image from "next/image";
 import { redirect } from "next/navigation";
 import ProfileHeroSection from "./_sections/Hero";
@@ -8,22 +7,14 @@ import ProfileActionsSection from "./_sections/Actions";
 import ProfileInfoSection from "./_sections/Info";
 import ProfileResultSection from "./_sections/Result";
 import ProfileTASection from "./_sections/TA";
+import { profileFetch } from "@/lib/api/profile/profileFetch";
 
 export default async function ProfilePage() {
-  // Get the cookie store
-  const cookieStore = await cookies();
-  const profileCookie = cookieStore.get("userProfile")?.value;
-  let profileData: ProfileData | null = null;
-  if (profileCookie) {
-    try {
-      profileData = JSON.parse(decodeURIComponent(profileCookie));
-    } catch (error) {
-      console.error("Error parsing profile cookie:", error);
-    }
-  }
+  const res = await profileFetch();
+  const profileData = res?.data;
 
   if (!profileData) {
-    redirect("/register");
+    redirect("/login");
   }
 
   // Destructure the profile data

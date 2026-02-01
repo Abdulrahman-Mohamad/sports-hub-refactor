@@ -9,19 +9,18 @@ import Notifications from "../Notifications";
 import { useEffect, useState } from "react";
 import Dropdown from "@/components/ui/Dropdown";
 import { FaBars, FaUser } from "react-icons/fa";
-import PointsSection from "@/components/ui/PointsSection";
 import dynamic from "next/dynamic";
 
 const Sidebar = dynamic(() => import("../Sidebar"), { ssr: false });
 const UserSidebar = dynamic(() => import("../UserSidebar"), { ssr: false });
 import { AnimatePresence } from "framer-motion";
 
-export default function Navbar() {
+export default function Navbar({pointsComponent}: {pointsComponent?: React.ReactNode}) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
 
   const t = useTranslations("navbar");
-  const { user, profile, logOut } = useUser();
+  const { user, profile, logOut, fetchProfile } = useUser();
   const [isScrolled, setIsScrolled] = useState(false);
 
   const router = useRouter();
@@ -37,6 +36,12 @@ export default function Navbar() {
   };
 
   useEffect(() => {
+    if (user && !profile) {
+      fetchProfile();
+    }
+  }, [user, profile, fetchProfile]);
+
+  useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 0) {
         setIsScrolled(true);
@@ -49,7 +54,6 @@ export default function Navbar() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
   return (
     <>
       {/* points Section in desktop */}
@@ -62,7 +66,7 @@ export default function Navbar() {
           : "absolute top-24 left-30  right-30"
       }`}
         >
-          <PointsSection />
+          {pointsComponent}
         </div>
       )}
 
@@ -180,7 +184,6 @@ export default function Navbar() {
                 <Link
                   className="flex items-center gap-4 text-start px-8 hover:cursor-pointer hover:bg-gray-200 py-4 w-full"
                   href={`/profile`}
-                  
                 >
                   <span>
                     <FaUser size={18} />
@@ -261,7 +264,7 @@ export default function Navbar() {
           {/* points */}
           {user && pathname === "/" && (
             <div>
-              <PointsSection />
+              {pointsComponent}
             </div>
           )}
         </div>
