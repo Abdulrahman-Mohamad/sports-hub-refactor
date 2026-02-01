@@ -1,14 +1,6 @@
 "use client";
 
-import {
-  createContext,
-  useContext,
-  useState,
-  ReactNode,
-  useEffect,
-  useCallback,
-  useMemo,
-} from "react";
+import { createContext, useContext, useState, ReactNode, useEffect, useCallback, useMemo } from "react";
 import Cookies from "js-cookie";
 import { User, UserState } from "@/utils/types/User/user";
 import { ProfileData, ProfileResponse } from "@/utils/types/User/profile";

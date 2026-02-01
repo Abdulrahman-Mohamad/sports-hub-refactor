@@ -75,19 +75,11 @@ export default function LoginPage() {
   return (
     <>
       <ForgetPasswordModal isOpen={modal} onClose={() => setModal(false)} />
-      <div
-        className="flex justify-center items-center min-h-screen px-2
-      sm:px-10
-    lg:absolute lg:left-30 lg:right-30 lg:top-26 lg:block lg:px-0 lg:min-h-auto"
-      >
+      <div className="flex justify-center items-center min-h-screen px-2 sm:px-10 lg:absolute lg:left-30 lg:right-30 lg:top-26 lg:block lg:px-0 lg:min-h-auto">
         <motion.div
           initial={{ opacity: 0, x: -100 }}
           animate={{ opacity: 1, x: 0 }}
-          className="px-8 py-10 rounded-xl relative bg-white/80 w-full
-        md:px-14
-        lg:px-20
-        2xl:px-28
-        "
+          className="px-8 py-10 rounded-xl relative bg-white/80 w-full md:px-14 lg:px-20 2xl:px-28"
         >
           <form
             dir="ltr"
@@ -95,18 +87,10 @@ export default function LoginPage() {
             onSubmit={handleSubmit(onSubmit)}
           >
             <div className="text-center space-y-4">
-              <h2
-                className="text-4xl pb-2 font-bold text-gradient-primary
-            md:text-5xl
-            "
-              >
+              <h2 className="text-4xl pb-2 font-bold text-gradient-primary md:text-5xl">
                 {t("pages.auth.login.title")}
               </h2>
-              <p
-                className="text-sm
-            md:text-base md:font-medium
-            "
-              >
+              <p className="text-sm md:text-base md:font-medium">
                 {t("pages.auth.login.subtitle")}
               </p>
             </div>
@@ -123,10 +107,7 @@ export default function LoginPage() {
                 />
                 <label
                   htmlFor="phone1"
-                  className={`font-bold hover:cursor-pointer p-3 rounded-lg block transition-all
-                  ${type === "phone" ? "bg-gradient-primary text-white" : ""}
-                  md:text-lg
-                  `}
+                  className={`font-bold hover:cursor-pointer p-3 rounded-lg block transition-all ${type === "phone" ? "bg-gradient-primary text-white" : ""} md:text-lg`}
                 >
                   {t("pages.auth.login.phone")}
                 </label>
@@ -141,10 +122,7 @@ export default function LoginPage() {
                 />
                 <label
                   htmlFor="email"
-                  className={`font-bold hover:cursor-pointer p-3 rounded-lg block transition-all
-                  ${type === "email" ? "bg-gradient-primary text-white" : ""}
-                  md:text-lg
-                  `}
+                  className={`font-bold hover:cursor-pointer p-3 rounded-lg block transition-all ${type === "email" ? "bg-gradient-primary text-white" : ""} md:text-lg`}
                 >
                   {t("pages.auth.login.email")}
                 </label>
@@ -157,6 +135,8 @@ export default function LoginPage() {
                   id="phone"
                   placeholder={t("components.forms.placeholders.enter_phone")}
                   type="tel"
+                  errors={errors}
+                  register={register}
                   icon={
                     <GradientIcon
                       icon={FaPhone}
@@ -167,14 +147,14 @@ export default function LoginPage() {
                       className="rotate-90"
                     />
                   }
-                  errors={errors}
-                  register={register}
                 />
               ) : (
                 <Input
                   id="email"
                   type="email"
                   placeholder={t("components.forms.placeholders.enter_email")}
+                  errors={errors}
+                  register={register}
                   icon={
                     <GradientIcon
                       icon={IoIosMail}
@@ -183,13 +163,17 @@ export default function LoginPage() {
                       size={28}
                     />
                   }
-                  errors={errors}
-                  register={register}
                 />
               )}
               <div>
                 <PasswordInput
                   id="password"
+                  register={register}
+                  errors={errors}
+                  type="password"
+                  placeholder={t(
+                    "components.forms.placeholders.enter_password",
+                  )}
                   icon={
                     <GradientIcon
                       icon={FaLock}
@@ -198,12 +182,6 @@ export default function LoginPage() {
                       size={24}
                     />
                   }
-                  register={register}
-                  errors={errors}
-                  type="password"
-                  placeholder={t(
-                    "components.forms.placeholders.enter_password"
-                  )}
                 />
                 <button
                   type="button"
@@ -222,13 +200,7 @@ export default function LoginPage() {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 type="submit"
-                className="w-5/6 mx-auto block bg-gradient-primary text-white font-extrabold py-4 rounded-xl cursor-pointer
-              sm:w-2/3
-              md:w-1/2 md:text-lg
-              lg:w-1/3
-              xl:w-1/4
-              2xl:text-xl
-              "
+                className="w-5/6 mx-auto block bg-gradient-primary text-white font-extrabold py-4 rounded-xl cursor-pointer sm:w-2/3 md:w-1/2 md:text-lg lg:w-1/3 xl:w-1/4 2xl:text-xl"
               >
                 {t("pages.auth.login.login")}
               </motion.button>

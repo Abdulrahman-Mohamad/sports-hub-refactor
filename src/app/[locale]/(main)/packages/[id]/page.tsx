@@ -7,9 +7,9 @@ const PackageDetailsSection = dynamic(() => import("./_sections/PackageDetails")
 export default async function SinglePackagePage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
-  const { id } = params;
+  const { id } = await params;
   const res = await packagesShowFetch(id);
   const data = res?.data as PackagesShowProps;
 
