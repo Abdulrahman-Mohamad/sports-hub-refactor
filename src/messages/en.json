@@ -262,6 +262,11 @@
           "recent_transactions": "Recent Transactions",
           "zee_coins": "Zee Coins"
         }
+      },
+      "support":{
+        "send_message":{
+          "placeholder":"Enter your message..."
+        }
       }
     }
   },

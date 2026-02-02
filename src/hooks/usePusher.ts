@@ -3,7 +3,6 @@ import { useEffect, useRef } from "react";
 import Pusher from "pusher-js";
 
 const PUSHER_KEY = process.env.NEXT_PUBLIC_PUSHER_APP_KEY!;
-const PUSHER_CLUSTER = 'eu';
 
 export const usePusher = (channelName: string, eventName: string, callback: (data: any) => void) => {
   const callbackRef = useRef(callback);
@@ -14,7 +13,7 @@ export const usePusher = (channelName: string, eventName: string, callback: (dat
 
   useEffect(() => {
     const pusher = new Pusher(PUSHER_KEY, {
-      cluster: PUSHER_CLUSTER,
+      cluster: 'eu',
       forceTLS: true
     })
     const channel = pusher.subscribe(channelName)

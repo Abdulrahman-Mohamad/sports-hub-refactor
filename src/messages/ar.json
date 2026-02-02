@@ -259,6 +259,11 @@
           "recent_transactions": "المعاملات الأخيرة",
           "zee_coins": "عملة زي"
         }
+      },
+      "support":{
+        "send_message":{
+          "placeholder":"اكتب رسالتك..."
+        }
       }
     }
   },

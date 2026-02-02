@@ -35,7 +35,7 @@ export default function Input({
           id={id}
           type={type}
           {...settings}
-          {...register(id)}
+          {...(register ? register(id) : {})}
           aria-invalid={!!errors?.[id]}
           aria-describedby={errors?.[id] ? `${id}-error` : undefined}
           className={`
