@@ -12,18 +12,15 @@ export default function SupportButton() {
   const pathname = usePathname();
   const [latestMessage, setLatestMessage] = useState<string | null>(null);
 
-  // الاستماع لرسائل Pusher
   usePusher("my-channel", `support-message-${user?.id}`, (data) => {
-    console.log("Pusher Full Data:", data); // للمساعدة في التتبع
+    console.log("Pusher Full Data:", data);
     if (pathname !== "/support") {
-      // استخراج الرسالة سواء كانت نصاً مباشراً أو داخل كائن data.message
       const msg =
         typeof data === "string" ? data : data?.message || data?.data?.message;
       if (msg) setLatestMessage(msg);
     }
   });
 
-  // إخفاء الفقاعة تلقائياً بعد 8 ثوانٍ
   useEffect(() => {
     if (latestMessage) {
       const timer = setTimeout(() => setLatestMessage(null), 8000);
@@ -35,7 +32,6 @@ export default function SupportButton() {
 
   return (
     <div className="fixed left-8 bottom-10 z-[999] flex items-center gap-4 ltr">
-      {/* زر الدعم الفني */}
       <motion.div
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
@@ -58,7 +54,6 @@ export default function SupportButton() {
         </Link>
       </motion.div>
 
-      {/* فقاعة المحادثة */}
       <AnimatePresence>
         {latestMessage && (
           <motion.div
@@ -70,7 +65,6 @@ export default function SupportButton() {
             <p className="text-sm lg:text-base font-bold text-center whitespace-pre-wrap">
               {latestMessage}
             </p>
-            {/* المثلث (الذيل) - يظهر من جهة اليسار باتجاه الأيقونة */}
             <div className="absolute top-1/2 -translate-y-1/2 -left-3 w-0 h-0 border-t-[10px] border-t-transparent border-r-[15px] border-r-white border-b-[10px] border-b-transparent" />
           </motion.div>
         )}

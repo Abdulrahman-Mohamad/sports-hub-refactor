@@ -15,7 +15,11 @@ const Sidebar = dynamic(() => import("../Sidebar"), { ssr: false });
 const UserSidebar = dynamic(() => import("../UserSidebar"), { ssr: false });
 import { AnimatePresence } from "framer-motion";
 
-export default function Navbar({pointsComponent}: {pointsComponent?: React.ReactNode}) {
+export default function Navbar({
+  pointsComponent,
+}: {
+  pointsComponent?: React.ReactNode;
+}) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
 
@@ -162,7 +166,9 @@ export default function Navbar({pointsComponent}: {pointsComponent?: React.React
             <>
               <Dropdown
                 icon={
-                  <span className="rounded-full w-8 h-8 flex justify-center items-center">
+                  <span
+                    className={`rounded-full w-8 h-8 flex justify-center items-center ${!profile?.user.media && "border"}`}
+                  >
                     <Image
                       src={
                         profile?.user.media || "/images/common/default-user.png"
@@ -171,7 +177,9 @@ export default function Navbar({pointsComponent}: {pointsComponent?: React.React
                       width={40}
                       height={40}
                       quality={80}
-                      className="rounded-full w-8 h-8"
+                      className={`rounded-full  object-cover object-center
+                        ${!profile?.user.media ? "p-1.5":"size-8"}
+                        `}
                     />
                   </span>
                 }
@@ -262,11 +270,7 @@ export default function Navbar({pointsComponent}: {pointsComponent?: React.React
             )}
           </div>
           {/* points */}
-          {user && pathname === "/" && (
-            <div>
-              {pointsComponent}
-            </div>
-          )}
+          {user && pathname === "/" && <div>{pointsComponent}</div>}
         </div>
         <AnimatePresence>
           {isSidebarOpen && (
