@@ -3,6 +3,7 @@ import Footer from "@/components/layout/Footer";
 import RefreshHandler from "@/utils/helperFn/RefreshHandler";
 import PointsSection from "@/components/ui/PointsSection";
 import { cookies } from "next/headers";
+import SupportButton from "@/components/ui/SupportButton";
 
 export default async function layout({ children }: { children: React.ReactNode }) {
   const cookiesStore = await cookies();
@@ -13,6 +14,7 @@ export default async function layout({ children }: { children: React.ReactNode }
         <Navbar pointsComponent={hasToken ? <PointsSection /> : null} />
         <main className="flex-1">
           <RefreshHandler />
+          <SupportButton/>
           {children}
         </main>
         <Footer />

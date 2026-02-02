@@ -11,11 +11,11 @@ export default function middleware(request: NextRequest) {
 
   const isLoggedIn = Boolean(request.cookies.get('access_token'));
 
-  const protectRoutes = ["/profile", "/history"];
+  const protectRoutes = ["/profile", "/history","/support"];
   const authRoutes = ["/login", "/register"];
 
   if (!isLoggedIn && protectRoutes.includes(pathname)) {
-    const redirectTo = pathname === "/history" ? "/login" : pathname === "/profile" ? "register" : "login"
+    const redirectTo = pathname === "/history" ? "/login" : pathname === "/profile" ? "register" : pathname === "/support" ? "login" : "login"
 
     const url = request.nextUrl.clone();
     url.pathname = redirectTo;

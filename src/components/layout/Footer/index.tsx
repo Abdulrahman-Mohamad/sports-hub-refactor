@@ -10,6 +10,8 @@ export default function Footer() {
   const pathname = usePathname();
   const { user } = useUser();
 
+  if (pathname === "/support") return null;
+
   return (
     <footer className="text-white mt-44 md:mt-52 lg:mt-64 z-10 relative">
       <div className="w-full h-4 bg-gradient-primary relative">

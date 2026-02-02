@@ -77,12 +77,11 @@ export default function SupportChatContainer({
       <div className="md:mx-auto h-[80vh] flex flex-col my-24 bg-white relative rounded-2xl lg:rounded-4xl overflow-hidden">
         <button
           onClick={() => router.back()}
-          className="flex items-center bg-[#F1F1F1] justify-end p-4 "
+          className="flex items-center bg-[#F1F1F1] justify-end p-4 cursor-pointer"
         >
           <GradientIcon
           icon={RiArrowGoBackFill} size={30}
           />
-          {/* <RiArrowGoBackFill color="white" size={30} /> */}
         </button>
 
         <AllMessagesComponent

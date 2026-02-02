@@ -49,9 +49,9 @@ export default function SendMessageComponent() {
         // icon={<BsEmojiSmileFill  size={22} className='text-gray-700' />}
       />
       <button
-        disabled={loading}
+        disabled={loading || message === ""}
         type="submit"
-        className="text-secondaryA2 hover:text-secondaryA2/80 pt-2 cursor-pointer"
+        className="text-secondaryA2 hover:text-secondaryA2/80 pt-2 cursor-pointer disabled:cursor-not-allowed disabled:opacity-50"
       >
         {loading ? (
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-greenA1 mr-2"></div>
