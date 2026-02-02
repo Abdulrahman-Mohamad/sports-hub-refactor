@@ -1,35 +1,80 @@
 "use client";
 import { useUser } from "@/context/UserContext";
 import { usePathname } from "@/i18n/navigation";
-import { motion } from "framer-motion";
-import { useLocale, useTranslations } from "next-intl";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { usePusher } from "@/hooks/usePusher";
 
 export default function SupportButton() {
-  const locale = useLocale();
   const { user } = useUser();
   const pathname = usePathname();
-  const t = useTranslations("pages.support");
+  const [latestMessage, setLatestMessage] = useState<string | null>(null);
+
+  // الاستماع لرسائل Pusher
+  usePusher("my-channel", `support-message-${user?.id}`, (data) => {
+    console.log("Pusher Full Data:", data); // للمساعدة في التتبع
+    if (pathname !== "/support") {
+      // استخراج الرسالة سواء كانت نصاً مباشراً أو داخل كائن data.message
+      const msg =
+        typeof data === "string" ? data : data?.message || data?.data?.message;
+      if (msg) setLatestMessage(msg);
+    }
+  });
+
+  // إخفاء الفقاعة تلقائياً بعد 8 ثوانٍ
+  useEffect(() => {
+    if (latestMessage) {
+      const timer = setTimeout(() => setLatestMessage(null), 8000);
+      return () => clearTimeout(timer);
+    }
+  }, [latestMessage]);
+
   if (!!!user || pathname === "/support") return null;
+
   return (
-    <motion.div
-      whileHover={{ scale: 1.1 }}
-      whileTap={{ scale: 0.9 }}
-      initial={{ scale: 1 }}
-      className={`fixed left-8 bottom-10 z-[100] rounded-full size-18 lg:size-24 bg-white shadow-lg text-white border-2 flex-center`}
-    >
-      <Link href={`/${locale}/support`} className="flex items-center gap-3">
-        <Image
-          src={"/images/common/support.png"}
-          alt="Support Icon"
-          width={1000}
-          height={1000}
-          quality={90}
-          className="w-14 lg:w-20"
-        />
-      </Link>
-    </motion.div>
+    <div className="fixed left-8 bottom-10 z-[999] flex items-center gap-4 ltr">
+      {/* زر الدعم الفني */}
+      <motion.div
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        initial={{ scale: 1 }}
+        className={`rounded-full size-18 lg:size-24 bg-white shadow-lg text-white border-2 flex items-center justify-center flex-shrink-0`}
+      >
+        <Link
+          href={`/support`}
+          className="flex items-center gap-3"
+          onClick={() => setLatestMessage(null)}
+        >
+          <Image
+            src={"/images/common/support.png"}
+            alt="Support Icon"
+            width={1000}
+            height={1000}
+            quality={90}
+            className="w-14 lg:w-20"
+          />
+        </Link>
+      </motion.div>
+
+      {/* فقاعة المحادثة */}
+      <AnimatePresence>
+        {latestMessage && (
+          <motion.div
+            initial={{ opacity: 0, x: -20, scale: 0.8 }}
+            animate={{ opacity: 1, x: 0, scale: 1 }}
+            exit={{ opacity: 0, x: -20, scale: 0.8 }}
+            className="relative bg-white text-black px-5 py-3 rounded-2xl shadow-2xl border border-gray-100 min-w-[150px] max-w-[250px] lg:max-w-[300px]"
+          >
+            <p className="text-sm lg:text-base font-bold text-center whitespace-pre-wrap">
+              {latestMessage}
+            </p>
+            {/* المثلث (الذيل) - يظهر من جهة اليسار باتجاه الأيقونة */}
+            <div className="absolute top-1/2 -translate-y-1/2 -left-3 w-0 h-0 border-t-[10px] border-t-transparent border-r-[15px] border-r-white border-b-[10px] border-b-transparent" />
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
   );
 }
