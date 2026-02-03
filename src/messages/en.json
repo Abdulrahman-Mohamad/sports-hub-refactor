@@ -312,6 +312,12 @@
         "terms": "Terms and Conditions",
         "play_connect_conquer": "Play. Connect. Conquer."
       }
+    },
+    "notifications":{
+      "toaster":{
+        "title":"Notification",
+        "logo": "/images/favicon/faviconEn.png"
+      }
     }
   }
 }

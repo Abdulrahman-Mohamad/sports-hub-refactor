@@ -4,7 +4,7 @@ import Pusher from "pusher-js";
 
 const PUSHER_KEY = process.env.NEXT_PUBLIC_PUSHER_APP_KEY!;
 
-export const usePusher = (channelName: string, eventName: string, callback: (data: any) => void) => {
+export const usePusher = (channelName: string | null, eventName: string, callback: (data: any) => void) => {
   const callbackRef = useRef(callback);
 
   useEffect(() => {
@@ -12,6 +12,8 @@ export const usePusher = (channelName: string, eventName: string, callback: (dat
   }, [callback]);
 
   useEffect(() => {
+    if (!channelName) return
+
     const pusher = new Pusher(PUSHER_KEY, {
       cluster: 'eu',
       forceTLS: true

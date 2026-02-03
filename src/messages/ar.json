@@ -154,15 +154,15 @@
       "packages_id": {
         "zee_coin": "عملة زي",
         "joker": "جوكر",
-        "statement":"الأفضل للاعبين الجدد الراغبين في تجربة خدماتنا",
-        "not_refundable":"**غير قابل للاسترجاع**",
+        "statement": "الأفضل للاعبين الجدد الراغبين في تجربة خدماتنا",
+        "not_refundable": "**غير قابل للاسترجاع**",
         "Subscribe": "اشترك الآن",
         "currency": "د.ب",
-        "choose_payment":"اختر طريقة الدفع",
-        "promo_code":{
-          "placeholder":"أدخل رمز العرض الترويجي الخاص بك للحصول على الخصم",
-          "activate":"تفعيل الكود",
-          "required":"لا يمكن أن يكون كود العرض الترويجي فارغاً"
+        "choose_payment": "اختر طريقة الدفع",
+        "promo_code": {
+          "placeholder": "أدخل رمز العرض الترويجي الخاص بك للحصول على الخصم",
+          "activate": "تفعيل الكود",
+          "required": "لا يمكن أن يكون كود العرض الترويجي فارغاً"
         }
       },
       "leaderboard": {
@@ -260,9 +260,9 @@
           "zee_coins": "عملة زي"
         }
       },
-      "support":{
-        "send_message":{
-          "placeholder":"اكتب رسالتك..."
+      "support": {
+        "send_message": {
+          "placeholder": "اكتب رسالتك..."
         }
       }
     }
@@ -295,7 +295,7 @@
       },
       "loader": {
         "title": "قيد التحميل .....",
-        "sub_title":"يرجى الانتظار بينما نقوم بتحميل المحتوى"
+        "sub_title": "يرجى الانتظار بينما نقوم بتحميل المحتوى"
       }
     },
     "layout": {
@@ -307,6 +307,12 @@
         "history": "السجل",
         "terms": "الشروط والأحكام",
         "play_connect_conquer": "العب، تواصل، قوز "
+      }
+    },
+    "notifications": {
+      "toaster": {
+        "title": "إشعار",
+        "logo": "/images/favicon/faviconAr.png"
       }
     }
   }
