@@ -26,7 +26,7 @@ export default async function PackagesPage() {
   const { data } = await packagesFetch();
 
   return (
-    <div>
+    <div className="flex-grow overflow-hidden">
       <PackagesHeroSection />
       {data?.packages?.length > 0 && (
         <MainPackagesSection data={data?.packages} effectis={true} />

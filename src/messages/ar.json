@@ -310,6 +310,9 @@
       }
     },
     "notifications": {
+      "title": "الإشعارات",
+      "loading": "جاري التحميل",
+      "read_success": "تم وضع الإشعار كمقروء بنجاح",
       "toaster": {
         "title": "إشعار",
         "logo": "/images/favicon/faviconAr.png"

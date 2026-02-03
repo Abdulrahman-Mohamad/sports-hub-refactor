@@ -5,7 +5,6 @@ import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import Notifications from "../Notifications";
 import { useEffect, useState } from "react";
 import Dropdown from "@/components/ui/Dropdown";
 import { FaBars, FaUser } from "react-icons/fa";
@@ -14,6 +13,7 @@ import dynamic from "next/dynamic";
 const Sidebar = dynamic(() => import("../Sidebar"), { ssr: false });
 const UserSidebar = dynamic(() => import("../UserSidebar"), { ssr: false });
 import { AnimatePresence } from "framer-motion";
+import NotificationDropdown from "@/components/ui/Notifications";
 
 export default function Navbar({
   pointsComponent,
@@ -219,7 +219,7 @@ export default function Navbar({
                 </button>
               </Dropdown>
               <div>
-                <Notifications />
+                <NotificationDropdown />
               </div>
             </>
           ) : (

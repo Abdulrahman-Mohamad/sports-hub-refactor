@@ -313,9 +313,12 @@
         "play_connect_conquer": "Play. Connect. Conquer."
       }
     },
-    "notifications":{
-      "toaster":{
-        "title":"Notification",
+    "notifications": {
+      "title": "Notification",
+      "loading": "Loading...",
+      "read_success": "Notification marked as read successfully",
+      "toaster": {
+        "title": "Notification",
         "logo": "/images/favicon/faviconEn.png"
       }
     }
