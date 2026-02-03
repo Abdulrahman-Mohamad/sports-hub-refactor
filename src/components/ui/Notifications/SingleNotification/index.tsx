@@ -2,27 +2,21 @@ import { useTranslations } from "next-intl";
 import Image from "next/image";
 import React from "react";
 
+import { Notification } from "@/context/NotificationContext";
+
 type props = {
   ref: any;
   notification: Notification;
   onClick: any;
   onMarkAsRead?: (id: string) => void;
-};
-type Notification = {
-  id: string;
-  data: {
-    title: string;
-    body: string;
-    user_name: string;
-  };
-  read_at: string;
-  created_at: string;
+  isMobile?: boolean 
 };
 export default function SingleNotification({
   ref,
   notification,
   onClick,
   onMarkAsRead,
+  isMobile = false,
 }: props) {
   const t = useTranslations("components.notifications.toaster");
   return (
@@ -30,7 +24,7 @@ export default function SingleNotification({
       onClick={() => onClick(notification)}
       ref={ref}
       key={notification.id}
-      className="p-4 hover:bg-blue-100 cursor-pointer transition-colors duration-150"
+      className={`p-4 hover:bg-blue-100 cursor-pointer transition-colors duration-150 ${isMobile ? "text-gray-100" : ""}`}
     >
       <div className="flex items-center gap-2 space-x-3">
         {/* Avatar */}
@@ -69,7 +63,7 @@ export default function SingleNotification({
             className={`w-3 h-3 rounded-full transition-all duration-300 ${
               !notification.read_at
                 ? "bg-gradient-primary cursor-pointer"
-                : "bg-gray-300"
+                : "hidden"
             }`}
           />
         </div>

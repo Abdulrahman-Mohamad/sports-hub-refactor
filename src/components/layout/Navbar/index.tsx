@@ -8,12 +8,18 @@ import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Dropdown from "@/components/ui/Dropdown";
 import { FaBars, FaUser } from "react-icons/fa";
+import { AnimatePresence } from "framer-motion";
+import NotificationDropdown from "@/components/ui/Notifications";
+import { IoIosNotificationsOutline } from "react-icons/io";
 import dynamic from "next/dynamic";
 
 const Sidebar = dynamic(() => import("../Sidebar"), { ssr: false });
 const UserSidebar = dynamic(() => import("../UserSidebar"), { ssr: false });
-import { AnimatePresence } from "framer-motion";
-import NotificationDropdown from "@/components/ui/Notifications";
+const NotificationsSidebar = dynamic<{
+  toggleNotificationsSidebar: () => void;
+}>(() => import("../NotificationsSidebar"), { ssr: false });
+
+import { useNotifications } from "@/context/NotificationContext";
 
 export default function Navbar({
   pointsComponent,
@@ -22,9 +28,11 @@ export default function Navbar({
 }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+  const [isNotificationsSidebarOpen, setIsNotificationsSidebarOpen] = useState(false);
 
   const t = useTranslations("navbar");
   const { user, profile, logOut, fetchProfile } = useUser();
+  const { unreadCount } = useNotifications();
   const [isScrolled, setIsScrolled] = useState(false);
 
   const router = useRouter();
@@ -38,6 +46,10 @@ export default function Navbar({
   const toggleUserMenu = () => {
     setIsUserMenuOpen(!isUserMenuOpen);
   };
+
+  const toggleNotificationsSidebar = ()=>{
+    setIsNotificationsSidebarOpen(!isNotificationsSidebarOpen);
+  }
 
   useEffect(() => {
     if (user && !profile) {
@@ -238,23 +250,19 @@ export default function Navbar({
       </nav>
 
       {/* mobile */}
-      <div
-        className="lg:hidden fixed z-20 top-10 start-8 *:
-      
-      "
-      >
-        <div className="flex items-center gap-3 md:gap-5">
+      <div className="lg:hidden fixed z-20 top-10 start-8">
+        <div className="flex items-center gap-2 md:gap-5">
           {/* bar button */}
           <div
             onClick={toggleSidebar}
-            className="bg-white/70 w-10 h-10 md:w-12 md:h-12 flex-center p-2 rounded-full cursor-pointer"
+            className="bg-white/70 w-8 h-8 md:w-12 md:h-12 flex-center p-2 rounded-full cursor-pointer"
           >
-            <FaBars className="text-xl md:text-2xl" color="#13355C" />
+            <FaBars className="text-lg md:text-2xl" color="#13355C" />
           </div>
           {/* use button */}
           <div
             onClick={user ? toggleUserMenu : () => router.push("/login")}
-            className={`w-10 h-10 md:w-12 md:h-12 flex-center bg-white/70 rounded-full border border-white cursor-pointer ${user ? "" : "p-1.5"}`}
+            className={`w-8 h-8 md:w-12 md:h-12 flex-center bg-white/70 rounded-full border border-white cursor-pointer ${user ? "" : "p-1.5"}`}
           >
             {profile?.user.media ? (
               <Image
@@ -266,9 +274,22 @@ export default function Navbar({
                 className="rounded-full w-full h-full object-cover"
               />
             ) : (
-              <FaUser size={22} color="#13355C" />
+              <FaUser size={18} color="#13355C" />
             )}
           </div>
+          {user && (
+            <div
+              onClick={toggleNotificationsSidebar}
+              className="w-8 h-8 md:w-12 md:h-12 flex-center bg-white/70 rounded-full border border-white cursor-pointer relative"
+            >
+              <IoIosNotificationsOutline size={22} color="#13355C" />
+              {unreadCount > 0 && (
+                <span className="absolute top-0 end-0 bg-red-500 text-white text-[8px] font-bold rounded-full h-4 w-4 flex-center border-2 border-white">
+                  {unreadCount}
+                </span>
+              )}
+            </div>
+          )}
           {/* points */}
           {user && pathname === "/" && <div>{pointsComponent}</div>}
         </div>
@@ -278,6 +299,12 @@ export default function Navbar({
           )}
           {isUserMenuOpen && (
             <UserSidebar key="user-sidebar" toggleUserMenu={toggleUserMenu} />
+          )}
+          {isNotificationsSidebarOpen && (
+            <NotificationsSidebar
+              key="notifications-sidebar"
+              toggleNotificationsSidebar={toggleNotificationsSidebar}
+            />
           )}
         </AnimatePresence>
       </div>

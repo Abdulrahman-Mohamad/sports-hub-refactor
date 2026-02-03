@@ -37,7 +37,7 @@ export default function NotificationModal({
                         xl:w-[40vw] xl:px-16"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="absolute top-[1em] right-[1em] ">
+            <div className="absolute top-[1em] end-[1em] ">
               <IoClose
                 size={25}
                 className="cursor-pointer hover:text-gray-500 transition-colors duration-300"

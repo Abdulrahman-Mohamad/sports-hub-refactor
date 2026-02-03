@@ -6,10 +6,10 @@ export default async function PointsSection() {
   const pointsData = res?.data;
   return (
     <div>
-      <div className="bg-white px-3 py-2 grid grid-cols-3 gap-2 !rounded-lg font-medium text-xs md:px-6 md:py-2.5 md:text-base min-w-[150px]">
+      <div className="bg-white px-1 py-2 grid grid-cols-3 gap-2 !rounded-lg font-medium text-xs md:px-6 md:py-2.5 md:text-base min-w-[150px]">
         <>
           {/* coins */}
-          <div className="flex items-center gap-2 justify-center">
+          <div className="flex items-center md:gap-2 gap-1 justify-center">
             <div className="flex-shrink-0">
               <Image
                 src="/images/common/z-coin.png"
@@ -22,7 +22,7 @@ export default async function PointsSection() {
             <div>{pointsData?.zee_coins ?? 0}</div>
           </div>
           {/* Joker */}
-          <div className="flex items-center gap-2 justify-center">
+          <div className="flex items-center md:gap-2 gap-1 justify-center">
             <div className="flex-shrink-0">
               <Image
                 src="/images/common/joker.png"
@@ -36,7 +36,7 @@ export default async function PointsSection() {
             <div>{pointsData?.joker ?? 0}</div>
           </div>
           {/* Points */}
-          <div className="flex items-center gap-2 justify-center">
+          <div className="flex items-center md:gap-2 gap-1 justify-center">
             <div className="flex-shrink-0">
               <Image
                 src="/images/common/rank-fire.png"

@@ -58,6 +58,8 @@ export async function generateMetadata(): Promise<Metadata> {
     },
   };
 }
+import { NotificationProvider } from "@/context/NotificationContext";
+
 export default async function layout({
   children,
 }: {
@@ -72,11 +74,13 @@ export default async function layout({
         dir={locale === "ar" ? "rtl" : "ltr"}
         className={`${locale === "ar" ? dinArabic.className : inter.className}`}
       >
-        <NextIntlClientProvider messages={messages}>
-          {children}
-          <NotificationToaster/>
-          <OTPModal />
-        </NextIntlClientProvider>
+        <NotificationProvider>
+          <NextIntlClientProvider messages={messages}>
+            {children}
+            <NotificationToaster />
+            <OTPModal />
+          </NextIntlClientProvider>
+        </NotificationProvider>
       </div>
     </>
   );
