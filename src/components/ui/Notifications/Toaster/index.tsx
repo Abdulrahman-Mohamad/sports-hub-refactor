@@ -64,11 +64,7 @@ export default function NotificationToaster() {
                 dir="ltr"
                 onMouseEnter={() => setIsPaused(true)}
                 onMouseLeave={() => setIsPaused(false)}
-                className="fixed top-5 right-5 z-[999] bg-[#0E0011] border-2 border-primary rounded-xl shadow-2xl  flex flex-col gap-2 overflow-hidden hover:scale-[1.02] transition-transform cursor-pointer w-80 p-4 
-                sm:w-100 sm:p-6
-                lg:w-120 lg:p-8 lg:border-3
-                "
-              >
+                className="fixed top-5 right-5 z-[999] bg-[#0E0011] border-2 border-primary rounded-xl shadow-2xl  flex flex-col gap-2 overflow-hidden hover:scale-[1.02] transition-transform cursor-pointer w-80 p-4  sm:w-100 sm:p-6 lg:w-120 lg:p-8 lg:border-3">
                 {/* Header */}
                 <div className="flex items-center justify-between w-full border-b border-white/10 pb-2 mb-1 lg:mb-2 lg:pb-3">
                   <span className="text-xs font-bold text-white tracking-wider uppercase sm:text-sm">
@@ -79,8 +75,7 @@ export default function NotificationToaster() {
                       e.stopPropagation();
                       setNotification(null);
                     }}
-                    className="text-white hover:text-gray-300"
-                  >
+                    className="text-white hover:text-gray-300">
                     <FaX />
                   </span>
                 </div>
@@ -101,25 +96,13 @@ export default function NotificationToaster() {
 
                   {/* Text Group */}
                   <div className="flex flex-col text-start overflow-hidden">
-                    <span
-                      className="text-white font-bold text-sm truncate uppercase tracking-tight
-                    sm:text-base
-                    "
-                    >
+                    <span className="text-white font-bold text-sm truncate uppercase tracking-tight sm:text-base">
                       {user_name}
                     </span>
-                    <p
-                      className="text-white/80 text-xs line-clamp-2 font-light leading-snug
-                    sm:text-sm
-                    "
-                    >
+                    <p className="text-white/80 text-xs line-clamp-2 font-light leading-snug sm:text-sm">
                       {title}
                     </p>
-                    <p
-                      className="text-white text-sm
-                    sm:text-base
-                    "
-                    >
+                    <p className="text-white text-sm sm:text-base">
                       {body}
                     </p>
                   </div>
