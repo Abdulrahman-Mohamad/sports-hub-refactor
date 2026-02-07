@@ -5,6 +5,8 @@ import SubscribeButton from "../SubscribeButton";
 import { useState } from "react";
 import { PackagesShowProps } from "@/utils/types/Packages/PackagesShow";
 import Image from "next/image";
+import { PromoCodeResponse } from "@/utils/types/Packages/PromoCode";
+import PackagesPurchaseModal from "../Modal";
 
 export default function OrderHandler({
   id,
@@ -18,7 +20,8 @@ export default function OrderHandler({
 
   // states
   const [paymentId, setPaymentId] = useState<number>(1);
-  const [promoCodeId, setPromoCodeId] = useState<number | null>(null);
+  const [promoResponse, setPromoResponse] = useState<PromoCodeResponse>();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Destructing
   const {
@@ -26,11 +29,22 @@ export default function OrderHandler({
     package: { with_offer, instead_of, price, type },
   } = data;
 
+  const handleSubmit = () => {
+    setIsModalOpen(true);
+  };
   return (
     <>
+      <PackagesPurchaseModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        paymentId={paymentId}
+        promoResponse={promoResponse}
+        pack={data.package}
+      />
       {/* promo code section */}
       <PackageDetailsPromoCode
-        setPromoCodeId={setPromoCodeId}
+        setPromoResponse={setPromoResponse}
+        promoResponse={promoResponse}
         package_id={id}
         type={type}
       />
@@ -47,7 +61,9 @@ export default function OrderHandler({
 
       {/* payment methods */}
       <div className="flex flex-col gap-3 mt-6 md:max-w-2/3 xl:mt-8">
-        <h3 className="font-semibold !text-lg lg:!text-xl">{t("choose_payment")}</h3>
+        <h3 className="font-semibold !text-lg lg:!text-xl">
+          {t("choose_payment")}
+        </h3>
         <div className="flex flex-col gap-2">
           {payment_methods.map((method) => (
             <div
@@ -69,7 +85,9 @@ export default function OrderHandler({
               </div>
               {/* radial shape */}
               <div className="border border-[#CDCDCD] rounded-full size-5 p-0.5">
-                <div className={`bg-gradient-primary rounded-full size-full ${method.id === paymentId ? "" : "hidden"}`}></div>
+                <div
+                  className={`bg-gradient-primary rounded-full size-full ${method.id === paymentId ? "" : "hidden"}`}
+                ></div>
               </div>
             </div>
           ))}
@@ -80,22 +98,22 @@ export default function OrderHandler({
       <div className="flex items-center justify-end gap-4 mt-6 xl:mt-8">
         {with_offer && (
           <div className="flex items-center gap-2">
-            <p className="text-slate-600"><span className="line-through text-xl lg:text-2xl">{instead_of}</span> {t('currency')}</p>
+            <p className="text-slate-600">
+              <span className="line-through text-xl lg:text-2xl">
+                {instead_of}
+              </span>{" "}
+              {t("currency")}
+            </p>
           </div>
         )}
         <div className="flex items-center gap-2">
-          <p><span className="text-xl lg:text-2xl">{price}</span> {t('currency')}</p>
+          <p>
+            <span className="text-xl lg:text-2xl">{price}</span> {t("currency")}
+          </p>
         </div>
       </div>
 
-      <SubscribeButton
-        data={{
-          packageId: id,
-          paymentId: paymentId!,
-          promoCodeId: promoCodeId!,
-          type: type!
-        }}
-      />
+      <SubscribeButton type={type} onSubmit={handleSubmit} />
     </>
   );
 }

@@ -166,6 +166,18 @@
           "placeholder":"Enter your promo code to get the discount",
           "activate":"Activate the code",
           "required":"Promo code can't be empty"
+        },
+        "modals":{
+          "shipping":{
+            "title":"Shipping Details",
+            "subtotal":"Subtotal",
+            "package_type":"Package Type",
+            "package_price":"Package Price",
+            "after_discount":"After Discount",
+            "discount_value":"Discount Value",
+            "total":"Total",
+            "buy_now":"Buy Now"
+          }
         }
       },
       "leaderboard": {

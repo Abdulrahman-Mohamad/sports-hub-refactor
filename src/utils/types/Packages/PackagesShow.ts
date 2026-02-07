@@ -10,3 +10,5 @@ export interface PaymentMethod {
   title: string;
   media_path: string;
 }
+
+export type modalStepType="shipping"|"otp"|"success"|"error"|"operator"

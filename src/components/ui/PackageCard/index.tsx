@@ -20,7 +20,7 @@ export default function PackageCard({ data }: { data: PackagesProps }) {
           {/* top */}
           <div className="w-full text-center space-y-2 p-6">
             <h2
-              className={` font-bold !text-4xl pb-2
+              className={` !font-bold !text-4xl pb-2
               ${data.type === "vip" ? "text-gradient-primary" : data.type === "gold" ? "text-gradient-gold" : "text-gradient-silver"}
               `}
             >

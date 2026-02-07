@@ -163,6 +163,18 @@
           "placeholder": "أدخل رمز العرض الترويجي الخاص بك للحصول على الخصم",
           "activate": "تفعيل الكود",
           "required": "لا يمكن أن يكون كود العرض الترويجي فارغاً"
+        },
+        "modals":{
+          "shipping":{
+            "title":"تفاصيل الشحن",
+            "subtotal":"المجموع الفرعي",
+            "package_type":"نوع الحزمة",
+            "package_price":"سعر الباقة",
+            "after_discount":"بعد الخصم",
+            "discount_value":"قيمة الخصم",
+            "total":"المجموع",
+            "buy_now":"شراء الآن"
+          }
         }
       },
       "leaderboard": {

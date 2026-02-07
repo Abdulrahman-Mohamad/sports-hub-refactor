@@ -6,7 +6,7 @@ import OrderHandler from "../../_components/OrderHandler";
 export const activeBackground = (type: "vip" | "gold" | "silver" | "basic") => {
   switch (type) {
     case "vip":
-      return "bg-gradient-primary";
+      return "bg-gradient-primary text-white";
     case "gold":
       return "bg-gradient-gold";
     case "silver":
