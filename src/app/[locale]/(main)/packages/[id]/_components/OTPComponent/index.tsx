@@ -57,7 +57,18 @@ export default function OtpComponent({
       return;
     }
 
-    const channel_id = user?.operator === "stc" ? "144" : "143";
+    const getChannelId = () => {
+      switch (user?.operator) {
+        case "stc":
+          return "144";
+        case "batelco":
+          return "133";
+        default:
+          return "143";
+      }
+    };
+
+    const channel_id = getChannelId();
 
     await packagesCheckoutFetch(
       {
@@ -154,7 +165,11 @@ export default function OtpComponent({
             : "bg-gray-400 cursor-not-allowed"
         }`}
       >
-        {loading ? <ImSpinner4 size={20} className="animate-spin"/> : t("verify")}
+        {loading ? (
+          <ImSpinner4 size={20} className="animate-spin" />
+        ) : (
+          t("verify")
+        )}
       </button>
     </div>
   );

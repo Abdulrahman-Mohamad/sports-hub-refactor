@@ -56,7 +56,18 @@ export default function ShippingComponent({
       setIsLoading(false);
       return;
     }
-    const channel_id = user?.operator === "stc" ? "144" : "143";
+    const getChannelId = () => {
+      switch (user?.operator) {
+        case "stc":
+          return "144";
+        case "batelco":
+          return "133";
+        default:
+          return "143";
+      }
+    };
+
+    const channel_id = getChannelId();
     await packagesCheckoutFetch(
       {
         package_id: pack.id,
@@ -121,7 +132,11 @@ export default function ShippingComponent({
           whileTap={{ scale: 0.9 }}
           className="btn bg-gradient-primary text-white !px-12 mx-auto mt-6"
         >
-          {isLoading ? <ImSpinner4 size={20} className="animate-spin"/> : t("buy_now")}
+          {isLoading ? (
+            <ImSpinner4 size={20} className="animate-spin" />
+          ) : (
+            t("buy_now")
+          )}
         </motion.button>
       </div>
     </>
