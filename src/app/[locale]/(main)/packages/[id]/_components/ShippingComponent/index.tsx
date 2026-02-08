@@ -1,4 +1,5 @@
 import { useUser } from "@/context/UserContext";
+import { packagesCheckoutFetch } from "@/lib/api/packages/chechout";
 import {
   modalStepType,
   PackagesShowProps,
@@ -6,7 +7,9 @@ import {
 import { PromoCodeResponse } from "@/utils/types/Packages/PromoCode";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
+import { useState } from "react";
 import { FaX } from "react-icons/fa6";
+import { ImSpinner4 } from "react-icons/im";
 
 export default function ShippingComponent({
   setStep,
@@ -21,6 +24,8 @@ export default function ShippingComponent({
   pack: PackagesShowProps["package"];
   onClose: () => void;
 }) {
+  const [isLoading, setIsLoading] = useState(false);
+
   const t = useTranslations("pages.main.packages_id.modals.shipping");
   const { user } = useUser();
 
@@ -44,29 +49,38 @@ export default function ShippingComponent({
     );
   }
 
-  const handleSubmit = () => {
-    switch(user?.operator) {
-      case "zain": return handelZain()
-      case "stc": return handelStc()
-      case "batelco": return handelBatelco()
+  const handleBuyNow = async () => {
+    setIsLoading(true);
+    if (user?.operator === "zain") {
+      setStep("operator");
+      setIsLoading(false);
+      return;
     }
-    
+    const channel_id = user?.operator === "stc" ? "144" : "143";
+    await packagesCheckoutFetch(
+      {
+        package_id: pack.id,
+        payment_method_id: paymentId,
+        promo_code_id: promoResponse?.data?.promo_code?.id || 0,
+        channel_id: channel_id,
+      },
+      {
+        onSuccess: (res) => {
+          setIsLoading(false);
+          if (res?.data?.url && typeof res.data.url === "string") {
+            window.location.href = res.data.url;
+            return;
+          }
+          setStep("otp");
+        },
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        onError: (err: any) => {
+          setIsLoading(false);
+          setStep("error");
+        },
+      },
+    );
   };
-
-  const handelZain = () => {
-    setStep("operator")
-    
-  }
-
-  const handelStc = () => {
-    console.log('stc');
-    
-  }
-
-  const handelBatelco = () => {
-    console.log('batelco');
-    
-  }
 
   return (
     <>
@@ -101,12 +115,13 @@ export default function ShippingComponent({
         </div>
         {/* submit button */}
         <motion.button
-          onClick={handleSubmit}
+          onClick={handleBuyNow}
+          disabled={isLoading}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           className="btn bg-gradient-primary text-white !px-12 mx-auto mt-6"
         >
-          {t("buy_now")}
+          {isLoading ? <ImSpinner4 size={20} className="animate-spin"/> : t("buy_now")}
         </motion.button>
       </div>
     </>

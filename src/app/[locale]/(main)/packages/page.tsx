@@ -5,9 +5,16 @@ import { getLocale, getTranslations } from "next-intl/server";
 import { packagesFetch } from "@/lib/api/packages";
 
 import PackagesHeroSection from "./_sections/Hero";
+import CheckoutResultHandler from "./_components/CheckoutResultHandler";
+import { Suspense } from "react";
+import Spinner from "@/components/ui/Spinner";
 
-const MainPackagesSection = dynamic(() => import("@/components/sections/MainPackages"),);
-const AdditionalPackagesSection = dynamic(() => import("./_sections/AdditionalPackages"),);
+const MainPackagesSection = dynamic(
+  () => import("@/components/sections/MainPackages"),
+);
+const AdditionalPackagesSection = dynamic(
+  () => import("./_sections/AdditionalPackages"),
+);
 
 // Metadata
 export async function generateMetadata(): Promise<Metadata> {
@@ -27,6 +34,9 @@ export default async function PackagesPage() {
 
   return (
     <div className="flex-grow overflow-hidden">
+      <Suspense fallback={<Spinner />}>
+        <CheckoutResultHandler />
+      </Suspense>
       <PackagesHeroSection />
       {data?.packages?.length > 0 && (
         <MainPackagesSection data={data?.packages} effectis={true} />

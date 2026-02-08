@@ -157,26 +157,48 @@
       "packages_id": {
         "zee_coin": "zee coins",
         "joker": "joker",
-        "statement":"Best for new players willing to try our services",
-        "not_refundable":"**NONREFUNDABLE**",
+        "statement": "Best for new players willing to try our services",
+        "not_refundable": "**NONREFUNDABLE**",
         "Subscribe": "Subscribe Now",
         "currency": "BHD",
-        "choose_payment":"Choose payment method",
-        "promo_code":{
-          "placeholder":"Enter your promo code to get the discount",
-          "activate":"Activate the code",
-          "required":"Promo code can't be empty"
+        "choose_payment": "Choose payment method",
+        "promo_code": {
+          "placeholder": "Enter your promo code to get the discount",
+          "activate": "Activate the code",
+          "required": "Promo code can't be empty"
         },
-        "modals":{
-          "shipping":{
-            "title":"Shipping Details",
-            "subtotal":"Subtotal",
-            "package_type":"Package Type",
-            "package_price":"Package Price",
-            "after_discount":"After Discount",
-            "discount_value":"Discount Value",
-            "total":"Total",
-            "buy_now":"Buy Now"
+        "modals": {
+          "shipping": {
+            "title": "Shipping Details",
+            "subtotal": "Subtotal",
+            "package_type": "Package Type",
+            "package_price": "Package Price",
+            "after_discount": "After Discount",
+            "discount_value": "Discount Value",
+            "total": "Total",
+            "buy_now": "Buy Now"
+          },
+          "operator": {
+            "message": "Secure purchase process in progress"
+          },
+          "success": {
+            "message": "Your package has been successfully purchased"
+          },
+          "error": {
+            "message": "Something went wrong"
+          },
+          "otp": {
+            "title": "OTP Code",
+            "description_zain": "We've sent a 5-digit code to your phone. Please enter it below to complete your registration.",
+            "description_other": "We've sent a 4-digit code to your phone. Please enter it below to complete your registration.",
+            "placeholder_zain": "Enter 5-Digit Code",
+            "placeholder_other": "Enter 4-Digit Code",
+            "didnt_receive": "Didn't receive the code?",
+            "resend_in": "Resend in {time}",
+            "resend_code": "Resend Code",
+            "verify": "Next",
+            "otp_validation_zain": "Pin code must be exactly 5 digits",
+            "otp_validation_other": "Pin code must be exactly 4 digits"
           }
         }
       },
@@ -275,9 +297,9 @@
           "zee_coins": "Zee Coins"
         }
       },
-      "support":{
-        "send_message":{
-          "placeholder":"Enter your message..."
+      "support": {
+        "send_message": {
+          "placeholder": "Enter your message..."
         }
       }
     }
@@ -311,7 +333,7 @@
       },
       "loader": {
         "title": "Loading...",
-        "sub_title":"please wait while we load the content"
+        "sub_title": "please wait while we load the content"
       }
     },
     "layout": {
