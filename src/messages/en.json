@@ -398,7 +398,10 @@
     },
     "prediction": {
       "steps": {
-        "game": {},
+        "game": {
+          "title":"Predict the match result",
+          "anticipation":"Anticipation"
+        },
         "completed": {}
       }
     },

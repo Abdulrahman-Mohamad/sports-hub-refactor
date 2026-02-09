@@ -72,6 +72,19 @@ h6 {
   border-radius: 10px;
 }
 
+/* disable number input spinner */
+/* Chrome, Edge, Safari */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
 .swiper-pagination {
   bottom: 0px !important;
 }
