@@ -20,8 +20,9 @@ export default function PredictitionsGame() {
   const searchParams = useSearchParams();
   const id = searchParams?.get("id");
   const router = useRouter();
+  const stepParam = searchParams?.get("step") as PredictionStepProps;
 
-  const [step, setStep] = useState<PredictionStepProps>("rules");
+  const [step, setStep] = useState<PredictionStepProps>(stepParam || "rules");
   const [joker, setJoker] = useState<boolean>(false);
   const [match, setMatch] = useState<Prediction | null>(null);
   const [config, setConfig] = useState<GamesConfigProps | null>(null);
@@ -82,17 +83,15 @@ export default function PredictitionsGame() {
         return <GameInsufficientCoinsStep />;
       case "game":
         return (
-            <PredictionGameStep
-              joker={joker}
-              setStep={setStep}
-              id={id!}
-              data={match}
-            />
+          <PredictionGameStep
+            joker={joker}
+            setStep={setStep}
+            id={id!}
+            data={match}
+          />
         );
       case "completed":
-        return (
-            <PredictionCompletedStep data={match} />
-        );
+        return <PredictionCompletedStep data={match} />;
     }
   };
   return (

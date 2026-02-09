@@ -371,9 +371,14 @@
         "rules":"Rules",
         "play_now":"Play Now"
       },
+      "joker_check": {
+        "title":"The Joker Can Flip It",
+        "description":"The Joker boosts your chances and covers the weak spots in your prediction. Use it now and make this round a game-changer in your ranking!",
+        "no":"No, Thanks",
+        "yes":"Yes"
+      },
       "insufficient_coins": {},
       "insufficient_joker": {},
-      "joker_check": {},
       "joker_active": {}
     },
     "prediction": {
