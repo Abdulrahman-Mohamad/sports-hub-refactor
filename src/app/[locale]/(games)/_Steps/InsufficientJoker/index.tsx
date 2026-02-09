@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import React from 'react'
-import sadGIF from "@/assets/games/sad.gif";
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import * as motion from "motion/react-client";
@@ -21,7 +20,7 @@ export default function GameInsufficientJokerStep({
             <div className='px-12 py-8 flex flex-col gap-4 items-center max-w-2xl mx-auto '>
                 <div>
                     <Image
-                    src={sadGIF}
+                    src={'/images/common/sad-face.png'}
                     alt='Coin'
                     width={200}
                     height={200}

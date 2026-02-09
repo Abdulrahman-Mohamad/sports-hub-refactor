@@ -365,7 +365,12 @@
   },
   "games": {
     "steps": {
-      "rules": {},
+      "rules": {
+        "trivia":"Trivia",
+        "prediction":"Prediction",
+        "rules":"Rules",
+        "play_now":"Play Now"
+      },
       "insufficient_coins": {},
       "insufficient_joker": {},
       "joker_check": {},
