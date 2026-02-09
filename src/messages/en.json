@@ -334,6 +334,12 @@
       "loader": {
         "title": "Loading...",
         "sub_title": "please wait while we load the content"
+      },
+      "InsufficientModal": {
+        "title": "Insufficient Balance",
+        "description": "Your Current Balance Doesn't Cover The Entry Cost. Top Up Your Coins Now To Join The Game!",
+        "no_thanks": "No Thanks",
+        "yes": "Yes"
       }
     },
     "layout": {
