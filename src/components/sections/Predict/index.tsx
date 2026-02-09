@@ -63,8 +63,22 @@ const MatchCard = ({
     //check if he is logged in or not first
     if (!!!isLogged) return router.push("/register");
     // check if the time for prediction is up or not
-    if (!data?.last_mins_for_prediction)
+    const [d, m, y] = data?.fixture_date.split("/").map(Number);
+    const [timePart, modifier] = data?.fixture_time.split(" ");
+    const timeSplit = timePart.split(":").map(Number);
+    let hours = timeSplit[0];
+    const minutes = timeSplit[1];
+
+    if (modifier?.toUpperCase() === "PM" && hours < 12) hours += 12;
+    if (modifier?.toUpperCase() === "AM" && hours === 12) hours = 0;
+
+    const fixtureDateTime = new Date(y, m - 1, d, hours, minutes).getTime();
+    const now = new Date().getTime();
+    const bufferMs = (data?.last_mins_for_prediction || 0) * 60 * 1000;
+
+    if (now >= fixtureDateTime - bufferMs) {
       return toast.warn(t("you_cant_predict"));
+    }
 
     // check if he predicted before , if true update prediction , if false create new pediction
     // if he going to update redirect to the page directly
