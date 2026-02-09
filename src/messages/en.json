@@ -365,14 +365,17 @@
   },
   "games": {
     "steps": {
-      "rules":{},
-      "insufficient_coins":{},
-      "insufficient_joker":{},
+      "rules": {},
+      "insufficient_coins": {},
+      "insufficient_joker": {},
       "joker_check": {},
-      "joker_active":{}
+      "joker_active": {}
     },
     "prediction": {
-      "steps": {}
+      "steps": {
+        "game": {},
+        "completed": {}
+      }
     },
     "trivia": {}
   }

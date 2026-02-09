@@ -1,16 +1,26 @@
-import { FixtureProps } from "@/utils/types&schemas/Predictions/Fixture";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import * as motion from "motion/react-client";
+import { Prediction } from "@/utils/types/Fixtures/Fixture";
 
-export default function FixtureCompletedStep({
+export default function PredictionCompletedStep({
   data: response,
 }: {
-  data: FixtureProps;
+  data: Prediction;
 }) {
   const router = useRouter();
-  const t = useTranslations("pages.prediction_game.completed");
+  const t = useTranslations("games.prediction.steps.completed");
+
+    const getWinner = () => {
+    if (!response?.prediction) return t("draw");
+    const { home_score, away_score } = response.prediction;
+    if (home_score > away_score) return response.teams.home.name;
+    if (away_score > home_score) return response.teams.away.name;
+    return t("draw");
+  };
+
+
   return (
     <div className="rounded-xl mx-6 border-greenblue bg-darkGunmetalA2 ring-2 ring-[#FCDE02]/20 p-4 md:p-8 !py-12 w-full max-w-2xl">
       {/* Header */}
@@ -79,13 +89,7 @@ export default function FixtureCompletedStep({
 
         <div className="flex items-center gap-2 justify-center text-lg md:text-2xl font-semibold">
           <span>
-            {response?.prediction
-              ? response.prediction.home_score > response.prediction.away_score
-                ? response.teams.home.name
-                : response.prediction.home_score < response.prediction.away_score
-                ? response.teams.away.name
-                : "draw"
-              : "draw"}
+            {getWinner()}
           </span> 
           <span className="rtl:-order-1">{t('victory')}</span>
         </div>
@@ -95,7 +99,7 @@ export default function FixtureCompletedStep({
           whileTap={{ scale: 0.9 }}
           type="button"
           className="btn bg-gradient-bluegreenA1 border-2 mt-4 mx-auto !px-10"
-          onClick={() => router.push("/predictions")}
+          onClick={() => router.push("/fixtures")}
         >
           {t("back")}
         </motion.button>

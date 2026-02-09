@@ -1,29 +1,29 @@
-import { FixtureProps } from "@/utils/types&schemas/Predictions/Fixture";
-import { TriviaStepProps } from "@/utils/types&schemas/Trivia/TriviaStep";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import usePredictionCreatePrediction from "@/lib/tanstack/Predictions/useCreatePredictions";
-import usePredictionUpdatePrediction from "@/lib/tanstack/Predictions/useUpdatePredictions";
 import { toast } from "react-toastify";
 import { useTranslations } from "next-intl";
 import * as motion from "motion/react-client";
+import { PredictionStepProps } from "@/utils/types/Prediction";
+import { Prediction } from "@/utils/types/Fixtures/Fixture";
+import { updatePredictionFetch } from "@/lib/api/prediction/updatePrediction";
+import { makePredictionFetch } from "@/lib/api/prediction/makePrediction";
 
-export default function FixtureGameStep({
+export default function PredictionGameStep({
   setStep,
   joker,
   id,
   data: response,
 }: {
-  setStep: (step: TriviaStepProps) => any;
+  setStep: (step: PredictionStepProps) => any;
   joker: boolean;
-  id: string | undefined;
-  data: FixtureProps;
+  id: string | number | undefined;
+  data: Prediction;
 }) {
   const [isDraw, setIsDraw] = useState(false);
   const [isHome, setIsHome] = useState(false);
   const [isAway, setIsAway] = useState(false);
-  const t = useTranslations("pages.prediction_game.game");
+  const t = useTranslations("games.prediction.steps.game");
   const { register, reset, handleSubmit, setValue } = useForm({
     defaultValues: {
       use_joker: joker,
@@ -34,23 +34,7 @@ export default function FixtureGameStep({
     },
   });
 
-  const onSuccess = () => {
-    setStep("completed");
-  };
-  const onError = (e: any) => {
-    toast.error(e?.response?.data?.message || "Error Occurred");
-  };
-
-  const createPrediction = usePredictionCreatePrediction({
-    onSuccess,
-    onError,
-  });
-  const updatePrediction = usePredictionUpdatePrediction({
-    onSuccess,
-    onError,
-  });
-
-  const onSubmit = (data: any) => {
+  const onSubmit = async (data: any) => {
     if (!isHome && !isAway && !isDraw) {
       toast.error("Please select an outcome");
       return;
@@ -80,25 +64,50 @@ export default function FixtureGameStep({
       toast.error("Scores must be equal for a draw");
       return;
     }
-    delete finalData.draw_score;
 
-    if (response?.check_prediction) {
-      updatePrediction.mutate(finalData);
+    const payload = {
+      home_score: home,
+      away_score: away,
+    };
+
+    let res;
+    if (response?.prediction) {
+      res = await updatePredictionFetch(id as string, payload);
     } else {
-      createPrediction.mutate(finalData);
+      res = await makePredictionFetch({
+        ...payload,
+        fixture_id: Number(id),
+        use_joker: joker ? 1 : 0,
+      });
+    }
+
+    if (res?.status) {
+      toast.success(res.message);
+      setStep("completed");
+    } else {
+      toast.error(res?.message || t("error_occurred"));
     }
   };
 
   useEffect(() => {
-    if (response?.check_prediction) {
+    if (response?.prediction) {
+      const { home_score, away_score } = response.prediction;
+
+      if (home_score > away_score) setIsHome(true);
+      else if (away_score > home_score) setIsAway(true);
+      else {
+        setIsDraw(true);
+        setValue("draw_score", home_score);
+      }
+
       reset({
-        home_score: response?.prediction?.home_score,
-        away_score: response?.prediction?.away_score,
-        fixture_id: id,
+        home_score,
+        away_score,
+        draw_score: home_score === away_score ? home_score : 0,
       });
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [response, reset, setValue]);
+
   return (
     <div className="rounded-xl mx-6 border-greenblue bg-darkGunmetalA2 ring-2 ring-[#FCDE02]/20 p-4 md:p-8 !py-12 w-full max-w-3xl">
       {/* Header */}
