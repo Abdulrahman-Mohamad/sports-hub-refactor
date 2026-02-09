@@ -42,6 +42,7 @@ export default function GameJokerCheckStep({
                 alt="Coin"
                 width={200}
                 height={500}
+                quality={90}
                 className="w-[160px] h-auto"
               />
             </div>

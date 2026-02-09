@@ -95,7 +95,7 @@ export default function PredictitionsGame() {
     }
   };
   return (
-    <div className={`${styles.container}`}>
+    <div className={`${styles.container} px-4`}>
       <AnimatePresence>{renderStep(step)}</AnimatePresence>
     </div>
   );
