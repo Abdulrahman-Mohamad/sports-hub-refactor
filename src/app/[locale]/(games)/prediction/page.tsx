@@ -20,9 +20,8 @@ export default function PredictitionsGame() {
   const searchParams = useSearchParams();
   const id = searchParams?.get("id");
   const router = useRouter();
-  const stepParam = searchParams?.get("step") as PredictionStepProps;
 
-  const [step, setStep] = useState<PredictionStepProps>(stepParam || "rules");
+  const [step, setStep] = useState<PredictionStepProps>("rules");
   const [joker, setJoker] = useState<boolean>(false);
   const [match, setMatch] = useState<Prediction | null>(null);
   const [config, setConfig] = useState<GamesConfigProps | null>(null);
@@ -60,6 +59,23 @@ export default function PredictitionsGame() {
     fetchData();
   }, [id, router]);
 
+  const updateMatchWithPrediction = (
+    home_score: number,
+    away_score: number,
+  ) => {
+    if (match) {
+      setMatch({
+        ...match,
+        check_prediction: true,
+        prediction: {
+          ...(match.prediction || {}),
+          home_score,
+          away_score,
+        } as any,
+      });
+    }
+  };
+
   const renderStep = (s: PredictionStepProps) => {
     if (!match || loading) return null;
 
@@ -88,6 +104,7 @@ export default function PredictitionsGame() {
             setStep={setStep}
             id={id!}
             data={match}
+            onSuccessExecute={updateMatchWithPrediction}
           />
         );
       case "completed":

@@ -14,11 +14,13 @@ export default function PredictionGameStep({
   joker,
   id,
   data: response,
+  onSuccessExecute,
 }: {
   setStep: (step: PredictionStepProps) => any;
   joker: boolean;
   id: string | number | undefined;
   data: Prediction;
+  onSuccessExecute: (home: number, away: number) => void;
 }) {
   const t = useTranslations("games.prediction.steps.game");
   const { register, reset, handleSubmit } = useForm({
@@ -52,6 +54,7 @@ export default function PredictionGameStep({
     }
 
     if (res?.status) {
+      onSuccessExecute(home, away);
       toast.success(res.message);
       setStep("completed");
     } else {
@@ -90,52 +93,52 @@ export default function PredictionGameStep({
       </div>
       {/* Body */}
       <form
-        className=" pt-8 flex flex-col gap-10 mx-auto text-white max-w-md"
+        className="pt-8 flex flex-col gap-10 mx-auto text-white max-w-md"
         onSubmit={handleSubmit(onSubmit)}
       >
         {/* Teams */}
         <div className="flex items-center justify-between gap-2 md:gap-4 w-full">
           {/* Home Team */}
-              <Image
-                alt="Home Team"
-                src={response?.teams?.home?.logo || ""}
-                width={200}
-                height={200}
-                className="w-[50px] md:w-[100px]"
-              />
+          <Image
+            alt="Home Team"
+            src={response?.teams?.home?.logo || ""}
+            width={200}
+            height={200}
+            className="w-[50px] md:w-[100px]"
+          />
           {/* VS Image */}
-            <Image
-              alt="VS Image"
-              src="/images/gameplay/prediction/vs.png"
-              width={100}
-              height={100}
-              className="w-[50px]"
-            />
+          <Image
+            alt="VS Image"
+            src="/images/gameplay/prediction/vs.png"
+            width={100}
+            height={100}
+            className="w-[50px]"
+          />
           {/* Away Team */}
-              <Image
-                alt="Away Team"
-                src={response?.teams?.away?.logo || ""}
-                width={200}
-                height={200}
-                className="w-[50px] md:w-[100px]"
-              />
+          <Image
+            alt="Away Team"
+            src={response?.teams?.away?.logo || ""}
+            width={200}
+            height={200}
+            className="w-[50px] md:w-[100px]"
+          />
             
         </div>
 
         <div className="flex items-center justify-between gap-4">
-            <input
-              type="number"
-              min={0}
-              {...register("home_score", { required: true, min: 0 })}
-              className="w-28 h-12 bg-white border rounded-lg text-center text-xl font-bold text-black outline-none"
-            />
+          <input
+            type="number"
+            min={0}
+            {...register("home_score", { required: true, min: 0 })}
+            className="w-28 h-12 bg-white border rounded-lg text-center text-xl font-bold text-black outline-none"
+          />
           <div className="w-6 h-1 bg-white rounded-full"/>
-            <input
-              type="number"
-              min={0}
-              {...register("away_score", { required: true, min: 0 })}
-              className="w-28 h-12 bg-white border rounded-lg text-center text-xl font-bold text-black outline-none"
-            />
+          <input
+            type="number"
+            min={0}
+            {...register("away_score", { required: true, min: 0 })}
+            className="w-28 h-12 bg-white border rounded-lg text-center text-xl font-bold text-black outline-none"
+          />
         </div>
         <motion.button
           whileHover={{ scale: 1.1 }}

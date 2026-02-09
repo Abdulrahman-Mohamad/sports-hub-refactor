@@ -9,7 +9,7 @@ export const makePredictionFetch = async (data: {
   try {
     const res = await apiFetch('/fixtures/make-prediction', {
       method: "POST",
-      body: JSON.stringify(data)
+      body: data
     });
     return res;
   } catch (error) {

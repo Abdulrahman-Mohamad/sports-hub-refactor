@@ -380,8 +380,7 @@
       "joker_active": {
         "title":"Joker Activated",
         "description":"Your prediction just got a serious boost double points if you&apos;re right, and half even if you&apos;re wrong.",
-        "good_luck":"Good luck!",
-        "button":"Start Game"
+        "good_luck":"Good luck!"
       },
       "insufficient_joker": {
         "title":"Insufficient Joker",
@@ -400,9 +399,15 @@
       "steps": {
         "game": {
           "title":"Predict the match result",
-          "anticipation":"Anticipation"
+          "anticipation":"Anticipation",
+          "error_occurred":"An error occurred"
         },
-        "completed": {}
+        "completed": {
+          "title":"Your Predictions",
+          "victory":"Victory",
+          "draw":"Draw",
+          "exit":"Exit"
+        }
       }
     },
     "trivia": {}

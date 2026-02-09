@@ -10,7 +10,7 @@ export const updatePredictionFetch = async (
   try {
     const res = await apiFetch(`/fixtures/update-prediction/${fixtureId}`, {
       method: 'PUT',
-      body: JSON.stringify(data)
+      body: data
     });
     return res
   } catch (error) {
