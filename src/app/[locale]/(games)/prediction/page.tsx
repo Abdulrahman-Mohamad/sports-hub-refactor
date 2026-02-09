@@ -42,7 +42,7 @@ export default function PredictitionsGame() {
     switch (s) {
       case "rules":
         return <ErrorBoundary {...configMethods}>
-          <GameRulesStep isPredicted={response?.check_prediction} setStep={setStep} config={rules?.rules} type='fixture' />
+          <GameRulesStep isPredicted={response?.check_prediction} setStep={setStep} config={rules?.rules} type='prediction' />
         </ErrorBoundary>
       case "joker-check":
         return <GameJokerCheckStep setStep={setStep} setJoker={setJoker} />

@@ -358,5 +358,18 @@
         "logo": "/images/favicon/faviconAr.png"
       }
     }
+  },
+  "games":{
+    "steps":{
+      "rules":{
+        
+      }
+    },
+    "prediction":{
+
+    },
+    "trivia":{
+      
+    }
   }
 }

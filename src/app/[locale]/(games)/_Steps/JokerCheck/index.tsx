@@ -1,22 +1,21 @@
 import Image from "next/image";
 import React from "react";
-import useGamesCheckJoker from "@/lib/tanstack/Games/useCheckJoker";
-import { TriviaStepProps } from "@/utils/types&schemas/Trivia/TriviaStep";
 import { useTranslations } from "next-intl";
 import * as motion from "motion/react-client";
+import { PredictionStepProps } from "@/utils/types/Prediction";
+import { checkJokerFetch } from "@/lib/api/modals/checkJokerFetch";
 
 export default function GameJokerCheckStep({
   setStep,
   setJoker,
 }: {
-  setStep: (step: TriviaStepProps) => any;
+  setStep: (step: PredictionStepProps) => any;
   setJoker: (joker: boolean) => any;
 }) {
-  const t = useTranslations("pages.game_steps.joker_check");
+  const t = useTranslations("games.steps.joker_check");
 
   const onSuccess = (data: any) => {
-    const response = data?.data?.data;
-    if (response?.status) {
+    if (data?.status) {
       setJoker(true);
       setStep("joker-active");
     }
@@ -25,9 +24,8 @@ export default function GameJokerCheckStep({
     setJoker(false);
     setStep("insufficient-joker");
   };
-  const checkJoker = useGamesCheckJoker({ onSuccess, onError });
-  const handleCheck = () => {
-    checkJoker.mutate();
+  const handleCheck = async () => {
+    await checkJokerFetch({ onSuccess, onError });
   };
   return (
     <>

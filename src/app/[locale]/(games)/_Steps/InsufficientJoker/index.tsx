@@ -2,16 +2,16 @@ import Image from 'next/image'
 import React from 'react'
 import sadGIF from "@/assets/games/sad.gif";
 import { useRouter } from 'next/navigation';
-import { TriviaStepProps } from '@/utils/types&schemas/Trivia/TriviaStep';
 import { useTranslations } from 'next-intl';
 import * as motion from "motion/react-client";
+import { PredictionStepProps } from '@/utils/types/Prediction';
 
 export default function GameInsufficientJokerStep({
     setStep
 }:{
-    setStep:(step:TriviaStepProps)=>any;
+    setStep:(step:PredictionStepProps)=>any;
 }) {
-    const t = useTranslations("pages.game_steps.insufficient_joker")
+    const t = useTranslations("games.steps.insufficient_joker")
     const router = useRouter();
     return (
         <div className='border-gradient-greenblue-empty glow-blue-green-notification'>

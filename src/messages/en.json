@@ -362,5 +362,18 @@
         "logo": "/images/favicon/faviconEn.png"
       }
     }
+  },
+  "games": {
+    "steps": {
+      "rules":{},
+      "insufficient_coins":{},
+      "insufficient_joker":{},
+      "joker_check": {},
+      "joker_active":{}
+    },
+    "prediction": {
+      "steps": {}
+    },
+    "trivia": {}
   }
 }

@@ -1,14 +1,14 @@
 import Image from "next/image";
-import { TriviaStepProps } from "@/utils/types&schemas/Trivia/TriviaStep";
 import { useTranslations } from "next-intl";
 import * as motion from "motion/react-client";
+import { PredictionStepProps } from "@/utils/types/Prediction";
 
 export default function GameJokerActiveStep({
   setStep,
 }: {
-  setStep: (step: TriviaStepProps) => any;
+  setStep: (step: PredictionStepProps) => any;
 }) {
-  const t = useTranslations("pages.game_steps.joker_active");
+  const t = useTranslations("games.steps.joker_active");
   return (
     <>
       <div>

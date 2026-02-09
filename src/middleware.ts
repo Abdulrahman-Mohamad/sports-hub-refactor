@@ -11,7 +11,7 @@ export default function middleware(request: NextRequest) {
 
   const isLoggedIn = Boolean(request.cookies.get('access_token'));
 
-  const protectRoutes = ["/profile", "/history","/support"];
+  const protectRoutes = ["/profile", "/history","/support","/prediction"];
   const authRoutes = ["/login", "/register"];
 
   if (!isLoggedIn && protectRoutes.includes(pathname)) {

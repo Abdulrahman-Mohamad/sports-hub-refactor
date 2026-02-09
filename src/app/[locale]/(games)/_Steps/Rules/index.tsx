@@ -1,9 +1,9 @@
-import useGamesCheckCoins from "@/lib/tanstack/Games/useCheckCoins";
-import { TriviaStepProps } from "@/utils/types&schemas/Trivia/TriviaStep";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-import { useSelector } from "react-redux";
 import * as motion from "motion/react-client";
+import { useUser } from "@/context/UserContext";
+import { PredictionStepProps } from "@/utils/types/Prediction";
+import { checkCoinFetch } from "@/lib/api/modals/checkCoinFetch";
 
 export default function GameRulesStep({
   setStep,
@@ -11,26 +11,28 @@ export default function GameRulesStep({
   type,
   isPredicted,
 }: {
-  setStep: (step: TriviaStepProps) => any;
+  setStep: (step: PredictionStepProps) => any;
   config: string;
-  type: "trivia" | "fixture" | "it_complete";
+  type: "trivia" | "prediction";
   isPredicted?: boolean;
 }) {
-  const t = useTranslations("pages.trivia");
-  const isLogged = useSelector((state: any) => state.user.user);
+  const t = useTranslations("games.steps.rules");
+  const { user } = useUser();
+  const isLogged = !!user;
+
   const onSuccess = (data: any) => {
-    const response = data?.data?.data;
-    if (response?.status) setStep("joker-check");
+    if (data?.status) setStep("joker-check");
   };
+
   const onError = () => {
     setStep("insufficient-coins");
   };
-  const checkCoins = useGamesCheckCoins({ onSuccess, onError });
 
-  const handlePlay = () => {
-    if (!!!isLogged || (type === "fixture" && isPredicted))
+  const handlePlay = async () => {
+    if (!!!isLogged || (type === "prediction" && isPredicted))
       return setStep("game");
-    checkCoins.mutate({ slug: type==="fixture" ? "prediction" : type });
+
+    await checkCoinFetch(type as any, { onSuccess, onError });
   };
   return (
     <>
@@ -47,7 +49,13 @@ export default function GameRulesStep({
         <div className="rounded-xl mx-6 border-greenblue bg-darkGunmetalA2 ring-2 ring-[#FCDE02]/20 relative">
           <div className="w-full px-8 md:px-12 pt-10">
             <h2 className="text-greenA1 font-bold text-center text-2xl  md:text-3xl ">
-              {type === "trivia" ? t("trivia") : type === "fixture" ? t("predictions") : type === "it_complete" ? t("it_complete") : ""}
+              {type === "trivia"
+                ? t("trivia")
+                : type === "prediction"
+                  ? t("predictions")
+                  : type === "it_complete"
+                    ? t("it_complete")
+                    : ""}
             </h2>
           </div>
           <div className="px-8 md:px-12 py-8 flex flex-col gap-4  max-w-2xl mx-auto text-white">

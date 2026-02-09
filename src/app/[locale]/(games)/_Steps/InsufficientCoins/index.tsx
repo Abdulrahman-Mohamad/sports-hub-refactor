@@ -7,7 +7,7 @@ import * as motion from "motion/react-client";
 
 export default function GameInsufficientCoinsStep() {
   const router = useRouter();
-  const t = useTranslations("pages.game_steps.insufficient_coins");
+  const t = useTranslations("games.steps.insufficient_coins");
   return (
     <div className="border-gradient-greenblue-empty glow-blue-green-notification">
       <div className="w-full px-8 md:px-20 py-6">
