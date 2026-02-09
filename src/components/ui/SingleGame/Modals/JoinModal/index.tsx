@@ -41,7 +41,7 @@ export default function JoinGameModal({
         router.refresh();
       }
       if (type === "prediction") {
-        router.push(`/prediction-game?id=${predictionId}`);
+        router.push(`/prediction?id=${predictionId}`);
       }
     }
   };
