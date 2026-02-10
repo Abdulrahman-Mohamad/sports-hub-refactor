@@ -4,29 +4,21 @@ import {
   GoalDetails,
   SubstDetails,
   VarDetails,
-} from "@/utils/types&schemas/Predictions/Highlights";
+} from "@/utils/types/Fixtures/Highlights";
 import Image from "next/image";
-import normalGoalImg from "@/assets/predictions/goal/normal-goal.png";
-import ownGoalImg from "@/assets/predictions/goal/own-goal.png";
-import penaltyImg from "@/assets/predictions/goal/penalty.png";
-import missedPenaltyImg from "@/assets/predictions/goal/missed-penalty.png";
-import yellowCardImg from "@/assets/predictions/card/yellow-card.png";
-import redCardImg from "@/assets/predictions/card/red-card.png";
-import substImg from "@/assets/predictions/subst/Subst.png";
-import varConfirmedImg from "@/assets/predictions/var/var-confirmed.png";
 
 const handleGoal = (details: GoalDetails) => {
   return (
     <Image
       src={
         details === "Normal Goal"
-          ? normalGoalImg
+          ? "/images/highlights/goal/normal-goal.png"
           : details === "Own Goal"
-          ? ownGoalImg
+          ? "/images/highlights/goal/own-goal.png"
           : details === "Missed Penalty"
-          ? missedPenaltyImg
+          ? "/images/highlights/goal/missed-penalty.png"
           : details === "Penalty"
-          ? penaltyImg
+          ? "/images/highlights/goal/penalty.png"
           : "/default-event-img.png"
       }
       alt="Goal Image"
@@ -42,9 +34,9 @@ const handleCard = (details: CardDetails) => {
     <Image
       src={
         details === "Yellow Card"
-          ? yellowCardImg
+          ? "/images/highlights/card/yellow-card.png"
           : details === "Red Card"
-          ? redCardImg
+          ? "/images/highlights/card/red-card.png"
           : "/default-event-img.png"
       }
       alt="Card Image"
@@ -58,7 +50,7 @@ const handleCard = (details: CardDetails) => {
 const handleSubst = () => {
   return (
     <Image
-      src={substImg}
+      src={"/images/highlights/subst/Subst.png"}
       alt="Substituition Image"
       width={100}
       height={100}
@@ -71,9 +63,9 @@ const handleVar = (details: VarDetails) => {
     <Image
       src={
         details === "Penalty confirmed"
-          ? varConfirmedImg
+          ? "/images/highlights/var/var-confirmed.png"
           : details === "Goal cancelled"
-          ? missedPenaltyImg
+          ? "/images/highlights/goal/missed-penalty.png"
           : "/default-event-img.png"
       }
       alt="Var Image"

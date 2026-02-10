@@ -1,41 +1,20 @@
-import { HighlightsProps } from "@/utils/types&schemas/Predictions/Highlights";
 import Image from "next/image";
 import TimelineSection from "../Timeline";
-import { IoReload } from "react-icons/io5";
-import { useQueryClient } from "@tanstack/react-query";
-import { toast } from "react-toastify";
-import { IoIosArrowBack } from "react-icons/io";
-import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { motion } from "framer-motion";
+import { HighlightsProps } from "@/utils/types/Fixtures/Highlights";
+import HighlightBackButton from "../../_component/BackButton";
+import HighlightUpdateButton from "../../_component/UpdateButton";
+import Link from "next/link";
+import * as motion from "motion/react-client"
 
 export default function PredictionsHighlightsSection({
   data,
 }: {
   data: HighlightsProps;
 }) {
-  const t = useTranslations("pages.predictions.highlights");
-  const router = useRouter();
-
-  const {
-    fixture,
-    fixture_events: events,
-    prediction: predictions,
-  } = data || {};
-
-  const {
-    league,
-    teams,
-    goals,
-  } = fixture || {};
-
-  const queryClient = useQueryClient();
-  const handleUpdate = () => {
-    queryClient.invalidateQueries({
-      queryKey: ["predictions", "highlights"],
-    });
-    toast.success("Data Has Been Updated");
-  };
+  const t = useTranslations("pages.main.highlights");
+  const { fixture, fixture_events: events, prediction } = data || {};
+  const { league, teams, goals } = fixture || {};
 
   return (
     <div className="px-4">
@@ -47,29 +26,11 @@ export default function PredictionsHighlightsSection({
         <div className="rounded-t-xl w-full flex  items-center justify-between">
           {/* go back button */}
           <div className="text-neutral10 border-2 border-yellowA1 h-full flex items-center gap-2 rounded-xl rounded-bl-none rounded-tr-none">
-            <button
-              type="button"
-              onClick={() => router.back()}
-              className="p-2 flex items-center gap-2 text-yellowA1 font-medium"
-            >
-              <span>
-                <IoIosArrowBack size={22} />
-              </span>
-              <span className="hidden md:block">{t("back")}</span>
-            </button>
+            <HighlightBackButton />
           </div>
           {/* update button */}
           <div className="text-neutral10 border-2 border-redA1 h-full flex items-center gap-2 rounded-xl rounded-br-none rounded-tl-none">
-            <button
-              type="button"
-              onClick={handleUpdate}
-              className="p-2 flex items-center gap-2 text-redA1 font-medium"
-            >
-              <span>
-                <IoReload size={22} />
-              </span>
-              <span className="hidden md:block">{t("update")}</span>
-            </button>
+            <HighlightUpdateButton />
           </div>
         </div>
         {/* Body */}
@@ -96,7 +57,9 @@ export default function PredictionsHighlightsSection({
             <div className=" w-1/2 py-6 bg-darkGunmetalA3 border-2 rounded-lg flex items-center justify-center font-medium text-lg">
               {fixture?.fixture_date}
             </div>
-            <div className="w-1/2 py-6 bg-darkGunmetalA3 border-2 rounded-lg flex items-center justify-center font-medium text-xl">{fixture?.fixture_time}</div>
+            <div className="w-1/2 py-6 bg-darkGunmetalA3 border-2 rounded-lg flex items-center justify-center font-medium text-xl">
+              {fixture?.fixture_time}
+            </div>
           </div>
           {/* Match Teams Logos */}
           <div className="w-full flex justify-between items-center gap-4">
@@ -111,13 +74,15 @@ export default function PredictionsHighlightsSection({
                   className="w-[75px] md:w-[150px] !h-auto"
                 />
               </div>
-              <span className="font-medium text-lg md:text-5xl">{goals?.home}</span>
+              <span className="font-medium text-lg md:text-5xl">
+                {goals?.home}
+              </span>
             </div>
             {/* VS Image */}
             <div className="flex items-center justify-center w-full">
               <Image
                 alt="VS Image"
-                src='/images/predictions/highlight/vs.png'
+                src="/images/predictions/highlight/vs.png"
                 width={1000}
                 height={1000}
                 quality={100}
@@ -126,7 +91,9 @@ export default function PredictionsHighlightsSection({
             </div>
             {/* Away Team */}
             <div className="p-5 bg-darkGunmetalA3 border-2 rounded-lg flex items-center justify-center gap-2 md:gap-6 w-full">
-              <span className="font-medium text-lg md:text-5xl">{goals?.away}</span>
+              <span className="font-medium text-lg md:text-5xl">
+                {goals?.away}
+              </span>
               <div className="flex items-center">
                 <Image
                   alt="Away Team"
@@ -142,15 +109,17 @@ export default function PredictionsHighlightsSection({
           <TimelineSection
             events={events}
             teams={teams}
-            predictions={predictions}
+            predictions={prediction}
           />
-          <motion.button 
-          whileTap={{ scale: 0.9 }}
-          whileHover={{ scale: 1.1 }}
-          onClick={() => router.back()}
-          className="btn !px-24 py-2 bg-gradient-wormA1 border text-white font-medium">
-            {t('back')}
+          <Link href={'/fixtures'}>
+            <motion.button
+              whileTap={{ scale: 0.9 }}
+              whileHover={{ scale: 1.1 }}
+              className="btn !px-24 py-2 bg-gradient-wormA1 border text-white font-medium"
+            >
+              {t("back")}
             </motion.button>
+          </Link>
         </div>
       </div>
     </div>

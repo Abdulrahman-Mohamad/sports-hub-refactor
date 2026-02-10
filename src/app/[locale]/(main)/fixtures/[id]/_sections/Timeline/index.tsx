@@ -1,18 +1,16 @@
-import { FixtureProps } from "@/utils/types&schemas/Predictions/Fixture";
-import { FixtureEvent } from "@/utils/types&schemas/Predictions/Highlights";
 import Image from "next/image";
 import { getEventIcon } from "@/utils/helperFn/TimelineFunctions/TypesIcons";
 import { useTranslations } from "next-intl";
-import AnimateSection from "@/components/layout/AnimateSection";
-
+import { FixtureEvent, FixtureOver } from "@/utils/types/Fixtures/Highlights";
+import { prediction as PredictionType } from "@/utils/types/Fixtures/Fixture";
 export default function TimelineSection({
   events,
   teams,
   predictions,
 }: {
   events: FixtureEvent[];
-  teams: FixtureProps["teams"];
-  predictions: FixtureProps["prediction"];
+  teams: FixtureOver["teams"];
+  predictions: PredictionType|null ;
 }) {
   const homeTeam = teams?.home?.id;
   /* console.log(predictions); */
@@ -43,7 +41,6 @@ export default function TimelineSection({
 
           {/* Start indicator (top - end of match) */}
           <div className="absolute left-1/2 transform -translate-x-1/2 -top-2">
-            <AnimateSection>
               <Image
                 src="/images/predictions/highlight/whistle.png"
                 alt="End Match Whistle Image"
@@ -51,7 +48,6 @@ export default function TimelineSection({
                 height={100}
                 className="w-12 h-auto rounded-full object-contain bg-white"
               />
-            </AnimateSection>
           </div>
           {/* Events */}
           <div className="flex flex-col-reverse gap-6">
@@ -60,7 +56,6 @@ export default function TimelineSection({
 
               return (
                 <>
-                  <AnimateSection>
                     <div key={index} className="relative flex items-center">
                       {/* Time badge on the line */}
                       <div className="absolute left-1/2 transform -translate-x-1/2">
@@ -87,14 +82,12 @@ export default function TimelineSection({
                         </>
                       )}
                     </div>
-                  </AnimateSection>
                 </>
               );
             })}
           </div>
           {/* End indicator (bottom - start of match) */}
           <div className="absolute left-1/2 transform -translate-x-1/2 bottom-0 bg-white">
-            <AnimateSection>
               <Image
                 src="/images/predictions/highlight/whistle.png"
                 alt="End Match Whistle Image"
@@ -102,7 +95,6 @@ export default function TimelineSection({
                 height={100}
                 className="w-12 h-12 rounded-full object-contain bg-white"
               />
-            </AnimateSection>
             {/* <div className="w-8 h-8 rounded-full border-4 border-red-500 bg-white"></div> */}
           </div>
         </div>

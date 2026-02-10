@@ -1,4 +1,4 @@
-import { Prediction } from "./Fixture";
+import { prediction, Prediction } from "./Fixture";
 
 export interface TimeInfo {
   elapsed: number;
@@ -76,15 +76,16 @@ export type FixtureEvent =
       detail: VarDetails;
     };
 
-export interface FixtureOver {
-  goals: {
-    home: number;
-    away: number;
-  };
+export interface FixtureOver extends Prediction {
+    goals: {
+        home:number;
+        away:number;
+    }
 }
+
 // main props using an array of events
 export interface HighlightsProps {
   fixture_events: FixtureEvent[];
   fixture: FixtureOver;
-  prediction: Prediction;
+  prediction: prediction;
 }

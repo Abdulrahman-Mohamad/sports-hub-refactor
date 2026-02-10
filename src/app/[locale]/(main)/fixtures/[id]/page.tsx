@@ -1,22 +1,18 @@
-"use client";
-// import PredictionsHeroSection from '../_sections/Hero';
-import usePredictionsHighlights from "@/lib/tanstack/Predictions/useHighlight";
-import ErrorBoundary from "@/hooks/ErrorBoundary";
 import PredictionsHighlightsSection from "./_sections/Highlights";
-import { useParams } from "next/navigation";
+import { FixturesIdViewHighlightsFetch } from "@/lib/api/fixtures/ViewHighlights";
 
-export default function HighlightPage() {
-  const { id } = useParams();
-
-  const { data, ...methods } = usePredictionsHighlights(id);
-  const response = data?.data?.data || {};
+export default async function HighlightPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
+  const res = await FixturesIdViewHighlightsFetch(id);
+  const data = res?.data || {};
 
   return (
     <div className="flex-grow">
-      {/* <PredictionsHeroSection /> */}
-      <ErrorBoundary {...methods}>
-        <PredictionsHighlightsSection data={response} />
-      </ErrorBoundary>
+      <PredictionsHighlightsSection data={data} />
     </div>
   );
 }

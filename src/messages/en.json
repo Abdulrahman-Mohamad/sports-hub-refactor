@@ -260,6 +260,9 @@
         "match_over": "Match over",
         "winner": "Victory"
       },
+      "highlights":{
+
+      },
       "profile": {
         "actions": {
           "invite_friend": "Invite Friend",
