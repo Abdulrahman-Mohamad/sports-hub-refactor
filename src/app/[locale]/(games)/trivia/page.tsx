@@ -18,15 +18,11 @@ import {
 import { triviaStartGameFetch } from "@/lib/api/trivia/startGame";
 
 export default function TriviaPage() {
-  const [step, setStep] = useState<PredictionStepProps>("completed");
+  const [step, setStep] = useState<PredictionStepProps>("rules");
   const [joker, setJoker] = useState<boolean>(false);
   const [config, setConfig] = useState<TriviaConfig | null>(null);
   const [questions, setQuestions] = useState<TriviaQuestion[]>([]);
-  const [completedData, setCompletedData] = useState<TriviaResult | null>({
-    total_que: 10,
-    correct_que: 7,
-    points: 70,
-  });
+  const [completedData, setCompletedData] = useState<TriviaResult | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
   // Fetch trivia show
