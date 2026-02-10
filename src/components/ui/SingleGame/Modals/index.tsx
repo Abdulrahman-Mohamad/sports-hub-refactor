@@ -11,6 +11,7 @@ export default function GameModal({
   isOpen,
   onClose,
   predictionId,
+  onSuccess,
 }: {
   zee_coins: string | number;
   game_url?: string;
@@ -18,6 +19,7 @@ export default function GameModal({
   isOpen: boolean;
   onClose: () => void;
   predictionId?: string | number | null;
+  onSuccess?: () => void;
 }) {
   const [step, setStep] = useState<"check" | "insufficient">("check");
   const handleClose = () => {
@@ -35,6 +37,7 @@ export default function GameModal({
             onClose={onClose}
             setStep={setStep}
             predictionId={predictionId}
+            onSuccessProp={onSuccess}
           />
         ) : (
           <GamesInsufficientModal onClose={onClose} setStep={setStep} />

@@ -406,6 +406,16 @@
         }
       }
     },
-    "trivia": {}
+    "trivia": {
+      "steps":{
+        "completed":{
+          "title":"خلصت اللعبة",
+          "your_score":"نقاطك",
+          "points":"نقطة",
+          "back":"ارجع للألعاب",
+          "play_again":"ألعب مرة ثانية"
+        }
+      }
+    }
   }
 }

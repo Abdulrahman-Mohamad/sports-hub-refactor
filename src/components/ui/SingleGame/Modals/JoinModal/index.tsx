@@ -15,6 +15,7 @@ export default function JoinGameModal({
   onClose,
   setStep,
   predictionId,
+  onSuccessProp,
 }: {
   zee_coins: string | number;
   game_url?: string;
@@ -22,6 +23,7 @@ export default function JoinGameModal({
   onClose: () => void;
   setStep: (step: "check" | "insufficient") => any;
   predictionId?: string | number | null;
+  onSuccessProp?: () => void;
 }) {
   const t = useTranslations("components.ui.single_game.join");
   const locale = useLocale();
@@ -34,6 +36,7 @@ export default function JoinGameModal({
     console.log(response);
 
     if (response?.status) {
+      if (onSuccessProp) return onSuccessProp();
       if (type === "shot_on_net")
         window.location.href = `${game_url}?lang=${locale}&token=${accessToken}`;
       if (type === "trivia") {

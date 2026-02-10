@@ -410,6 +410,16 @@
         }
       }
     },
-    "trivia": {}
+    "trivia": {
+      "steps":{
+        "completed":{
+          "title":"Trivia Completed",
+          "your_score":"Your Score",
+          "points":"Points",
+          "back":"Back to games",
+          "play_again":"Play Again"
+        }
+      }
+    }
   }
 }
