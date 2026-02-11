@@ -2,7 +2,7 @@ import {
   CardDetails,
   FixtureEvent,
   GoalDetails,
-  SubstDetails,
+  // SubstDetails,
   VarDetails,
 } from "@/utils/types/Fixtures/Highlights";
 import Image from "next/image";

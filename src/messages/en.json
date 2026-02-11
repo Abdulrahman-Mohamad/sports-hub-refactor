@@ -260,8 +260,26 @@
         "match_over": "Match over",
         "winner": "Victory"
       },
-      "highlights":{
-
+      "highlights": {
+        "update": "Update",
+        "back": "Back",
+        "title":"Match Highlights",
+        "timeline": {
+          "your_prediction": "Your Prediction",
+          "normal_goal": "Normal Goal",
+          "own_goal": "Own Goal",
+          "penalty": "Penalty Goal",
+          "missed_penalty": "missed_penalty",
+          "yellow_card": "Yellow Card",
+          "red_card": "Red Card",
+          "sub1": "1st Substitution",
+          "sub2": "2nd Substitution",
+          "sub3": "3rd Substitution",
+          "sub4": "4th Substitution",
+          "sub5": "5th Substitution",
+          "goal_cancelled": "Goal Cancelled",
+          "penalty_confirmed": "Penalty Confirmed"
+        }
       },
       "profile": {
         "actions": {
@@ -369,58 +387,58 @@
   "games": {
     "steps": {
       "rules": {
-        "trivia":"Trivia",
-        "prediction":"Prediction",
-        "rules":"Rules",
-        "play_now":"Play Now"
+        "trivia": "Trivia",
+        "prediction": "Prediction",
+        "rules": "Rules",
+        "play_now": "Play Now"
       },
       "joker_check": {
-        "title":"The Joker Can Flip It",
-        "description":"The Joker boosts your chances and covers the weak spots in your prediction. Use it now and make this round a game-changer in your ranking!",
-        "no":"No, Thanks",
-        "yes":"Yes"
+        "title": "The Joker Can Flip It",
+        "description": "The Joker boosts your chances and covers the weak spots in your prediction. Use it now and make this round a game-changer in your ranking!",
+        "no": "No, Thanks",
+        "yes": "Yes"
       },
       "joker_active": {
-        "title":"Joker Activated",
-        "description":"Your prediction just got a serious boost double points if you&apos;re right, and half even if you&apos;re wrong.",
-        "good_luck":"Good luck!"
+        "title": "Joker Activated",
+        "description": "Your prediction just got a serious boost double points if you&apos;re right, and half even if you&apos;re wrong.",
+        "good_luck": "Good luck!"
       },
       "insufficient_joker": {
-        "title":"Insufficient Joker",
-        "description":"Your current balance doesn&apos;t cover the entry cost. Top up your joker now to join the game!",
-        "no":"No, Thanks",
-        "yes":"Yes"
+        "title": "Insufficient Joker",
+        "description": "Your current balance doesn&apos;t cover the entry cost. Top up your joker now to join the game!",
+        "no": "No, Thanks",
+        "yes": "Yes"
       },
       "insufficient_coins": {
-        "title":"Insufficient Coins",
-        "description":"Your current balance doesn&apos;t cover the entry cost. Top up your coins now to join the game!",
-        "no":"No, Thanks",
-        "yes":"Yes"
+        "title": "Insufficient Coins",
+        "description": "Your current balance doesn&apos;t cover the entry cost. Top up your coins now to join the game!",
+        "no": "No, Thanks",
+        "yes": "Yes"
       }
     },
     "prediction": {
       "steps": {
         "game": {
-          "title":"Predict the match result",
-          "anticipation":"Anticipation",
-          "error_occurred":"An error occurred"
+          "title": "Predict the match result",
+          "anticipation": "Anticipation",
+          "error_occurred": "An error occurred"
         },
         "completed": {
-          "title":"Your Predictions",
-          "victory":"Victory",
-          "draw":"Draw",
-          "exit":"Exit"
+          "title": "Your Predictions",
+          "victory": "Victory",
+          "draw": "Draw",
+          "exit": "Exit"
         }
       }
     },
     "trivia": {
-      "steps":{
-        "completed":{
-          "title":"Trivia Completed",
-          "your_score":"Your Score",
-          "points":"Points",
-          "back":"Back to games",
-          "play_again":"Play Again"
+      "steps": {
+        "completed": {
+          "title": "Trivia Completed",
+          "your_score": "Your Score",
+          "points": "Points",
+          "back": "Back to games",
+          "play_again": "Play Again"
         }
       }
     }

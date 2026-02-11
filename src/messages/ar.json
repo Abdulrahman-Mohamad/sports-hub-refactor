@@ -257,6 +257,27 @@
         "match_over": "المباراة المنتهية",
         "winner": "فوز"
       },
+      "highlights": {
+        "update": "تحديث",
+        "back": "رجوع",
+        "title":"احداث المبارة",
+        "timeline": {
+          "your_prediction": "التوقع الخاص بك",
+          "normal_goal": "هدف عادي",
+          "own_goal": "هدف ذاتي",
+          "penalty": "ضربة جزاء",
+          "missed_penalty": "ركلة جزاء ضائعة",
+          "yellow_card": "كارت اصفر",
+          "red_card": "كارت احمر",
+          "sub1": "استبدال اول",
+          "sub2": "استبدال تاني",
+          "sub3": "استبدال تالت",
+          "sub4": "استبدال رابع",
+          "sub5": "استبدال خامس",
+          "goal_cancelled": "هدف ملغي",
+          "penalty_confirmed": "تأكيد ركلة الجزاء"
+        }
+      },
       "profile": {
         "actions": {
           "invite_friend": "دعوة صديق",
