@@ -18,14 +18,14 @@ export default function PredictionsHighlightsSection({
 
   return (
     <div className="px-4 mt-24 lg:mt-32 lg:px-20">
-      <div className=" max-w-6xl mx-auto bg-[#231C28] rounded-xl" dir="ltr">
+      <div className=" max-w-6xl mx-auto bg-[#231C28] rounded-xl border-gradient-primary" dir="ltr">
         {/* Header */}
         <div className="w-full flex items-center justify-between">
           {/* go back button */}
           <motion.div
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
-            className="border-gradient-primary h-full flex items-center gap-2 rounded-xl rounded-bl-none rounded-tr-none origin-top-left"
+            className="border-gradient-primary h-full flex items-center gap-2 rounded-xl rounded-bl-none rounded-tr-none origin-top-left !border-b-none"
           >
             <HighlightBackButton />
           </motion.div>
