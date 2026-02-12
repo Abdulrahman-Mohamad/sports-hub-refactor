@@ -1,4 +1,4 @@
-import AnimateNavigation from "@/components/layout/AnimateNavigation";
+import AnimateNavigation from "@/components/ui/AnimateNavigation";
 
 type Props = {
     children: React.ReactNode;
