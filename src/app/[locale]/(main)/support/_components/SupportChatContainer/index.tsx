@@ -6,7 +6,7 @@ import AllMessagesComponent from "../AllMessages";
 import SendMessageComponent from "../SendMessage";
 import { usePusher } from "@/hooks/usePusher";
 import { useUser } from "@/context/UserContext";
-import { SupportMessage } from "@/utils/types/ٍSupport";
+import { SupportMessage } from "@/utils/types/Support";
 import { fetchSupportMessages } from "@/lib/api/messages";
 import GradientIcon from "@/components/ui/GradientIcon";
 
@@ -79,9 +79,7 @@ export default function SupportChatContainer({
           onClick={() => router.back()}
           className="flex items-center bg-[#F1F1F1] justify-end p-4 cursor-pointer"
         >
-          <GradientIcon
-          icon={RiArrowGoBackFill} size={30}
-          />
+          <GradientIcon icon={RiArrowGoBackFill} size={30} />
         </button>
 
         <AllMessagesComponent

@@ -1,6 +1,6 @@
 import React from "react";
 import MessageComponent from "../Message";
-import { SupportMessage } from "@/utils/types/ٍSupport";
+import { SupportMessage } from "@/utils/types/Support";
 
 type props = {
   allMessages?: SupportMessage[];

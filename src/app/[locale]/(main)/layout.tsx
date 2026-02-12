@@ -4,6 +4,7 @@ import RefreshHandler from "@/utils/helperFn/RefreshHandler";
 import PointsSection from "@/components/ui/PointsSection";
 import { cookies } from "next/headers";
 import SupportButton from "@/components/ui/SupportButton";
+import PosterModal from "@/components/ui/Poster";
 
 export default async function layout({ children }: { children: React.ReactNode }) {
   const cookiesStore = await cookies();
@@ -15,6 +16,7 @@ export default async function layout({ children }: { children: React.ReactNode }
         <main className="flex-1">
           <RefreshHandler />
           <SupportButton/>
+          <PosterModal />
           {children}
         </main>
         <Footer />

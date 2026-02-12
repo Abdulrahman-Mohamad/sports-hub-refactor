@@ -1,4 +1,4 @@
-import { SupportMessage } from "@/utils/types/ٍSupport";
+import { SupportMessage } from "@/utils/types/Support";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import React, { forwardRef } from "react";
