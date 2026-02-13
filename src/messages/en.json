@@ -69,13 +69,17 @@
       },
       "otp": {
         "title": "OTP Code",
-        "description": "We've sent a {digit}-digit code to your phone. Please enter it below to complete your registration.",
-        "placeholders": "Enter {digit}-Digit Code",
+        "description": "We've sent a {otpLength}-digit code to your phone. Please enter it below to complete your registration.",
+        "placeholders": "Enter {otpLength}-Digit Code",
         "didnt_receive": "Didn't receive the code?",
         "resend_in": "Resend in {time}",
         "resend_code": "Resend Code",
         "verify": "Next",
-        "otp_validation": "Pin code must be exactly 4 digits"
+        "otp_validation": "Pin code must be exactly 4 digits",
+        "error_occurred": "An error occurred",
+        "success_message":"You Have Been Subscribed Successfully",
+        "error_message":"The Number You've Entered Is Not Correct",
+        "operator_message":"Please wait for the operator to confirm your subscription"
       }
     },
     "main": {
@@ -263,7 +267,7 @@
       "highlights": {
         "update": "Update",
         "back": "Back",
-        "title":"Match Highlights",
+        "title": "Match Highlights",
         "timeline": {
           "your_prediction": "Your Prediction",
           "normal_goal": "Normal Goal",

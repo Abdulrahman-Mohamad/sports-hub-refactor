@@ -33,6 +33,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
   const [user, setUserState] = useState<User | null>(null);
   const [profile, setProfile] = useState<ProfileData | null>(null);
   const [initialized, setInitialized] = useState<boolean>(false);
+
   const router = useRouter();
 
   const fetchProfile = useCallback(async () => {

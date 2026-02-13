@@ -1,95 +1,92 @@
 "use client";
-import Input from "@/components/form/Input";
-import { OTPProps, OTPSchema } from "@/utils/schemas/Auth/OTP";
-import { zodResolver } from "@hookform/resolvers/zod";
-import React, { useEffect, useState, useCallback, useRef } from "react";
-import { useForm } from "react-hook-form";
+import React, { useEffect, useState, useCallback } from "react";
 import { toast } from "react-toastify";
 import { useTranslations } from "next-intl";
-import { useApp } from "@/context/AppContext";
 import { resendOTPFetch } from "@/lib/api/auth/resendOTPFetch";
 import { verifyOTPFetch } from "@/lib/api/auth/verifyOTPFetch";
 import { motion } from "framer-motion";
+import { useUser } from "@/context/UserContext";
+import { ImSpinner4 } from "react-icons/im";
 
 export default function FormStep({
   setStep,
+  preventInitialResend,
+  setSuccessMessage,
+  setErrorMessage
 }: {
   setStep: (step: string) => any;
+  preventInitialResend: boolean;
+  setSuccessMessage:(message:string)=>void
+  setErrorMessage:(message:string)=>void
 }) {
   const t = useTranslations("pages.auth.otp");
-  const {} = useApp();
-
-  // cooldown state (seconds) - Start with 45 to show timer immediately
+  const { user } = useUser();
+  const [otp, setOtp] = useState("");
+  const [loading, setLoading] = useState(false);
   const [cooldown, setCooldown] = useState<number>(45);
 
-  // Helper to format seconds to 00:00
+  const isZain = user?.operator === "zain";
+  const otpLength = isZain ? 5 : 4;
+
   const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
     return `${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
   };
 
-  const onResendSuccess = useCallback(
-    (res: any) => {
-      console.log("OTP Resend Success:", res);
-      setCooldown(45); // Restart timer
-      toast.success(res?.message || t("success_message"));
-    },
-    [t],
-  );
-
-  const onResendError = useCallback(
-    (error: any) => {
-      console.error("OTP Resend Error:", error);
-      toast.error(error?.message || t("common.error_occurred"));
-    },
-    [t],
-  );
-
-  // Core resend logic
-  const triggerResend = useCallback(async () => {
-    await resendOTPFetch({
-      onSuccess: onResendSuccess,
-      onError: onResendError,
-    });
-  }, [onResendSuccess, onResendError]);
-
-  // Manual click handler
-  const handleManualResend = useCallback(() => {
-    setCooldown(45);
-    if (cooldown > 0) return;
-    triggerResend();
-  }, [cooldown, triggerResend]);
-
-  const {
-    register,
-    formState: { errors, isValid },
-    handleSubmit,
-  } = useForm<OTPProps>({
-    resolver: zodResolver(OTPSchema(t)),
-    mode: "onChange",
-  });
-
-  const onVerifySuccess = useCallback(() => {
-    setStep("success");
-  }, [setStep]);
-
-  const onVerifyError = useCallback(
-    (error: any) => {
-      console.error("Verify OTP Error:", error);
-      toast.error(error?.message || t("common.error_occurred"));
-    },
-    [t],
-  );
-
-  const onSubmit = async (data: OTPProps) => {
-    await verifyOTPFetch(data, {
-      onSuccess: onVerifySuccess,
-      onError: onVerifyError,
-    });
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value.replace(/[^0-9]/g, "");
+    if (value.length <= otpLength) {
+      setOtp(value);
+    }
   };
 
-  // Timer Logic - Persistent interval for maximum reliability
+  const handleVerify = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (otp.length !== otpLength) return;
+    setLoading(true);
+    await verifyOTPFetch(
+      { otp },
+      {
+        onSuccess: (res) => {
+          setLoading(false);
+          setSuccessMessage(res?.message)
+          setStep("success");
+        },
+        onError: (error) => {
+          setLoading(false);
+          setErrorMessage(error?.message)
+          setStep("error");
+        },
+      },
+    );
+  };
+
+  const handleManualResend = () => {
+    if (cooldown > 0) return;
+    if (isZain) {
+      setStep("operator");
+    } else {
+      triggerResend();
+    }
+  };
+
+  const triggerResend = useCallback(async (clickId?: string) => {
+    await resendOTPFetch(
+      { click_id: clickId },
+      {
+        onSuccess: (res) => {
+          setCooldown(45);
+          setOtp("");
+          toast.success(res?.message);
+        },
+        onError: (error) => {
+          toast.error(error?.message);
+        },
+      },
+    );
+  }, []);
+
   useEffect(() => {
     const timer = setInterval(() => {
       setCooldown((prev) => (prev > 0 ? prev - 1 : 0));
@@ -97,19 +94,14 @@ export default function FormStep({
     return () => clearInterval(timer);
   }, []);
 
-  // Initial trigger on mount - Only once
-  const isInitialSent = useRef(false);
   useEffect(() => {
-    if (!isInitialSent.current) {
-      isInitialSent.current = true;
-      triggerResend();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    if (preventInitialResend || isZain) return;
+    triggerResend();
+  }, [preventInitialResend, isZain, triggerResend]);
 
   return (
     <form
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={handleVerify}
       className="bg-white rounded-3xl flex flex-col w-[90%] max-w-2xl p-6 md:p-12 space-y-6 shadow-2xl"
     >
       {/* Top Section */}
@@ -118,19 +110,20 @@ export default function FormStep({
           {t("title")}
         </h2>
         <p className="text-gray-600 text-sm md:text-xl font-medium">
-          {t("description", { digit: 4 })}
+          {t("description", { otpLength })}
         </p>
       </div>
 
       {/* Body Section */}
       <div className="flex flex-col space-y-8">
         <div className="w-full max-w-md mx-auto">
-          <Input
-            id="otp"
-            placeholder={t("placeholders", { digit: 4 })}
-            register={register}
-            errors={errors}
-            className="!text-center !text-xl !py-4 !rounded-xl border-gray-200"
+          <input
+            type="text"
+            value={otp}
+            onChange={handleInputChange}
+            placeholder={t("placeholders", { otpLength })}
+            maxLength={otpLength}
+            className="w-full text-center p-4 border-2 border-gray-200 rounded-xl focus:border-primary outline-none transition-all font-bold text-xl"
           />
         </div>
 
@@ -155,18 +148,23 @@ export default function FormStep({
         {/* Submit Button */}
         <div className="w-full max-w-xs mx-auto pt-4">
           <motion.button
-          whileHover={{scale: isValid ? 1.1 : 1}}
-          whileTap={{scale: isValid ? 0.9 : 1}}
+            whileHover={{
+              scale: otp.length === otpLength && !loading ? 1.1 : 1,
+            }}
+            whileTap={{ scale: otp.length === otpLength && !loading ? 0.9 : 1 }}
             type="submit"
-            disabled={!isValid}
+            disabled={otp.length !== otpLength || loading}
             className={`w-full py-4 rounded-xl text-white text-xl font-bold ${
-              !isValid
+              otp.length !== otpLength || loading
                 ? "bg-gray-400 cursor-not-allowed"
                 : "bg-gradient-primary-r cursor-pointer"
             }`}
-            
           >
-            {t("verify")}
+            {loading ? (
+              <ImSpinner4 className="animate-spin mx-auto" />
+            ) : (
+              t("verify")
+            )}
           </motion.button>
         </div>
       </div>

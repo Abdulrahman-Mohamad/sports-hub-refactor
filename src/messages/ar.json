@@ -66,13 +66,17 @@
       },
       "otp": {
         "title": "كود OTP",
-        "description": "لقد أرسلنا رمزًا مكونًا من {digit} أرقام إلى هاتفك. يرجى إدخاله أدناه لإكمال تسجيلك.",
-        "placeholders": "أدخل الرمز المكون من {digit} أرقام",
+        "description": "لقد أرسلنا رمزًا مكونًا من {otpLength} أرقام إلى هاتفك. يرجى إدخاله أدناه لإكمال تسجيلك.",
+        "placeholders": "أدخل الرمز المكون من {otpLength} أرقام",
         "didnt_receive": "لم تستلم الرمز",
         "resend_in": "أعد إرسال OTP في {time}",
         "resend_code": "إعادة ارسال الرمز",
         "verify": "التالي",
-        "otp_validation": "يجب أن يكون رمز PIN مكوناً من 4 أرقام بالضبط"
+        "otp_validation": "يجب أن يكون رمز PIN مكوناً من 4 أرقام بالضبط",
+        "error_occurred": "حدث خطأ ما",
+        "success_message":"تم الاشتراك بنجاح",
+        "error_message":"الرقم الذي أدخلته غير صحيح",
+        "operator_message":"يرجى الانتظار حتى يتم تأكيد اشتراكك"
       }
     },
     "main": {
@@ -260,7 +264,7 @@
       "highlights": {
         "update": "تحديث",
         "back": "رجوع",
-        "title":"احداث المبارة",
+        "title": "احداث المبارة",
         "timeline": {
           "your_prediction": "التوقع الخاص بك",
           "normal_goal": "هدف عادي",
@@ -428,13 +432,13 @@
       }
     },
     "trivia": {
-      "steps":{
-        "completed":{
-          "title":"خلصت اللعبة",
-          "your_score":"نقاطك",
-          "points":"نقطة",
-          "back":"ارجع للألعاب",
-          "play_again":"ألعب مرة ثانية"
+      "steps": {
+        "completed": {
+          "title": "خلصت اللعبة",
+          "your_score": "نقاطك",
+          "points": "نقطة",
+          "back": "ارجع للألعاب",
+          "play_again": "ألعب مرة ثانية"
         }
       }
     }

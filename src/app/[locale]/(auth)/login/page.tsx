@@ -49,8 +49,12 @@ export default function LoginPage() {
     if (userData && token) {
       setUser({ user: userData, accessToken: token });
       toast.success(res?.message || t("common.success"));
+      if (!userData.is_subscribed) {
+        router.push(`/?otp=true`);
+      } else {
+        router.push(`/`);
+      }
       router.refresh();
-      router.push(`/`);
     } else {
       console.error("UserData or Token is missing in response:", res);
     }
