@@ -5,18 +5,28 @@ import PointsSection from "@/components/ui/PointsSection";
 import { cookies } from "next/headers";
 import SupportButton from "@/components/ui/SupportButton";
 import PosterModal from "@/components/ui/Poster";
+import { Suspense } from "react";
+import Spinner from "@/components/ui/Spinner";
+import CheckoutResultHandler from "@/providers/CheckoutResultHandler";
 
-export default async function layout({ children }: { children: React.ReactNode }) {
+export default async function layout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const cookiesStore = await cookies();
-  const hasToken = cookiesStore.has('access_token')
+  const hasToken = cookiesStore.has("access_token");
   return (
     <>
       <div className="min-h-screen flex flex-col justify-between bg-[#0E0011]">
         <Navbar pointsComponent={hasToken ? <PointsSection /> : null} />
         <main className="flex-1">
           <RefreshHandler />
-          <SupportButton/>
+          <SupportButton />
           <PosterModal />
+          <Suspense fallback={<Spinner />}>
+            <CheckoutResultHandler />
+          </Suspense>
           {children}
         </main>
         <Footer />

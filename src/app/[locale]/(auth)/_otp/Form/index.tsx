@@ -12,12 +12,12 @@ export default function FormStep({
   setStep,
   preventInitialResend,
   setSuccessMessage,
-  setErrorMessage
+  setErrorMessage,
 }: {
   setStep: (step: string) => any;
   preventInitialResend: boolean;
-  setSuccessMessage:(message:string)=>void
-  setErrorMessage:(message:string)=>void
+  setSuccessMessage: (message: string) => void;
+  setErrorMessage: (message: string) => void;
 }) {
   const t = useTranslations("pages.auth.otp");
   const { user } = useUser();
@@ -50,12 +50,12 @@ export default function FormStep({
       {
         onSuccess: (res) => {
           setLoading(false);
-          setSuccessMessage(res?.message)
+          setSuccessMessage(res?.message);
           setStep("success");
         },
         onError: (error) => {
           setLoading(false);
-          setErrorMessage(error?.message)
+          setErrorMessage(error?.message);
           setStep("error");
         },
       },
@@ -71,21 +71,42 @@ export default function FormStep({
     }
   };
 
-  const triggerResend = useCallback(async (clickId?: string) => {
-    await resendOTPFetch(
-      { click_id: clickId },
-      {
-        onSuccess: (res) => {
-          setCooldown(45);
-          setOtp("");
-          toast.success(res?.message);
+  const triggerResend = useCallback(
+    async (clickId?: string) => {
+      const getChannelId = () => {
+        switch (user?.operator) {
+          case "zain":
+            return "143";
+          case "stc":
+            return "144";
+          case "batelco":
+            return "133";
+          default:
+            return "133";
+        }
+      };
+
+      const channel_id = getChannelId();
+      await resendOTPFetch(
+        { click_id: clickId, channel_id },
+        {
+          onSuccess: (res) => {
+            if (res?.data?.url && typeof res.data.url === "string") {
+              window.location.href = res.data.url;
+              return;
+            }
+            setCooldown(45);
+            setOtp("");
+            toast.success(res?.message);
+          },
+          onError: (error) => {
+            toast.error(error?.message);
+          },
         },
-        onError: (error) => {
-          toast.error(error?.message);
-        },
-      },
-    );
-  }, []);
+      );
+    },
+    [user?.operator],
+  );
 
   useEffect(() => {
     const timer = setInterval(() => {

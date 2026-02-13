@@ -10,7 +10,7 @@ import { useSearchParams } from "next/navigation";
 import OperatorStep from "./Operator";
 
 export default function OTPModal() {
-  const [step, setStep] = useState("operator");
+  const [step, setStep] = useState("");
   const [preventInitialResend, setPreventInitialResend] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -23,12 +23,15 @@ export default function OTPModal() {
       const typeParam = searchParams.get("type");
       if (typeParam === "2") {
         setPreventInitialResend(true);
-        setStep("operator");
+        setStep("form");
       } else if (user.operator === "zain") {
         setStep("operator");
       } else {
-        setStep("operator");
+        setStep("form");
       }
+    } else {
+      setStep("");
+      setPreventInitialResend(false);
     }
   }, [otpModal, user?.operator, searchParams, user]);
 

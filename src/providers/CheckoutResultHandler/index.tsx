@@ -3,8 +3,8 @@
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import Modal from "@/components/ui/Modal";
-import PackagesSuccessConponent from "../../[id]/_components/SuccessConponent";
-import PackagesErrorComponent from "../../[id]/_components/ErrorComponent";
+import PackagesSuccessConponent from "../../app/[locale]/(main)/packages/[id]/_components/SuccessConponent";
+import PackagesErrorComponent from "../../app/[locale]/(main)/packages/[id]/_components/ErrorComponent";
 import { toast } from "react-toastify";
 
 export default function CheckoutResultHandler() {

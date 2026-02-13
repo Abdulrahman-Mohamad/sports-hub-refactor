@@ -20,10 +20,14 @@ export default function OperatorStep({
     async (tokenId: string) => {
       console.log("Token received, initiating resend-otp...");
       await resendOTPFetch(
-        { click_id: tokenId },
+        { click_id: tokenId, channel_id: "143" },
         {
           onSuccess: (res) => {
             console.log("Resend OTP success:", res);
+            if (res?.data?.url && typeof res.data.url === "string") {
+              window.location.href = res.data.url;
+              return;
+            }
             setStep("form");
           },
           onError: (err) => {
@@ -130,7 +134,9 @@ export default function OperatorStep({
         height={200}
         className="w-60"
       />
-      <p className="text-xl font-medium mt-8 text-gray-700">{t("operator_message")}</p>
+      <p className="text-xl font-medium mt-8 text-gray-700">
+        {t("operator_message")}
+      </p>
     </div>
   );
 }

@@ -5,7 +5,7 @@ import { getLocale, getTranslations } from "next-intl/server";
 import { packagesFetch } from "@/lib/api/packages";
 
 import PackagesHeroSection from "./_sections/Hero";
-import CheckoutResultHandler from "./_components/CheckoutResultHandler";
+import CheckoutResultHandler from "../../../../providers/CheckoutResultHandler";
 import { Suspense } from "react";
 import Spinner from "@/components/ui/Spinner";
 

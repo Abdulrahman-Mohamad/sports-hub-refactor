@@ -2,14 +2,14 @@ import { QueryParams } from "@/utils/types/Generic/QueryParams";
 import { apiFetch } from "../apiFetch";
 
 export const resendOTPFetch = async (
-  { click_id }: { click_id?: string },
+  data: any,
   { onSuccess, onError }: QueryParams,
 ) => {
   try {
     const response = await apiFetch("/auth/resend-otp", {
       method: "POST",
       auth: true,
-      body: { click_id },
+      body: data,
     });
     if (onSuccess) onSuccess(response);
     return response;
