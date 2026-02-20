@@ -74,8 +74,8 @@ export default function LeaderboardPodiumSection({
                     height={24}
                     className="w-4 h-4 md:w-6 md:h-6"
                   />
-                  <span className={`text-white font-medium text-xs md:text-lg lg:text-xl ${user.score_hide ? "blur-sm" : ""}`}>
-                    {user.points}
+                  <span className={`text-white font-medium text-xs md:text-lg lg:text-xl ${user.score_hide ? "blur-sm select-none" : ""}`}>
+                    {user.score_hide ? "Nice try":user.points}
                   </span>
                 </div>
               </div>

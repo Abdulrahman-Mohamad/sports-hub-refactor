@@ -78,8 +78,8 @@ export default function LeaderboardTableSection({
                 height={1000}
                 className="w-4 lg:w-6 xl:w-7"
               />
-              <p className="font-medium lg:text-lg xl:text-xl">
-                {user.points}{" "}
+              <p className={`font-medium lg:text-lg xl:text-xl  ${user.score_hide ? "blur-sm select-none" : ""}`}>
+                {user.score_hide ? "Nice try" : user.points}{" "}
                 <span className="text-xs font-normal lg:text-sm xl:text-base text-gray-500">
                   {t("points")}
                 </span>
@@ -132,11 +132,13 @@ export default function LeaderboardTableSection({
           >
             {user.username}
           </p>
-          <div className="flex items-center gap-2 
+          <div
+            className="flex items-center gap-2 
           sm:gap-3
           lg:gap-4 
           xl:gap-5
-          ">
+          "
+          >
             <Image
               src="/images/common/rank-fire.png"
               alt="rank-fire"
@@ -144,11 +146,13 @@ export default function LeaderboardTableSection({
               height={1000}
               className="w-4 lg:w-6 xl:w-7"
             />
-            <p className="font-medium lg:text-lg xl:text-xl">
-              {user.points}{" "}
-              <span className="text-xs font-normal lg:text-sm xl:text-base text-white/60
+            <p className={`font-medium lg:text-lg xl:text-xl ${user.score_hide ? "blur-sm select-none" : ""}`}>
+              {user.score_hide ? "Nice try" : user.points}{" "}
+              <span
+                className="text-xs font-normal lg:text-sm xl:text-base text-white/60
               sm:ms-1
-              ">
+              "
+              >
                 {t("points")}
               </span>
             </p>
