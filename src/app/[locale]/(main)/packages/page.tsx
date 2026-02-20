@@ -44,6 +44,8 @@ export default async function PackagesPage() {
       {data?.additional_packages?.length > 0 && (
         <AdditionalPackagesSection data={data?.additional_packages} />
       )}
+      
+      
     </div>
   );
 }

@@ -71,7 +71,7 @@ export default function PackageDetailsPromoCode({
           transition={{ duration: 0.2 }}
           type="submit"
           className={`btn md:py-3 w-full md:w-1/3 font-bold flex-center
-            ${type === "vip" ? "text-white" : "text-black"}
+            ${type === "vip" || type === "basic" ? "text-white" : "text-black"}
                     ${activeBackground(type)}`}
         >
           {isLoading ? (

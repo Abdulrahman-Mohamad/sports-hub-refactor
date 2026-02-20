@@ -12,7 +12,7 @@ export const activeBackground = (type: "vip" | "gold" | "silver" | "basic") => {
     case "silver":
       return "bg-gradient-silver";
     default:
-      return "bg-[#7100FB]";
+      return "bg-[#7100FB] text-white";
   }
 };
 

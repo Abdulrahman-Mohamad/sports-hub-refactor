@@ -32,6 +32,9 @@ export default function OrderHandler({
   const handleSubmit = () => {
     setIsModalOpen(true);
   };
+
+  console.log(payment_methods);
+  
   return (
     <>
       <PackagesPurchaseModal
@@ -75,7 +78,7 @@ export default function OrderHandler({
             >
               <div className="flex items-center gap-2">
                 <Image
-                  src={method.media_path}
+                  src={method.media_path!}
                   alt={method.title}
                   width={50}
                   height={50}
