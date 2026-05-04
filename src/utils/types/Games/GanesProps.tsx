@@ -4,4 +4,5 @@ export type GamesProps = {
     triviaData:GamesConfigProps,
     predictionData:GamesConfigProps,
     shootData:GamesConfigProps,
+    itCompleteData:GamesConfigProps,
 }

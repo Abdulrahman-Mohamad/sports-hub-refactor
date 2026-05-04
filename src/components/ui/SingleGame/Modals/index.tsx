@@ -15,7 +15,7 @@ export default function GameModal({
 }: {
   zee_coins: string | number;
   game_url?: string;
-  type: "trivia" | "prediction" | "shot_on_net";
+  type: "trivia" | "prediction" | "shot_on_net" | "it_complete";
   isOpen: boolean;
   onClose: () => void;
   predictionId?: string | number | null;

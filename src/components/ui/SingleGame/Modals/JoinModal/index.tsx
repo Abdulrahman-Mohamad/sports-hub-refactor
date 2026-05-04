@@ -19,7 +19,7 @@ export default function JoinGameModal({
 }: {
   zee_coins: string | number;
   game_url?: string;
-  type: "trivia" | "prediction" | "shot_on_net";
+  type: "trivia" | "prediction" | "shot_on_net" | "it_complete";
   onClose: () => void;
   setStep: (step: "check" | "insufficient") => any;
   predictionId?: string | number | null;
@@ -41,6 +41,10 @@ export default function JoinGameModal({
         window.location.href = `${game_url}?lang=${locale}&token=${accessToken}`;
       if (type === "trivia") {
         if (pathname !== `/trivia`) return router.push("/trivia");
+        router.refresh();
+      }
+      if (type === "it_complete") {
+        if (pathname !== `/it-complete`) return router.push("/it-complete");
         router.refresh();
       }
       if (type === "prediction") {

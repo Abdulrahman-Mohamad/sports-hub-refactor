@@ -32,6 +32,7 @@ export default async function GamesPage() {
         triviaData={data?.trivia_config}
         predictionData={data?.prediction_config}
         shootData={data?.shot_on_net_config}
+        itCompleteData={data?.it_complete_config}
       />
     </>
   );

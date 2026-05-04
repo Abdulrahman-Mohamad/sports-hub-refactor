@@ -2,7 +2,7 @@ import { QueryParams } from "@/utils/types/Generic/QueryParams";
 import { apiFetch } from "../apiFetch";
 
 export const checkCoinFetch = async (
-  slug: "trivia" | "prediction" | "shot_on_net",
+  slug: "trivia" | "prediction" | "shot_on_net" | "it_complete",
   { onSuccess, onError }: QueryParams,
 ) => {
   try {

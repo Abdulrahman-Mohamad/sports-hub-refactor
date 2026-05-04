@@ -36,6 +36,9 @@ export default function SingleGameSection({
       case "prediction":
         handlePrediction();
         break;
+      case "it_complete":
+        handleItComplete();
+        break;
     }
   };
   const handleShoot = () => {
@@ -54,6 +57,13 @@ export default function SingleGameSection({
   };
   const handlePrediction = () => {
     router.push("/fixtures");
+  };
+  const handleItComplete = () => {
+    if (!!user) {
+      setModal(true);
+    } else {
+      router.push("/it-complete");
+    }
   };
 
   return (

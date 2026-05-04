@@ -6,6 +6,7 @@ export default function GamesSections({
   triviaData,
   predictionData,
   shootData,
+  itCompleteData,
 }: GamesProps) {
   const t = useTranslations('components.ui.single_game');
   return (
@@ -41,6 +42,16 @@ export default function GamesSections({
         rules={shootData?.rules}
         zee_coins={shootData?.zee_coins}
         type="shot_on_net"
+      />
+      {/* it_complete Section */}
+      <SingleGameSection
+        img="/images/games/it_complete-bg.png"
+        logo="/images/games/it_complete-logo.png"
+        title={t('it_complete')}
+        description={itCompleteData?.description}
+        rules={itCompleteData?.rules}
+        zee_coins={itCompleteData?.zee_coins}
+        type="it_complete"
       />
     </section>
   );

@@ -7,5 +7,5 @@ export type SingleGameProps = {
   rules: string;
   zee_coins: number;
   game_url?: string;
-  type: "trivia" | "prediction" | "shot_on_net";
+  type: "trivia" | "prediction" | "shot_on_net" | "it_complete";
 };
