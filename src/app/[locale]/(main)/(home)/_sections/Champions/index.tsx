@@ -22,10 +22,12 @@ export default function HomeChampionsSection({
   trivia,
   prediction,
   shoot,
+  itComplete,
 }: {
   trivia: ChampionsProps[];
   prediction: ChampionsProps[];
   shoot: ChampionsProps[];
+  itComplete?: ChampionsProps[];
 }) {
   const t = useTranslations("pages.main.home.champions");
   return (
@@ -127,6 +129,42 @@ export default function HomeChampionsSection({
               className="!pb-10"
             >
               {shoot?.map((item, i) => (
+                <SwiperSlide
+                  key={i}
+                  className="!w-auto mb-4 py-2  px-1 !h-auto "
+                >
+                  <PlayerCard data={item} index={i} />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+        </section>
+        )}
+
+        {/* it_complete Champions Section */}
+        {(itComplete?.length ?? 0) > 0 && (
+        <section className="relative gap-4 w-full px-2 md:ps-6 lg:ps-8 xl:ps-14 mt-10 lg:mt-16">
+          <div className="text-white text-center mb-10 relative">
+            <AnimateTitleByArrows>
+              <h3 className="!text-xl font-bold md:!text-3xl lg:!text-4xl">
+                {t("it_complete")}
+              </h3>
+            </AnimateTitleByArrows>
+          </div>
+          <div className="w-full px-4 md:px-0">
+            <div className="absolute top-1/2 -translate-y-1/2 left-0 -translate-x-1/2 bg-radial from-[#D600FB]/60 via-transparent via-70% to-transparent w-1/2 h-full" />
+            <Swiper
+              slidesPerView={"auto"}
+              spaceBetween={20}
+              pagination={{
+                clickable: true,
+                dynamicBullets: true,
+                dynamicMainBullets: 1,
+              }}
+              modules={[Pagination]}
+              className="!pb-10"
+            >
+              {itComplete?.map((item, i) => (
                 <SwiperSlide
                   key={i}
                   className="!w-auto mb-4 py-2  px-1 !h-auto "

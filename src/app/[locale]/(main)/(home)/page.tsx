@@ -38,6 +38,7 @@ export default async function HomeContentPage() {
         trivia={data?.trivia_champions}
         prediction={data?.prediction_champions}
         shoot={data?.shot_on_net_champions}
+        itComplete={data?.it_complete_champions}
       />
 
       {data?.predictions && (
