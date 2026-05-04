@@ -216,6 +216,7 @@
         "trivia": "Trivia",
         "prediction": "Prediction",
         "shot_on_net": "Shot-On-Net",
+        "it_complete": "Autobees Complete",
         "points": "pts"
       },
       "games": {
@@ -240,6 +241,7 @@
           "outcomes": "Outcomes",
           "time": "Time",
           "no_data_trivia": "You haven't played Trivia on the selected date",
+          "no_data_it_complete": "You haven't played Autobees Complete on the selected date",
           "no_data_prediction": "You haven't played Prediction on the selected date",
           "no_data_shot_on_net": "You haven't played Shot-On-Net on the selected date"
         }

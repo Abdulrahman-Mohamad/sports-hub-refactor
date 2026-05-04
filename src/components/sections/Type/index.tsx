@@ -22,6 +22,7 @@ export default function TypeSection({
     { id: "trivia", label: t("trivia") },
     { id: "prediction", label: t("prediction") },
     { id: "shot_on_net", label: t("shot_on_net") },
+    { id: "it_complete", label: t("it_complete") },
   ];
 
   if (showAll) {

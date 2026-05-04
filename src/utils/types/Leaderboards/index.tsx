@@ -1,4 +1,4 @@
-export type LeaderboardType = "all" | "trivia" | "prediction" | "shot_on_net";
+export type LeaderboardType = "all" | "trivia" | "prediction" | "shot_on_net" | "it_complete";
 
 export interface LeaderboardUser {
   id: number;

@@ -14,6 +14,7 @@ const HistoryPredictionTable = dynamic(
   () => import("./_sections/PredictionTable"),
 );
 const HistoryShootTable = dynamic(() => import("./_sections/ShootTable"));
+const HistoryItCompleteTable = dynamic(() => import("./_sections/ItCompleteTable"));
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getLocale();
@@ -48,6 +49,7 @@ export default async function HistoryPage({
         {type === "trivia" && <HistoryTriviaTable data={data} />}
         {type === "prediction" && <HistoryPredictionTable data={data} />}
         {type === "shot_on_net" && <HistoryShootTable data={data} />}
+        {type === "it_complete" && <HistoryItCompleteTable data={data} />}
       </Suspense>
       </div>
     </>
