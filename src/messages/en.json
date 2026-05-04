@@ -397,6 +397,7 @@
       "rules": {
         "trivia": "Trivia",
         "prediction": "Prediction",
+        "it_complete": "Autobees Complete",
         "rules": "Rules",
         "play_now": "Play Now"
       },
@@ -447,6 +448,23 @@
           "points": "Points",
           "back": "Back to games",
           "play_again": "Play Again"
+        }
+      }
+    },
+    "it_complete": {
+      "steps": {
+        "game": {
+          "placeholder": "{title}",
+          "submit": "Submit"
+        },
+        "completed": {
+          "title": "Autobees Complete",
+          "score": "Score",
+          "points": "Points",
+          "trial-mode": "Trial Mode",
+          "paragraph": "You are playing in trial mode. Sign up to save your score and earn Zee Coins!",
+          "no": "Back to games",
+          "yes": "Play Again"
         }
       }
     }

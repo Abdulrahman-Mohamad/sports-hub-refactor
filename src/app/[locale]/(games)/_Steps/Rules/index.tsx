@@ -1,5 +1,5 @@
 import { useTranslations } from "next-intl";
-import Image from "next/image";
+
 import * as motion from "motion/react-client";
 import { useUser } from "@/context/UserContext";
 import { PredictionStepProps } from "@/utils/types/Prediction";
@@ -13,7 +13,7 @@ export default function GameRulesStep({
 }: {
   setStep: (step: PredictionStepProps) => any;
   config: string;
-  type: "trivia" | "prediction";
+  type: "trivia" | "prediction" | "it_complete";
   isPredicted?: boolean;
 }) {
   const t = useTranslations("games.steps.rules");
@@ -43,7 +43,9 @@ export default function GameRulesStep({
               ? t("trivia")
               : type === "prediction"
                 ? t("prediction")
-                : ""}
+                : type === "it_complete"
+                  ? t("it_complete")
+                  : ""}
           </h2>
         </div>
         <div className="px-8 md:px-12 py-8 flex flex-col gap-4  max-w-2xl mx-auto text-white">

@@ -1,10 +1,14 @@
 import { ImSpinner4 } from "react-icons/im";
 import GradientIcon from "../GradientIcon";
 
-export default function Spinner() {
+export default function Spinner({ size }: { size?: number }) {
   return (
-    <div className="my-10 flex-center">
-      <GradientIcon icon={ImSpinner4} className=" size-[3rem] animate-spin" />
+    <div className="my-4 flex-center">
+      <GradientIcon
+        icon={ImSpinner4}
+        className={`${size ? "" : "size-[3rem]"}  animate-spin`}
+        size={size}
+      />
     </div>
   );
 }
