@@ -23,7 +23,7 @@ export default async function HomeContentPage() {
       {data?.news && <HomeNewsSection data={data.news} />}
       {data?.user && <HomeUserStatsSection data={data.user} />}
       <TowButtonsSection />
-      {data?.all_leaderboard && (
+      {data?.all_leaderboard && data.all_leaderboard.length > 0 && (
         <HomeAllLeaderboardSection data={data.all_leaderboard} />
       )}
       <HomeChallengSection />
