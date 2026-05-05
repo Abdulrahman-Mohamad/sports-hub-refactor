@@ -62,7 +62,7 @@ export default function SingleGameSection({
     if (!!user) {
       setModal(true);
     } else {
-      router.push("/it-complete");
+      router.push("/login");
     }
   };
 
