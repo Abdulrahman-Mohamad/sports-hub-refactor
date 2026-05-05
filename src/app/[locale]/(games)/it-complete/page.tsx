@@ -17,6 +17,7 @@ import {
 import { itCompleteShowFetch } from "@/lib/api/itComplete/show";
 import { itCompleteStartGameFetch } from "@/lib/api/itComplete/startGame";
 
+
 export default function ItCompletePage() {
   const [step, setStep] = useState<PredictionStepProps>("rules");
   const [joker, setJoker] = useState<boolean>(false);
@@ -98,6 +99,7 @@ export default function ItCompletePage() {
         );
     }
   };
+
   return (
     <div
       className={`bg-center bg-cover bg-no-repeat bg-[url('/images/games/it_complete-bg.png')] min-h-screen flex items-center justify-center w-full`}
