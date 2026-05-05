@@ -14,6 +14,7 @@ import { FaLocationDot } from "react-icons/fa6";
 import { MdMail } from "react-icons/md";
 import { toast } from "react-toastify";
 import { profileUpdateFetch } from "@/lib/api/profile/profileUpdateFetch";
+import { deleteImageFetch } from "@/lib/api/profile/profileDeleteFetch";
 import { useRouter } from "next/navigation";
 import { useUser } from "@/context/UserContext";
 
@@ -54,6 +55,23 @@ export default function ProfileEditDataModal({
     });
   };
 
+  const handleDeleteImage = async () => {
+    try {
+      const res = await deleteImageFetch();
+      if (res?.status) {
+        toast.success(res.message || t("common.success"));
+        setImage(null);
+        setValue("media", null);
+        await fetchProfile();
+        router.refresh();
+      } else {
+        toast.error(res?.message || t("common.error_occurred"));
+      }
+    } catch (error: any) {
+      toast.error(error?.message || t("common.error_occurred"));
+    }
+  };
+
   useEffect(() => {
     if (isOpen) {
       reset({
@@ -84,6 +102,7 @@ export default function ProfileEditDataModal({
             setValue={setValue}
             setImage={setImage}
             image={image}
+            onDeleteImage={user?.media ? handleDeleteImage : undefined}
           />
           <Input
             id="username"

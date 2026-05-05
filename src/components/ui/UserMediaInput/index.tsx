@@ -1,6 +1,6 @@
 import React from "react";
 import type { UseFormRegister, FieldValues, Path } from "react-hook-form";
-import { FaCamera } from "react-icons/fa6";
+import { FaCamera, FaTrash } from "react-icons/fa6";
 import Image from "next/image";
 import handleSingleFileChange from "@/utils/helperFn/handleSingleFileChange";
 
@@ -13,6 +13,7 @@ interface SingleMediaInputProps<T extends FieldValues> {
   placeholder?: string;
   register: UseFormRegister<T>;
   image?: string | null;
+  onDeleteImage?: () => void;
 }
 
 export default function UserMediaInput<T extends FieldValues>({
@@ -22,6 +23,7 @@ export default function UserMediaInput<T extends FieldValues>({
   setValue,
   register,
   image,
+  onDeleteImage,
 }: SingleMediaInputProps<T>) {
   return (
     <div>
@@ -36,8 +38,18 @@ export default function UserMediaInput<T extends FieldValues>({
             className="hidden"
             onChange={(e) => handleSingleFileChange(e, setImage, setValue, id)}
           />
-        <div className="absolute bg-linear-to-b from-[#B520FE] to-[#00CAFE] p-0.25 top-0 left-0 size-10 rounded-full flex-center z-10"><FaCamera color="white" size={22} /></div>
-          </label>
+          <div className="absolute bg-linear-to-b from-[#B520FE] to-[#00CAFE] p-0.25 top-0 left-0 size-10 rounded-full flex-center z-10"><FaCamera color="white" size={22} /></div>
+        </label>
+        
+        {onDeleteImage && image && (
+          <button
+            type="button"
+            onClick={onDeleteImage}
+            className="absolute bg-linear-to-b from-red-500 to-red-700 p-0.25 bottom-0 left-0 size-10 rounded-full flex-center z-10 shadow-md cursor-pointer"
+          >
+            <FaTrash color="white" size={18} />
+          </button>
+        )}
         <div className="w-24 aspect-square ">
               <Image
                 src={image || "/user.svg"}
