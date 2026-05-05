@@ -11,7 +11,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { Prediction } from "@/utils/types/Fixtures/Fixture";
 import { GamesConfigProps } from "@/utils/types/Games/GamesConfigProps";
 import { predictionShowConfigFetch } from "@/lib/api/prediction/showConfig";
-import { getPredictionMatchById } from "@/utils/helperFn/prediction/getPredictionMatchById";
+import { showPredictionFixtureFetch } from "@/lib/api/fixtures/showPredictionFixtureFetch";
 import { PredictionStepProps } from "@/utils/types/Prediction";
 import PredictionGameStep from "./_Steps/Game";
 import PredictionCompletedStep from "./_Steps/Completed";
@@ -36,17 +36,17 @@ export default function PredictitionsGame() {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const [configRes, matchData] = await Promise.all([
+        const [configRes, matchRes] = await Promise.all([
           predictionShowConfigFetch(),
-          getPredictionMatchById(id),
+          showPredictionFixtureFetch(id),
         ]);
 
         if (configRes?.status) {
           setConfig(configRes?.data);
         }
 
-        if (matchData) {
-          setMatch(matchData);
+        if (matchRes?.status && matchRes?.data) {
+          setMatch(matchRes.data);
         } else {
           router.push("/fixtures");
         }
